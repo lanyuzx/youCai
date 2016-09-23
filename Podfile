@@ -12,6 +12,7 @@ pod "SDWebImage"
 pod "SDCycleScrollView"
 pod "IQKeyboardManager"
 pod "AFNetworking"
+pod "MJExtension"
 
 
 end

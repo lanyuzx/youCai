@@ -7,12 +7,7 @@
 //
 
 import UIKit
-import SDWebImage
-import AFNetworking
-import SDCycleScrollView
-import MJRefresh
-import IQKeyboardManager
-import SVProgressHUD
+
 let SCREEN_WITH = UIScreen.main.bounds.size.width
 
 let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
