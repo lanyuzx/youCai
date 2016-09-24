@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import IQKeyboardManager
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -19,6 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
    
         window = UIWindow(frame: CGRect(x: 0, y: 0, width: SCREEN_WITH, height: SCREEN_HEIGHT))
+        IQKeyboardManager.shared().isEnabled = true
+        IQKeyboardManager.shared().shouldResignOnTouchOutside = true
+        IQKeyboardManager.shared().shouldToolbarUsesTextFieldTintColor = true
+        IQKeyboardManager.shared().isEnableAutoToolbar = false
         window?.rootViewController = LLTabBarController()
         window?.makeKey()
         window?.makeKeyAndVisible()

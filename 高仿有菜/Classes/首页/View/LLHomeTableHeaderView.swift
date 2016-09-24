@@ -77,14 +77,14 @@ class LLHomeTableHeaderView: UIView {
             // 创建按钮
             for index in 0..<images.count {
                 let button = YMVerticalButton()
-                button.tag = index
+                button.tag = index + 10
                 button.setImage(UIImage(named: images[index]), for: .normal)
                 button.setTitle(titles[index], for: .normal)
                 button.setTitleColor(UIColor.black, for: .normal)
                 button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
                 button.frame.size.width = buttonW
                 button.frame.size.height = buttonH
-              //  button.addTarget(self, action: #selector(shareButtonClick(_:)), forControlEvents: .TouchUpInside)
+                button.addTarget(self, action: #selector(self.btnClick), for: .touchUpInside)
                 
                 // 计算 X、Y
                 let row = Int(index / maxCols)
@@ -96,17 +96,31 @@ class LLHomeTableHeaderView: UIView {
                bottomView.addSubview(button)
             }
         
-
-
-
           }
+    
+    func btnClick(button:UIButton)  {
+        
+        sycleViewBlock!(button,-1)
+        
+        
+    }
           // MARK: ---- 懒加载
     private lazy var cycleView:SDCycleScrollView = {
 
-        let cycleView = SDCycleScrollView(frame:    CGRect(x: 0, y: 0, width: 0, height: 0), delegate: nil, placeholderImage: UIImage.init(named: "top"))
-
-        return cycleView!
+        let cycleV = SDCycleScrollView(frame:    CGRect(x: 0, y: 0, width: 0, height: 0), delegate: nil, placeholderImage: UIImage.init(named: "top"))
+           cycleV?.delegate = self
+        return cycleV!
         
     }()
+
+}
+
+extension LLHomeTableHeaderView:SDCycleScrollViewDelegate {
+    
+    func cycleScrollView(_ cycleScrollView: SDCycleScrollView!, didSelectItemAt index: Int) {
+        
+        sycleViewBlock!(UIButton(),index)
+    }
+
 
 }

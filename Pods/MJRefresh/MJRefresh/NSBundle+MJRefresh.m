@@ -10,7 +10,7 @@
 #import "MJRefreshComponent.h"
 
 @implementation NSBundle (MJRefresh)
-+ (instancetype)mj_refreshBundle
++ (id)mj_refreshBundle
 {
     static NSBundle *refreshBundle = nil;
     if (refreshBundle == nil) {

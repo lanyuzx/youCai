@@ -16,7 +16,7 @@
 
 @implementation MJRefreshComponent
 #pragma mark - 初始化
-- (instancetype)initWithFrame:(CGRect)frame
+- (id)initWithFrame:(CGRect)frame
 {
     if (self = [super initWithFrame:frame]) {
         // 准备工作

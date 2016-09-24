@@ -24,6 +24,13 @@ class LLTabBarController: UITabBarController {
         tabBar.tintColor = UIColor.init(red: 10 / 255.0, green: 178 / 255.0, blue: 10 / 255.0, alpha: 1.0)
         
         
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+       
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,9 +41,10 @@ class LLTabBarController: UITabBarController {
     // MARK: ---- 封装添加子控制器方法
     private func addChildViewController(childController:UIViewController ,title:NSString ,imageName:NSString) {
         
-        childController.title = title as String
+       // childController.title = title as String
         childController.tabBarItem.image = UIImage(named: imageName as String + "_1" )
         childController.tabBarItem.selectedImage = UIImage(named: (imageName as String + "_2"))
+        childController.tabBarItem.title = title as String
         let navVc  = LLBaseNavController(rootViewController: childController)
         addChildViewController(navVc)
         

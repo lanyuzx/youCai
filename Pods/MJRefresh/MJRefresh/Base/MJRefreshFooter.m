@@ -15,13 +15,13 @@
 
 @implementation MJRefreshFooter
 #pragma mark - 构造方法
-+ (instancetype)footerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock
++ (id)footerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock
 {
     MJRefreshFooter *cmp = [[self alloc] init];
     cmp.refreshingBlock = refreshingBlock;
     return cmp;
 }
-+ (instancetype)footerWithRefreshingTarget:(id)target refreshingAction:(SEL)action
++ (id)footerWithRefreshingTarget:(id)target refreshingAction:(SEL)action
 {
     MJRefreshFooter *cmp = [[self alloc] init];
     [cmp setRefreshingTarget:target refreshingAction:action];

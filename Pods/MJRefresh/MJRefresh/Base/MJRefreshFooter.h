@@ -11,9 +11,9 @@
 
 @interface MJRefreshFooter : MJRefreshComponent
 /** 创建footer */
-+ (instancetype)footerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock;
++ (id)footerWithRefreshingBlock:(MJRefreshComponentRefreshingBlock)refreshingBlock;
 /** 创建footer */
-+ (instancetype)footerWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
++ (id)footerWithRefreshingTarget:(id)target refreshingAction:(SEL)action;
 
 /** 提示没有更多的数据 */
 - (void)endRefreshingWithNoMoreData;

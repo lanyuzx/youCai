@@ -9,27 +9,63 @@
 
 import UIKit
 import SVProgressHUD
+import MJRefresh
 class LLHomeViewController: LLBaseViewController {
    
+     // MARK: ---- 控制器生命周期方法
     override func viewDidLoad() {
         super.viewDidLoad()
         automaticallyAdjustsScrollViewInsets = false
           reqestDate()
           setupUI()
-        navigationController?.navigationBar.isHidden = true
+      
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image:   UIImage(named: "sao"), style: .plain, target: self, action: #selector(LLHomeViewController.leftBarItemClick))
         
      
-     
-          }
+        let seachView = LLHomeNavSearchView(frame: CGRect(x: 40, y: 0, width: SCREEN_WITH - 80, height: 30), filedBlock: { (textFiled) in
+         
+            print(textFiled.text)
+        })
+        
+        navigationController?.navigationBar.addSubview(seachView)
+        
+        
+        
+        
+    }
+    
        override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+       
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        // 1、设置导航栏半透明
+        navigationController?.navigationBar.isTranslucent = true
+        
+        // 2、设置导航栏背景图片
+  navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        
+        // 3、设置导航栏阴影图片
+        navigationController?.navigationBar.shadowImage = UIImage()
+        
+      
+
     }
+   
+    func leftBarItemClick()  {
+        
+    }
+    
+     // MARK: ---- 布局子控件
     private func setupUI() {
         view.addSubview(homeTabView)
+        
+        homeTabView.mj_header = MJRefreshNormalHeader.header(refreshingBlock: {
+            
+            self.reqestDate()
+            
+        }) as! MJRefreshHeader!
     
    
     }
@@ -57,18 +93,21 @@ class LLHomeViewController: LLBaseViewController {
                 SVProgressHUD.showError(withStatus: "轮播图加载异常!!")
                 return
             }
-          let cycleArr = NSMutableArray(capacity: 1)
+        
                 for index in 0..<slidesArr.count {
                 
                 let itemModel = LLHomeModel(dict: (slidesArr[index] as? [String:AnyObject])!)
                 
-              cycleArr.add(itemModel)
+              self.cycleArr.add(itemModel)
             }
                self.homeTabView.tableHeaderView = self.tabHeadView
-            self.tabHeadView.cycleArr = cycleArr
+            self.tabHeadView.cycleArr = self.cycleArr
+            
+            self.homeTabView.mj_header.endRefreshing()
 
 
         }) { (error) in
+              self.homeTabView.mj_header.endRefreshing()
          SVProgressHUD.showError(withStatus: "请求异常")
             
         }
@@ -92,6 +131,21 @@ class LLHomeViewController: LLBaseViewController {
         let tabHead =  LLHomeTableHeaderView(frame:   CGRect(x: 0, y: 0, width: SCREEN_WITH, height: 230)
             , block: { (button, index) in
                 
+                if button.tag  > 0 {
+                
+                    print("按钮的回调")
+                    
+                }
+                
+                if index > 0 {
+                    
+                    print("轮播")
+                    let model = self.cycleArr[index]
+                    print(model)
+
+                
+                }
+                
         })
         
         return tabHead
@@ -99,7 +153,7 @@ class LLHomeViewController: LLBaseViewController {
     
      lazy var itemArr:NSMutableArray = NSMutableArray(capacity: 1)
     
-    
+       lazy var cycleArr:NSMutableArray = NSMutableArray(capacity: 1)
   
 }
 
