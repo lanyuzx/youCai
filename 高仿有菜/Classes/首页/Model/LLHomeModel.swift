@@ -46,7 +46,7 @@ class LLHomeModel: NSObject {
     //更多
     var more:NSArray?
     
-    
+    var isSelectCell = false
     
     
     
