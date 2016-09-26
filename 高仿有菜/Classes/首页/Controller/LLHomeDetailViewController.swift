@@ -160,14 +160,14 @@ extension LLHomeDetailViewController:UITableViewDataSource,UITableViewDelegate {
                     if let tagNameArr = detailModel?.tagnames {
                         
                         if (tagNameArr.count) > 0 {
-                            return SCREEN_HEIGHT + 180
+                            return (SCREEN_HEIGHT + 180) * (SCREEN_HEIGHT_COEFFICIENT)
                         }else {
-                            return SCREEN_HEIGHT + 150
+                            return (SCREEN_HEIGHT + 150) * (SCREEN_HEIGHT_COEFFICIENT)
                         }
 
                         
                     }else {
-                     return SCREEN_HEIGHT + 180
+                     return (SCREEN_HEIGHT + 180) * (SCREEN_HEIGHT_COEFFICIENT)
                     }
                     
                     
