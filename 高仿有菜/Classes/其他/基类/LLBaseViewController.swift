@@ -15,6 +15,8 @@ let SCREEN_HEIGHT = UIScreen.main.bounds.size.height
 //以5s为基准
 let SCREEN_HEIGHT_COEFFICIENT = SCREEN_HEIGHT > 568 ? 568 / SCREEN_HEIGHT : 1
 
+let SCREEN_WITH_COEFFICIENT = SCREEN_WITH > 328 ? 328 / SCREEN_WITH : 1
+
 
 
 class LLBaseViewController: UIViewController {
