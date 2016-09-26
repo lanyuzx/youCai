@@ -31,6 +31,24 @@ class LLHomeModel: NSObject {
     var thumb:String?
     //来源那个农庄
     var farm:String?
+    var id = -1
+
+     // //详情页***************************************详情页//
+    ///儿童 成人
+    var tagnames:NSArray?
+    //m价格
+    var mprice = -1    //价格
+    var price = -1 
+    //已售
+    var sales = -1
+    var grossw = -1
+    
+    //更多
+    var more:NSArray?
+    
+    
+    
+    
     
     init(dict:[String:AnyObject]) {
         

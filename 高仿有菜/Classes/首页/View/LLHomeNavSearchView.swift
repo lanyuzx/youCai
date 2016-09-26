@@ -22,7 +22,7 @@ typealias searchTextFiled = (_ searchFiled:UITextField )->Void
         setupUI()
         layer.masksToBounds = true
         layer.cornerRadius = 7
-        alpha = 0.6
+        alpha = 0.4
     }
     
     required init?(coder aDecoder: NSCoder) {

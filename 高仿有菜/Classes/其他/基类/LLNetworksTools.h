@@ -29,5 +29,5 @@ typedef void( ^ ResponseFail)(NSError *error);
 
 + (NSURLSessionTask *)requestWithType:(httpRequestType)type withUrlString:(NSString *)urlString withParameters:(NSDictionary *)parameters withSuccessBlock:(ResponseSuccess)successBlock withFailureBlock:(ResponseFail)failureBlock ;
 
-
+-(UIColor *) colorWithHexString: (NSString *)color andAlpha:(CGFloat )setAlpha;
 @end

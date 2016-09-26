@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		061B86E21D98B4C000D17FC6 /* LLHomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061B86E11D98B4C000D17FC6 /* LLHomeDetailViewController.swift */; };
 		062B9C201D94D3570030D788 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B9C1F1D94D3570030D788 /* AppDelegate.swift */; };
 		062B9C271D94D3570030D788 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 062B9C261D94D3570030D788 /* Assets.xcassets */; };
 		062B9C2A1D94D3570030D788 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 062B9C281D94D3570030D788 /* LaunchScreen.storyboard */; };
@@ -79,6 +80,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		061B86E11D98B4C000D17FC6 /* LLHomeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLHomeDetailViewController.swift; sourceTree = "<group>"; };
 		062B9C1C1D94D3570030D788 /* 高仿有菜.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "高仿有菜.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		062B9C1F1D94D3570030D788 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		062B9C261D94D3570030D788 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -389,6 +391,7 @@
 			isa = PBXGroup;
 			children = (
 				062B9CA91D94D5B70030D788 /* LLHomeViewController.swift */,
+				061B86E11D98B4C000D17FC6 /* LLHomeDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -571,7 +574,7 @@
 				TargetAttributes = {
 					062B9C1B1D94D3570030D788 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 4MU5292B6H;
+						DevelopmentTeam = N9EV8487M2;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
@@ -732,6 +735,7 @@
 				062B9C961D94D4960030D788 /* ConstraintMakerFinalizable.swift in Sources */,
 				062B9CB01D94D6280030D788 /* LLCycleViewController.swift in Sources */,
 				062B9C941D94D4960030D788 /* ConstraintMakerEditable.swift in Sources */,
+				061B86E21D98B4C000D17FC6 /* LLHomeDetailViewController.swift in Sources */,
 				062B9C9D1D94D4960030D788 /* ConstraintRelation.swift in Sources */,
 				062B9CA41D94D4960030D788 /* UILayoutGuide+Extensions.swift in Sources */,
 				062B9C951D94D4960030D788 /* ConstraintMakerExtendable.swift in Sources */,
@@ -878,7 +882,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 4MU5292B6H;
+				DEVELOPMENT_TEAM = N9EV8487M2;
 				INFOPLIST_FILE = "高仿有菜/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -896,7 +900,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = 4MU5292B6H;
+				DEVELOPMENT_TEAM = N9EV8487M2;
 				INFOPLIST_FILE = "高仿有菜/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

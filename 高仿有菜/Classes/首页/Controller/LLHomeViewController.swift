@@ -26,8 +26,8 @@ class LLHomeViewController: LLBaseViewController {
          
             print(textFiled.text)
         })
-        
-        navigationController?.navigationBar.addSubview(seachView)
+        seachView.alpha = 0.3
+        navigationItem.titleView = seachView
         
         
         
@@ -49,8 +49,10 @@ class LLHomeViewController: LLBaseViewController {
         // 3、设置导航栏阴影图片
         navigationController?.navigationBar.shadowImage = UIImage()
         
-      
-
+    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        print(tabHeadView.bottomView.frame)
     }
    
     func leftBarItemClick()  {
@@ -60,7 +62,8 @@ class LLHomeViewController: LLBaseViewController {
      // MARK: ---- 布局子控件
     private func setupUI() {
         view.addSubview(homeTabView)
-        
+        self.homeTabView.tableHeaderView = self.tabHeadView
+
         homeTabView.mj_header = MJRefreshNormalHeader.header(refreshingBlock: {
             
             self.reqestDate()
@@ -71,6 +74,8 @@ class LLHomeViewController: LLBaseViewController {
     }
     // MARK: ---- 请求数据
     private func reqestDate() {
+        
+        SVProgressHUD.show(withStatus: "正在拼命加载中")
         LLNetworksTools.request(with: httpRequestType.requestTypeGet, withUrlString: "https://api.youcai.xin/app/home", withParameters: nil, withSuccessBlock: { (response) in
             
             let responseDict = response as? NSDictionary
@@ -80,35 +85,40 @@ class LLHomeViewController: LLBaseViewController {
                 SVProgressHUD.showError(withStatus: "数据异常!!")
                 return
             }
+            var tempItemModel = [LLHomeModel]()
             for index in 0..<itemArr.count {
                 
                 let itemModel = LLHomeModel(dict: (itemArr[index] as? [String:AnyObject])!)
                 
-                self.itemArr.add(itemModel)
-            }
-       
-            self.homeTabView.reloadData()
-            //获取轮播图的模型数组
+                tempItemModel.append(itemModel)
+                }
+            self.itemArr = NSMutableArray.init(array: tempItemModel)
+
+                      //获取轮播图的模型数组
             guard    let slidesArr = responseDict?.object(forKey: "slides")as? NSArray else {
                 SVProgressHUD.showError(withStatus: "轮播图加载异常!!")
                 return
             }
-        
+            var tempCycleModel = [LLHomeModel]()
+
                 for index in 0..<slidesArr.count {
                 
                 let itemModel = LLHomeModel(dict: (slidesArr[index] as? [String:AnyObject])!)
-                
-              self.cycleArr.add(itemModel)
-            }
-               self.homeTabView.tableHeaderView = self.tabHeadView
-            self.tabHeadView.cycleArr = self.cycleArr
+                tempCycleModel.append(itemModel)
+                    }
+            self.cycleArr = NSMutableArray.init(array: tempCycleModel)
+
+                self.tabHeadView.cycleArr = self.cycleArr
             
+            self.homeTabView.reloadData()
+
             self.homeTabView.mj_header.endRefreshing()
-
-
+          
+            SVProgressHUD.dismiss()
         }) { (error) in
               self.homeTabView.mj_header.endRefreshing()
-         SVProgressHUD.showError(withStatus: "请求异常")
+          SVProgressHUD.showError(withStatus: "请求异常")
+               SVProgressHUD.dismiss()
             
         }
         
@@ -128,26 +138,26 @@ class LLHomeViewController: LLBaseViewController {
     }()
     
     private lazy var tabHeadView:LLHomeTableHeaderView = {
-        let tabHead =  LLHomeTableHeaderView(frame:   CGRect(x: 0, y: 0, width: SCREEN_WITH, height: 230)
-            , block: { (button, index) in
-                
-                if button.tag  > 0 {
-                
-                    print("按钮的回调")
-                    
-                }
-                
-                if index > 0 {
-                    
-                    print("轮播")
-                    let model = self.cycleArr[index]
-                    print(model)
+        let tabHead =  LLHomeTableHeaderView (frame: CGRect(x: 0, y: 0, width: SCREEN_WITH, height: 230), type: 1, block: { (button, index) in
+            
+                            if button.tag  > 0 {
+            
+                                print("按钮的回调")
+            
+                            }
+            
+                            if index > 0 {
+            
+                                print("轮播")
+                                let model = self.cycleArr[index]
+                                print(model)
+            
+                            
+                            }
+                            
+                    })
 
-                
-                }
-                
-        })
-        
+            
         return tabHead
     }()
     
@@ -211,6 +221,21 @@ extension LLHomeViewController:UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 30
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        let detailModel = self.itemArr[indexPath.row] as?LLHomeModel
+        
+        let detailVc = LLHomeDetailViewController()
+        
+        
+        detailVc.detetailURLString = "https://api.youcai.xin/item/detail?id=\(detailModel?.id ?? 0)"
+        
+        
+        self.navigationController?.pushViewController(detailVc, animated: true)
+        
+        
     }
     
 
