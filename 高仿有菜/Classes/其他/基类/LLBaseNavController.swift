@@ -55,8 +55,8 @@ extension LLBaseNavController:UINavigationControllerDelegate {
             viewController.hidesBottomBarWhenPushed = true
             
             let btn = UIButton(type: .custom)
-            btn.setBackgroundImage(UIImage(named: "checkUserType_backward_9x15_"), for: .normal)
-              btn.setBackgroundImage(UIImage(named: "checkUserType_backward_9x15_"), for: .highlighted)
+            btn.setBackgroundImage(UIImage(named: "nav_back"), for: .normal)
+              btn.setBackgroundImage(UIImage(named: "nav_back"), for: .highlighted)
             btn.sizeToFit()
             btn.addTarget(self, action: #selector(LLBaseNavController.backButtonClick), for: .touchUpInside)
                      let item = UIBarButtonItem(customView: btn)

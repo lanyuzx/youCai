@@ -145,12 +145,6 @@ class LLHomeTableHeaderView: UIView {
                     warmLable.isHighlighted = true
                     warmRitLable.isHighlighted = true
                     
-                    bottomView.snp.removeConstraints()
-                    bottomView.snp.makeConstraints({ (make) in
-                        make.top.equalTo(productLable.snp.bottom).offset(5)
-                        make.left.right.equalTo(self)
-                        make.height.equalTo(10)
-                    })
 
                 }
             }
@@ -194,8 +188,7 @@ class LLHomeTableHeaderView: UIView {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        print(bottomView.frame)
-    
+ 
     }
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -377,6 +370,7 @@ class LLHomeTableHeaderView: UIView {
             make.right.equalTo(bootomrightView.snp.right).offset(-15)
 
         }
+      
         addSubview(productcontLable)
         addSubview(productRitLable)
         addSubview(saveLable)
@@ -389,6 +383,7 @@ class LLHomeTableHeaderView: UIView {
         productcontLable.snp.makeConstraints { (make) in
             make.left.equalTo(self).offset(15)
             make.top.equalTo(productLable.snp.bottom).offset(12)
+            make.width.equalTo(SCREEN_WITH * 0.3)
         }
         productRitLable.snp.makeConstraints { (make) in
             make.left.equalTo(productcontLable.snp.right).offset(8)
@@ -399,7 +394,7 @@ class LLHomeTableHeaderView: UIView {
             make.top.equalTo(productcontLable.snp.bottom).offset(15)
         }
         saveRitLable.snp.makeConstraints { (make) in
-            make.left.equalTo(saveLable.snp.right).offset(8)
+            make.left.equalTo(productRitLable.snp.left)
             make.top.equalTo(saveLable.snp.top)
         }
         lifeLable.snp.makeConstraints { (make) in
@@ -407,7 +402,7 @@ class LLHomeTableHeaderView: UIView {
             make.top.equalTo(saveLable.snp.bottom).offset(15)
         }
         lifeRitLable.snp.makeConstraints { (make) in
-            make.left.equalTo(lifeLable.snp.right).offset(8)
+            make.left.equalTo(saveRitLable.snp.left)
             make.top.equalTo(lifeLable.snp.top)
         }
         
@@ -416,21 +411,11 @@ class LLHomeTableHeaderView: UIView {
             make.top.equalTo(lifeLable.snp.bottom).offset(15)
         }
        warmRitLable.snp.makeConstraints { (make) in
-        make.left.equalTo(warmLable.snp.right).offset(8)
+        make.left.equalTo(lifeRitLable.snp.left)
         make.right.equalTo(self).offset(-12)
         make.top.equalTo(warmLable.snp.top)
         }
 
-        addSubview(bottomView)
-        bottomView.backgroundColor = LLNetworksTools.shared().color(withHexString: "d0d0d0", andAlpha: 1.0)
-        bottomView.snp.makeConstraints { (make) in
-            make.right.left.equalTo(self)
-            make.top.equalTo(warmRitLable.snp.bottom).offset(12)
-            make.height.equalTo(10)
-        }
-
-        
-        
     }
     
           // MARK: ---- 主页下面的四个按钮

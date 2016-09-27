@@ -7,7 +7,9 @@
 //
 
 import UIKit
-
+//https://api.youcai.xin/combo/list
+//详情
+//https://api.youcai.xin/combo/detail?id=21
 class LLCycleViewController: LLBaseViewController {
 
     override func viewDidLoad() {

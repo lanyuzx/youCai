@@ -42,8 +42,7 @@ class LLHomeViewController: LLBaseViewController {
         super.viewWillAppear(animated)
         // 1、设置导航栏半透明
         navigationController?.navigationBar.isTranslucent = true
-        
-        // 2、设置导航栏背景图片
+            // 2、设置导航栏背景图片
   navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         
         // 3、设置导航栏阴影图片

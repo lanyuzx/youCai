@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		061B86E21D98B4C000D17FC6 /* LLHomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061B86E11D98B4C000D17FC6 /* LLHomeDetailViewController.swift */; };
+		061DD3071D9A655700CE83C0 /* LLDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061DD3061D9A655700CE83C0 /* LLDetailsController.swift */; };
+		061DD3121D9A713C00CE83C0 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 061DD30A1D9A713C00CE83C0 /* UIView+Frame.m */; };
+		061DD3131D9A713C00CE83C0 /* YZDisplayTitleLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 061DD30C1D9A713C00CE83C0 /* YZDisplayTitleLabel.m */; };
+		061DD3141D9A713C00CE83C0 /* YZDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 061DD30E1D9A713C00CE83C0 /* YZDisplayViewController.m */; };
+		061DD3151D9A713C00CE83C0 /* YZFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 061DD3111D9A713C00CE83C0 /* YZFlowLayout.m */; };
+		061DD3171D9A722400CE83C0 /* LLClassesChildController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061DD3161D9A722400CE83C0 /* LLClassesChildController.swift */; };
 		062B9C201D94D3570030D788 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B9C1F1D94D3570030D788 /* AppDelegate.swift */; };
 		062B9C271D94D3570030D788 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 062B9C261D94D3570030D788 /* Assets.xcassets */; };
 		062B9C2A1D94D3570030D788 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 062B9C281D94D3570030D788 /* LaunchScreen.storyboard */; };
@@ -81,6 +87,17 @@
 
 /* Begin PBXFileReference section */
 		061B86E11D98B4C000D17FC6 /* LLHomeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLHomeDetailViewController.swift; sourceTree = "<group>"; };
+		061DD3061D9A655700CE83C0 /* LLDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLDetailsController.swift; sourceTree = "<group>"; };
+		061DD3091D9A713C00CE83C0 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
+		061DD30A1D9A713C00CE83C0 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
+		061DD30B1D9A713C00CE83C0 /* YZDisplayTitleLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZDisplayTitleLabel.h; sourceTree = "<group>"; };
+		061DD30C1D9A713C00CE83C0 /* YZDisplayTitleLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZDisplayTitleLabel.m; sourceTree = "<group>"; };
+		061DD30D1D9A713C00CE83C0 /* YZDisplayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZDisplayViewController.h; sourceTree = "<group>"; };
+		061DD30E1D9A713C00CE83C0 /* YZDisplayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZDisplayViewController.m; sourceTree = "<group>"; };
+		061DD30F1D9A713C00CE83C0 /* YZDisplayViewHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZDisplayViewHeader.h; sourceTree = "<group>"; };
+		061DD3101D9A713C00CE83C0 /* YZFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZFlowLayout.h; sourceTree = "<group>"; };
+		061DD3111D9A713C00CE83C0 /* YZFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZFlowLayout.m; sourceTree = "<group>"; };
+		061DD3161D9A722400CE83C0 /* LLClassesChildController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLClassesChildController.swift; sourceTree = "<group>"; };
 		062B9C1C1D94D3570030D788 /* 高仿有菜.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "高仿有菜.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		062B9C1F1D94D3570030D788 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		062B9C261D94D3570030D788 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -174,6 +191,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		061DD3081D9A713C00CE83C0 /* YZDisplayViewController */ = {
+			isa = PBXGroup;
+			children = (
+				061DD3091D9A713C00CE83C0 /* UIView+Frame.h */,
+				061DD30A1D9A713C00CE83C0 /* UIView+Frame.m */,
+				061DD30B1D9A713C00CE83C0 /* YZDisplayTitleLabel.h */,
+				061DD30C1D9A713C00CE83C0 /* YZDisplayTitleLabel.m */,
+				061DD30D1D9A713C00CE83C0 /* YZDisplayViewController.h */,
+				061DD30E1D9A713C00CE83C0 /* YZDisplayViewController.m */,
+				061DD30F1D9A713C00CE83C0 /* YZDisplayViewHeader.h */,
+				061DD3101D9A713C00CE83C0 /* YZFlowLayout.h */,
+				061DD3111D9A713C00CE83C0 /* YZFlowLayout.m */,
+			);
+			path = YZDisplayViewController;
+			sourceTree = "<group>";
+		};
 		062B9C131D94D3570030D788 = {
 			isa = PBXGroup;
 			children = (
@@ -263,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				062B9CAD1D94D5FD0030D788 /* LLClassesViewController.swift */,
+				061DD3161D9A722400CE83C0 /* LLClassesChildController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -392,6 +426,7 @@
 			children = (
 				062B9CA91D94D5B70030D788 /* LLHomeViewController.swift */,
 				061B86E11D98B4C000D17FC6 /* LLHomeDetailViewController.swift */,
+				061DD3061D9A655700CE83C0 /* LLDetailsController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -417,6 +452,7 @@
 		062B9C631D94D48B0030D788 /* 第三方框架 */ = {
 			isa = PBXGroup;
 			children = (
+				061DD3081D9A713C00CE83C0 /* YZDisplayViewController */,
 				062B9C641D94D4960030D788 /* Snapkit */,
 			);
 			path = "第三方框架";
@@ -698,7 +734,9 @@
 				062B9C861D94D4960030D788 /* Constraint.swift in Sources */,
 				062B9CC71D952AFF0030D788 /* LLHomeTableViewCell.swift in Sources */,
 				062B9CB41D94D6560030D788 /* LLTabBarController.swift in Sources */,
+				061DD3131D9A713C00CE83C0 /* YZDisplayTitleLabel.m in Sources */,
 				062B9C881D94D4960030D788 /* ConstraintConfig.swift in Sources */,
+				061DD3121D9A713C00CE83C0 /* UIView+Frame.m in Sources */,
 				062B9C871D94D4960030D788 /* ConstraintAttributes.swift in Sources */,
 				062B9C9A1D94D4960030D788 /* ConstraintOffsetTarget.swift in Sources */,
 				062B9CC51D9507720030D788 /* NSObject+BAMJParse.m in Sources */,
@@ -716,17 +754,21 @@
 				062B9C8E1D94D4960030D788 /* ConstraintItem.swift in Sources */,
 				062B9CA01D94D4960030D788 /* ConstraintViewDSL.swift in Sources */,
 				062B9C911D94D4960030D788 /* ConstraintLayoutSupport.swift in Sources */,
+				061DD3071D9A655700CE83C0 /* LLDetailsController.swift in Sources */,
 				062B9C891D94D4960030D788 /* ConstraintConstantTarget.swift in Sources */,
 				062B9CC21D9504390030D788 /* LLHomeModel.swift in Sources */,
 				062B9C9C1D94D4960030D788 /* ConstraintRelatableTarget.swift in Sources */,
 				062B9C901D94D4960030D788 /* ConstraintLayoutGuideDSL.swift in Sources */,
+				061DD3141D9A713C00CE83C0 /* YZDisplayViewController.m in Sources */,
 				062B9C981D94D4960030D788 /* ConstraintMakerRelatable.swift in Sources */,
 				062B9CAE1D94D5FD0030D788 /* LLClassesViewController.swift in Sources */,
 				062B9CAA1D94D5B70030D788 /* LLHomeViewController.swift in Sources */,
 				062B9C8A1D94D4960030D788 /* ConstraintDescription.swift in Sources */,
 				062B9C8B1D94D4960030D788 /* ConstraintDSL.swift in Sources */,
 				062B9C201D94D3570030D788 /* AppDelegate.swift in Sources */,
+				061DD3151D9A713C00CE83C0 /* YZFlowLayout.m in Sources */,
 				062B9CA11D94D4960030D788 /* Debugging.swift in Sources */,
+				061DD3171D9A722400CE83C0 /* LLClassesChildController.swift in Sources */,
 				062B9C8D1D94D4960030D788 /* ConstraintInsetTarget.swift in Sources */,
 				062B9CB61D94D6A30030D788 /* LLBaseNavController.swift in Sources */,
 				062B9CAC1D94D5E80030D788 /* LLShoppingViewController.swift in Sources */,
@@ -803,6 +845,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -852,6 +895,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

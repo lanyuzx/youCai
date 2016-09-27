@@ -32,6 +32,8 @@ class LLHomeModel: NSObject {
     //来源那个农庄
     var farm:String?
     var id = -1
+    //来源那个农场
+    var fid = -1
 
      // //详情页***************************************详情页//
     ///儿童 成人
@@ -47,9 +49,10 @@ class LLHomeModel: NSObject {
     var more:NSArray?
     
     var isSelectCell = false
-    
-    
-    
+    ///称重
+    var unit:String?
+    //
+    var quantity = -1
     init(dict:[String:AnyObject]) {
         
         super.init()
