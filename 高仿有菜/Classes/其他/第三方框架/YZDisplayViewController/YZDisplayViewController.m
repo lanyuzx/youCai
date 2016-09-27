@@ -523,6 +523,7 @@ static NSString * const ID = @"CONTENTCELL";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    self.navigationController.navigationBar.backgroundColor =  [UIColor whiteColor];
     
     if (_isInitial == NO) {
                 

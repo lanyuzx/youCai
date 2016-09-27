@@ -15,11 +15,15 @@ class LLClassesViewController: YZDisplayViewController {
         super.viewDidLoad()
 
        setUpAllViewController()
-        
+        setupNavView()
     setUpUnderLineEffect { (isUnderLineDelayScroll, underLineH, underLineColor, isUnderLineEqualTitleWidth) in
         }
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.backgroundColor = UIColor.white
+        navigationController?.navigationBar.isHidden = true
+    }
           // MARK: ---- 添加对应的子控制器
     private func setUpAllViewController() {
        
@@ -40,21 +44,22 @@ class LLClassesViewController: YZDisplayViewController {
             fushiVc.cateType = 4
         addChildViewController(fushiVc)
     }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+     // MARK: ---- 添加导航栏
+    private func setupNavView() {
+        
+        let navView = UIView()
+        view.addSubview(navView)
+        navView.backgroundColor = UIColor.white
+        navView.snp.makeConstraints { (make) in
+            make.left.right.top.equalTo(view)
+            make.height.equalTo(64)
+        }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
     }
-    */
+   
 
 }

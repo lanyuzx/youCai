@@ -66,6 +66,7 @@
 		062B9CCA1D9538AF0030D788 /* YMVerticalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B9CC91D9538AF0030D788 /* YMVerticalButton.swift */; };
 		A711C3D92DC23D5C20FC30F7 /* Pods_____.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E8D3F85D8A24661830741E0 /* Pods_____.framework */; };
 		B54FD5B91D95E22600952483 /* LLHomeNavSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54FD5B81D95E22600952483 /* LLHomeNavSearchView.swift */; };
+		B5AA4ABB1D9AC076003C94D6 /* LLClassesChildCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AA4ABA1D9AC076003C94D6 /* LLClassesChildCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +164,7 @@
 		441CA0A0DFF592559206A56F /* Pods-高仿有菜.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-高仿有菜.debug.xcconfig"; path = "Pods/Target Support Files/Pods-高仿有菜/Pods-高仿有菜.debug.xcconfig"; sourceTree = "<group>"; };
 		5E8D3F85D8A24661830741E0 /* Pods_____.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_____.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B54FD5B81D95E22600952483 /* LLHomeNavSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLHomeNavSearchView.swift; sourceTree = "<group>"; };
+		B5AA4ABA1D9AC076003C94D6 /* LLClassesChildCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LLClassesChildCell.swift; path = "高仿有菜/Classes/首页/View/LLClassesChildCell.swift"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -311,6 +313,7 @@
 		062B9C521D94D4760030D788 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B5AA4ABA1D9AC076003C94D6 /* LLClassesChildCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -778,6 +781,7 @@
 				062B9CB01D94D6280030D788 /* LLCycleViewController.swift in Sources */,
 				062B9C941D94D4960030D788 /* ConstraintMakerEditable.swift in Sources */,
 				061B86E21D98B4C000D17FC6 /* LLHomeDetailViewController.swift in Sources */,
+				B5AA4ABB1D9AC076003C94D6 /* LLClassesChildCell.swift in Sources */,
 				062B9C9D1D94D4960030D788 /* ConstraintRelation.swift in Sources */,
 				062B9CA41D94D4960030D788 /* UILayoutGuide+Extensions.swift in Sources */,
 				062B9C951D94D4960030D788 /* ConstraintMakerExtendable.swift in Sources */,
