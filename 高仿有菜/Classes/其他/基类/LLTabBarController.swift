@@ -59,7 +59,7 @@ class LLTabBarController: UITabBarController {
         
         //添加购物车动画
         let center = CGPoint(x: shoppButton.frame.origin.x + shoppButton.frame.size.width , y: SCREEN_HEIGHT - shoppButton.frame.size.height / 2)
-        let point = CGPoint(x: productView.frame.origin.x, y: productView.frame.origin.y)
+        let point = CGPoint(x: productView.frame.origin.x + productView.frame.size.height + productView.frame.origin.y, y: productView.frame.origin.y)
         let path = UIBezierPath()
         path.move(to: point)
         path.addLine(to: center)
