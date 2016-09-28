@@ -17,8 +17,6 @@ let SCREEN_HEIGHT_COEFFICIENT = SCREEN_HEIGHT > 568 ? 568 / SCREEN_HEIGHT : 1
 
 let SCREEN_WITH_COEFFICIENT = SCREEN_WITH > 328 ? 328 / SCREEN_WITH : 1
 
-
-
 class LLBaseViewController: UIViewController {
 
     override func viewDidLoad() {
@@ -31,8 +29,11 @@ view.backgroundColor = UIColor.white
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    var animationLayers: [CALayer]?
     
-
+    var animationBigLayers: [CALayer]?
+    
+   
     /*
     // MARK: - Navigation
 

@@ -493,7 +493,7 @@ static NSString * const ID = @"CONTENTCELL";
         if (_isfullScreen) {
             
             // 整体contentView尺寸
-            self.contentView.frame = CGRectMake(0, 0, YZScreenW, YZScreenH);
+            self.contentView.frame = CGRectMake(0, 0, YZScreenW, YZScreenH - 64 -titleY);
             
             // 顶部标题View尺寸
             self.titleScrollView.frame = CGRectMake(0, titleY, YZScreenW, self.titleHeight);
@@ -505,7 +505,7 @@ static NSString * const ID = @"CONTENTCELL";
         }
         
         if (self.contentView.frame.size.height == 0) {
-            self.contentView.frame = CGRectMake(0, titleY, YZScreenW, YZScreenH - titleY);
+            self.contentView.frame = CGRectMake(0, titleY, YZScreenW, YZScreenH - titleY );
         }
         
         // 顶部标题View尺寸

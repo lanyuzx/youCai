@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import BACustomAlertView
 
 class LLHomeDetailViewController: LLBaseViewController {
     
@@ -70,62 +70,7 @@ class LLHomeDetailViewController: LLBaseViewController {
         }
         
         
-        
-        
-        view.addSubview(sharebgView)
-        sharebgView.backgroundColor = UIColor.darkGray
-        sharebgView.alpha = 0.8
-        sharebgView.isHidden = true
-        sharebgView.frame = view.bounds
-        
-        sharebgView.addSubview(shareView)
-        shareView.layer.masksToBounds = true
-        shareView.layer.cornerRadius = 0.7
-        shareView.alpha = 1.0
-        shareView.backgroundColor = UIColor.white
-        shareView.snp.makeConstraints { (make) in
-            make.centerY.centerX.equalTo(sharebgView)
-            make.width.equalTo(SCREEN_WITH * 0.8)
-            make.height.equalTo(SCREEN_HEIGHT * 0.2)
-        }
-        
-        let shareLable = UILabel()
-        shareView.addSubview(shareLable)
-        shareLable.text = "分享到"
-        shareLable.textColor = UIColor.black
-        shareLable.snp.makeConstraints { (make) in
-        make.top.equalTo(shareView).offset(15)
-        make.centerX.equalTo(shareView)
-            
-        }
-        
-        let weiXinButton = YMVerticalButton(type: .custom)
-        shareView.addSubview(weiXinButton)
-     weiXinButton.setImage(UIImage (named: "wx"), for: .normal)
-        weiXinButton.setTitleColor(UIColor.black, for: .normal)
-        weiXinButton.setTitle("微信好友", for: .normal)
-        weiXinButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-        weiXinButton.snp.makeConstraints { (make) in
-            make.left.equalTo(shareView).offset(60)
-            make.bottom.equalTo(shareView.snp.bottom).offset(-15)
-            make.width.equalTo(55)
-            make.height.equalTo(75)
-        }
-        
-        let friendButton = YMVerticalButton(type: .custom)
-        shareView.addSubview(friendButton)
-         friendButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
-           friendButton.setTitleColor(UIColor.black, for: .normal)
-        friendButton.setImage(UIImage (named: "timeline"), for: .normal)
-        friendButton.setTitle("朋友圈", for: .normal)
-        friendButton.snp.makeConstraints { (make) in
-            make.right.equalTo(shareView).offset(-60)
-            make.bottom.equalTo(shareView.snp.bottom).offset(-15)
-            make.width.equalTo(55)
-            make.height.equalTo(75)
-        }
-        sharebgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(LLHomeDetailViewController.shareButtonClick)))
-        
+
         //添加底部的购买的 view
         
         let  shoppView = UIView()
@@ -137,7 +82,6 @@ class LLHomeDetailViewController: LLBaseViewController {
         }
         
         //购物车
-        let shopCarView = UIImageView(image: UIImage(named: "car_no"))
         shoppView.addSubview(shopCarView)
         shopCarView.snp.makeConstraints { (make) in
             make.left.equalTo(shoppView).offset(25)
@@ -160,7 +104,6 @@ class LLHomeDetailViewController: LLBaseViewController {
             make.height.equalTo(20)
         }
         
-        let shoppingBtn = UIButton(type: .custom)
         shoppView.addSubview(shoppingBtn)
         shoppingBtn.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         shoppingBtn.setTitle("加入购物车", for: . normal)
@@ -191,21 +134,122 @@ class LLHomeDetailViewController: LLBaseViewController {
     }
     
     func shareButtonClick()  {
-        sharebgView.isHidden = !sharebgView.isHidden
+        //解决重复添加问题
+        for v in shareView.subviews
+        {
+            v.removeFromSuperview()
+        }
+        shareView.layer.masksToBounds = true
+        shareView.layer.cornerRadius = 0.7
+        shareView.backgroundColor = UIColor.white
+        shareView.frame = CGRect(x: 30, y: 100, width: SCREEN_WITH - 100, height: 130)
+        
+        let shareLable = UILabel()
+        shareView.addSubview(shareLable)
+        shareLable.text = "分享到"
+        shareLable.textColor = UIColor.black
+        shareLable.textAlignment = .center
+        shareLable.autoresizingMask = .flexibleWidth
+        shareLable.snp.makeConstraints { (make) in
+            make.top.equalTo(shareView).offset(15)
+            make.centerX.equalTo(shareView)
+            
+        }
+        
+        let weiXinButton = YMVerticalButton(type: .custom)
+        shareView.addSubview(weiXinButton)
+        weiXinButton.setImage(UIImage (named: "wx"), for: .normal)
+        weiXinButton.setTitleColor(UIColor.black, for: .normal)
+        weiXinButton.setTitle("微信好友", for: .normal)
+        weiXinButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        weiXinButton.snp.makeConstraints { (make) in
+            make.left.equalTo(shareView).offset(60)
+            make.bottom.equalTo(shareView.snp.bottom).offset(-15)
+            make.width.equalTo(55)
+            make.height.equalTo(75)
+        }
+        
+        let friendButton = YMVerticalButton(type: .custom)
+        shareView.addSubview(friendButton)
+        friendButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
+        friendButton.setTitleColor(UIColor.black, for: .normal)
+        friendButton.setImage(UIImage (named: "timeline"), for: .normal)
+        friendButton.setTitle("朋友圈", for: .normal)
+        friendButton.snp.makeConstraints { (make) in
+            make.right.equalTo(shareView).offset(-60)
+            make.bottom.equalTo(shareView.snp.bottom).offset(-15)
+            make.width.equalTo(55)
+            make.height.equalTo(75)
+        }
+        
+        let alterView = BACustomAlertView(customViewiew: shareView)
+        alterView?.ba_show()
+
         
     }
     
     //加入购物车
     func addShopp()  {
         
-        let shakeAnimation = CABasicAnimation(keyPath: "transform.translation.y")
-        shakeAnimation.duration = 0.35
-        shakeAnimation.fromValue = NSNumber(value: -5)
-          shakeAnimation.toValue = NSNumber(value: 5)
-        shakeAnimation.autoreverses = true
-        bugCountLable.layer.add(shakeAnimation, forKey: nil)
-        bugCountLable.isHidden = false
-        bugCountLable.text = "1"
+        //添加购物车动画
+        let center = CGPoint(x: shopCarView.frame.origin.x , y: shopCarView.frame.origin.y)
+        let point = CGPoint(x: shoppingBtn.frame.origin.x, y: shoppingBtn.frame.origin.y)
+        let path = UIBezierPath()
+        path.move(to: point)
+        path.addLine(to: center)
+        
+        let layer = CALayer()
+        layer.contents = UIImage(named: "tab_tc_2")?.cgImage
+        layer.contentsGravity = kCAGravityResizeAspectFill
+        layer.bounds = CGRect(x: 15, y: 15, width: 30, height: 30)
+        layer.masksToBounds = true
+        layer.cornerRadius = 20
+        shopCarView.layer.addSublayer(layer)
+        layer.pathAnimation(withDuration: 1.0, path: path.cgPath, repeat: 1) {
+            layer.isHidden = true
+            //抖动动画
+            let shakeAnimation = CABasicAnimation(keyPath: "transform.translation.y")
+            shakeAnimation.duration = 0.35
+            shakeAnimation.fromValue = NSNumber(value: -5)
+            shakeAnimation.toValue = NSNumber(value: 5)
+            shakeAnimation.autoreverses = true
+            self.bugCountLable.layer.add(shakeAnimation, forKey: nil)
+            self.bugCountLable.isHidden = false
+            self.bugArr.add(self.detailModel)
+            self.bugCountLable.text = String(self.bugArr.count)
+        }
+        
+        //渲染动画  放大效果
+        /*
+        let animation = CAKeyframeAnimation(keyPath: "position")
+        animation.path = path.cgPath
+        animation.rotationMode = kCAAnimationRotateAuto
+        
+        let expandAnimation = CABasicAnimation(keyPath: "transform.scale")
+        expandAnimation.duration = 0.5
+        expandAnimation.fromValue = NSNumber(integerLiteral: 1)
+        expandAnimation.toValue = NSNumber(integerLiteral: 2)
+        expandAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+        
+       let narrowAnimation =     CABasicAnimation(keyPath: "transform.scale")
+        
+        narrowAnimation.beginTime = 0.5
+        narrowAnimation.fromValue = NSNumber(integerLiteral: 2)
+        narrowAnimation.duration = 1.5
+        narrowAnimation.toValue  = NSNumber(floatLiteral: 0.5)
+        
+        narrowAnimation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        
+        let grops = CAAnimationGroup()
+        grops.animations = [animation,expandAnimation,narrowAnimation];
+        grops.duration = 2.0
+        grops.isRemovedOnCompletion = false
+        grops.fillMode = kCAFillModeForwards
+        
+        layer.add(grops, forKey: "group")
+
+        */
+        
         
     }
     
@@ -228,7 +272,7 @@ class LLHomeDetailViewController: LLBaseViewController {
         }
     
     }
-    
+        // MARK: ---- 懒加载
      lazy var detailTabHeadView:LLHomeTableHeaderView = {
         
         let tab = LLHomeTableHeaderView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), type: 2, block: { (button, index) in
@@ -273,7 +317,11 @@ class LLHomeDetailViewController: LLBaseViewController {
     
     //购买个数
     private lazy var bugCountLable = UILabel()
-
+     private lazy var shopCarView = UIImageView(image: UIImage(named: "car_no"))
+    
+    private lazy var shoppingBtn = UIButton()
+    
+    private lazy var  bugArr = NSMutableArray(capacity: 1)
 }
 
 

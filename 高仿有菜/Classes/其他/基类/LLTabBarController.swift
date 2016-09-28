@@ -13,6 +13,7 @@ class LLTabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setUpTabBar()
         // Do any additional setup after loading the view.
         
         addChildViewController(childController: LLHomeViewController(), title: "首页", imageName: "tab_home")
@@ -37,6 +38,17 @@ class LLTabBarController: UITabBarController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    private lazy var customTabBar = HMTabBar()
+          // MARK: ---- 自定义tabBar
+    
+    private func setUpTabBar() {
+        
+        customTabBar.frame = tabBar.frame
+        customTabBar.delegate = self
+        view.addSubview(customTabBar)
+        tabBar.removeFromSuperview()
+    
+    }
     
     // MARK: ---- 封装添加子控制器方法
     private func addChildViewController(childController:UIViewController ,title:NSString ,imageName:NSString) {
@@ -45,6 +57,7 @@ class LLTabBarController: UITabBarController {
         childController.tabBarItem.image = UIImage(named: imageName as String + "_1" )
         childController.tabBarItem.selectedImage = UIImage(named: (imageName as String + "_2"))
         childController.tabBarItem.title = title as String
+        customTabBar.addButton(childController.tabBarItem)
         let navVc  = LLBaseNavController(rootViewController: childController)
         addChildViewController(navVc)
         
@@ -60,5 +73,13 @@ class LLTabBarController: UITabBarController {
         // Pass the selected object to the new view controller.
     }
     */
+
+}
+
+extension LLTabBarController:HMTabBarDelegate {
+    
+    func tabBar(_ TabBar: HMTabBar!, didSelectedButtonFrom from: Int, to: Int) {
+        selectedIndex = to
+    }
 
 }

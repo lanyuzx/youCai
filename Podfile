@@ -13,6 +13,7 @@ pod "SDCycleScrollView"
 pod "IQKeyboardManager"
 pod "AFNetworking"
 pod "MJExtension"
-
+pod 'BACustomAlertView'
+pod  'BAButton'
 
 end

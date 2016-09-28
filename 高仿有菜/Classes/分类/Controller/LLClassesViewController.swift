@@ -13,11 +13,12 @@ class LLClassesViewController: YZDisplayViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    
        setUpAllViewController()
         setupNavView()
     setUpUnderLineEffect { (isUnderLineDelayScroll, underLineH, underLineColor, isUnderLineEqualTitleWidth) in
         }
+        view.backgroundColor = UIColor.white
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -58,8 +59,98 @@ class LLClassesViewController: YZDisplayViewController {
             make.left.right.top.equalTo(view)
             make.height.equalTo(64)
         }
+        
+        navView.addSubview(changeButton)
+        changeButton.addTarget(self, action: #selector(LLClassesViewController.changeButtonClick), for: UIControlEvents.touchUpInside)
+        changeButton.snp.makeConstraints { (make) in
+            make.right.equalTo(navView).offset(-15)
+            make.centerY.equalTo(navView).offset(5)
+            make.width.equalTo(40)
+            make.height.equalTo(40)
+            
+        }
+        
+        //搜索的 View
+        let serachView = UIView()
+        serachView.layer.cornerRadius = 7.0
+        serachView.layer.masksToBounds = true
+         serachView.backgroundColor =  UIColor.init(red: 246 / 255.0, green: 246 / 255.0, blue: 246 / 255.0, alpha: 1.0)
+        navView.addSubview(serachView)
+        serachView.snp.makeConstraints { (make) in
+            make.right.equalTo(changeButton.snp.left).offset(-15)
+            make.centerY.equalTo(navView).offset(10)
+            make.height.equalTo(35)
+            make.width.equalTo(SCREEN_WITH * 0.65)
+        }
+        
+        let leftImageView = UIImageView(image: UIImage(named: "Magnifier"))
+        leftImageView.isUserInteractionEnabled = true
+       serachView.addSubview(leftImageView)
+        leftImageView.snp.makeConstraints { (make) in
+            make.left.equalTo(serachView).offset(12)
+            make.centerY.equalTo(serachView)
+            make.width.equalTo(15)
+            make.height.equalTo(15)
+        }
+        serachView.addSubview(searchFiled)
+        
+        searchFiled.snp.makeConstraints { (make) in
+            make.left.equalTo(serachView).offset(30)
+            make.top.bottom.right.equalTo(serachView)
+        }
+
+     
+        
+    }
     
+          // MARK: ---- 懒加载
+    
+    private lazy var changeButton:UIButton  = {
+        let button =  UIButton(type: .custom)
+        button.setImage(UIImage(named:"Table"), for: .normal)
+        button.setImage(UIImage(named:"coll"), for: UIControlState.selected)
+        return button
+    }()
+    private lazy var searchFiled:UITextField = {
+        
+        let filed = UITextField()
+        filed.placeholder = "请输入关键字"
+        filed.addTarget(self, action: #selector(LLHomeNavSearchView.searFiledClick), for: .editingChanged)
+        filed.returnKeyType = .search
+        filed.delegate = self
+        return filed
+        
+    }()
+
+    
+          // MARK: ---- 按钮的点击方法 切换布局
+    func searFiledClick() {
+        
+        print(searchFiled.text)
+        
+    }
+    func changeButtonClick()  {
+           changeButton.isSelected = !changeButton.isSelected
+     for vc in childViewControllers {
+        
+            let childVc = vc as!LLClassesChildController
+            
+            if changeButton.isSelected {
+                childVc.childTabView.isHidden = false
+                childVc.childColletionView.isHidden = true
+                childVc.childTabView.reloadData()
+            
+            } else {
+                childVc.childTabView.isHidden = true
+                childVc.childColletionView.isHidden = false
+                childVc.childColletionView.reloadData()
+            }
+            
+        }
     }
    
+}
+
+extension LLClassesViewController:UITextFieldDelegate {
 
 }

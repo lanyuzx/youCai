@@ -14,6 +14,9 @@
 		061DD3141D9A713C00CE83C0 /* YZDisplayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 061DD30E1D9A713C00CE83C0 /* YZDisplayViewController.m */; };
 		061DD3151D9A713C00CE83C0 /* YZFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 061DD3111D9A713C00CE83C0 /* YZFlowLayout.m */; };
 		061DD3171D9A722400CE83C0 /* LLClassesChildController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061DD3161D9A722400CE83C0 /* LLClassesChildController.swift */; };
+		061DD31A1D9B5E5D00CE83C0 /* CALayer+Animation.m in Sources */ = {isa = PBXBuildFile; fileRef = 061DD3191D9B5E5D00CE83C0 /* CALayer+Animation.m */; };
+		061DD31C1D9B6B4900CE83C0 /* LLChildTabHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061DD31B1D9B6B4900CE83C0 /* LLChildTabHeadView.swift */; };
+		061DD31E1D9B9C1B00CE83C0 /* LLChildCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061DD31D1D9B9C1B00CE83C0 /* LLChildCollectionViewCell.swift */; };
 		062B9C201D94D3570030D788 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B9C1F1D94D3570030D788 /* AppDelegate.swift */; };
 		062B9C271D94D3570030D788 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 062B9C261D94D3570030D788 /* Assets.xcassets */; };
 		062B9C2A1D94D3570030D788 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 062B9C281D94D3570030D788 /* LaunchScreen.storyboard */; };
@@ -61,9 +64,10 @@
 		062B9CBE1D94DFEA0030D788 /* LLNetworksTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 062B9CBD1D94DFEA0030D788 /* LLNetworksTools.m */; };
 		062B9CC01D94FA080030D788 /* LLHomeTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B9CBF1D94FA080030D788 /* LLHomeTableHeaderView.swift */; };
 		062B9CC21D9504390030D788 /* LLHomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B9CC11D9504390030D788 /* LLHomeModel.swift */; };
-		062B9CC51D9507720030D788 /* NSObject+BAMJParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 062B9CC41D9507720030D788 /* NSObject+BAMJParse.m */; };
 		062B9CC71D952AFF0030D788 /* LLHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B9CC61D952AFF0030D788 /* LLHomeTableViewCell.swift */; };
 		062B9CCA1D9538AF0030D788 /* YMVerticalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B9CC91D9538AF0030D788 /* YMVerticalButton.swift */; };
+		06AFFB8B1D9BA15B00369806 /* LLChildCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AFFB8A1D9BA15B00369806 /* LLChildCollectionHeaderView.swift */; };
+		06AFFB911D9BCDFB00369806 /* HMTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 06AFFB8F1D9BCDFB00369806 /* HMTabBar.m */; };
 		A711C3D92DC23D5C20FC30F7 /* Pods_____.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E8D3F85D8A24661830741E0 /* Pods_____.framework */; };
 		B54FD5B91D95E22600952483 /* LLHomeNavSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54FD5B81D95E22600952483 /* LLHomeNavSearchView.swift */; };
 		B5AA4ABB1D9AC076003C94D6 /* LLClassesChildCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AA4ABA1D9AC076003C94D6 /* LLClassesChildCell.swift */; };
@@ -99,6 +103,10 @@
 		061DD3101D9A713C00CE83C0 /* YZFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YZFlowLayout.h; sourceTree = "<group>"; };
 		061DD3111D9A713C00CE83C0 /* YZFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YZFlowLayout.m; sourceTree = "<group>"; };
 		061DD3161D9A722400CE83C0 /* LLClassesChildController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLClassesChildController.swift; sourceTree = "<group>"; };
+		061DD3181D9B5E5D00CE83C0 /* CALayer+Animation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CALayer+Animation.h"; sourceTree = "<group>"; };
+		061DD3191D9B5E5D00CE83C0 /* CALayer+Animation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CALayer+Animation.m"; sourceTree = "<group>"; };
+		061DD31B1D9B6B4900CE83C0 /* LLChildTabHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLChildTabHeadView.swift; sourceTree = "<group>"; };
+		061DD31D1D9B9C1B00CE83C0 /* LLChildCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLChildCollectionViewCell.swift; sourceTree = "<group>"; };
 		062B9C1C1D94D3570030D788 /* 高仿有菜.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "高仿有菜.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		062B9C1F1D94D3570030D788 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		062B9C261D94D3570030D788 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -156,10 +164,11 @@
 		062B9CBD1D94DFEA0030D788 /* LLNetworksTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLNetworksTools.m; sourceTree = "<group>"; };
 		062B9CBF1D94FA080030D788 /* LLHomeTableHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLHomeTableHeaderView.swift; sourceTree = "<group>"; };
 		062B9CC11D9504390030D788 /* LLHomeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLHomeModel.swift; sourceTree = "<group>"; };
-		062B9CC31D9507720030D788 /* NSObject+BAMJParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BAMJParse.h"; sourceTree = "<group>"; };
-		062B9CC41D9507720030D788 /* NSObject+BAMJParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BAMJParse.m"; sourceTree = "<group>"; };
 		062B9CC61D952AFF0030D788 /* LLHomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLHomeTableViewCell.swift; sourceTree = "<group>"; };
 		062B9CC91D9538AF0030D788 /* YMVerticalButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YMVerticalButton.swift; sourceTree = "<group>"; };
+		06AFFB8A1D9BA15B00369806 /* LLChildCollectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLChildCollectionHeaderView.swift; sourceTree = "<group>"; };
+		06AFFB8E1D9BCDFB00369806 /* HMTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMTabBar.h; sourceTree = "<group>"; };
+		06AFFB8F1D9BCDFB00369806 /* HMTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMTabBar.m; sourceTree = "<group>"; };
 		33CA0F9FC0C041106B3A26BC /* Pods-高仿有菜.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-高仿有菜.release.xcconfig"; path = "Pods/Target Support Files/Pods-高仿有菜/Pods-高仿有菜.release.xcconfig"; sourceTree = "<group>"; };
 		441CA0A0DFF592559206A56F /* Pods-高仿有菜.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-高仿有菜.debug.xcconfig"; path = "Pods/Target Support Files/Pods-高仿有菜/Pods-高仿有菜.debug.xcconfig"; sourceTree = "<group>"; };
 		5E8D3F85D8A24661830741E0 /* Pods_____.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_____.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -314,6 +323,9 @@
 			isa = PBXGroup;
 			children = (
 				B5AA4ABA1D9AC076003C94D6 /* LLClassesChildCell.swift */,
+				061DD31B1D9B6B4900CE83C0 /* LLChildTabHeadView.swift */,
+				061DD31D1D9B9C1B00CE83C0 /* LLChildCollectionViewCell.swift */,
+				06AFFB8A1D9BA15B00369806 /* LLChildCollectionHeaderView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -503,8 +515,8 @@
 		062B9CA61D94D5890030D788 /* 基类 */ = {
 			isa = PBXGroup;
 			children = (
-				062B9CC31D9507720030D788 /* NSObject+BAMJParse.h */,
-				062B9CC41D9507720030D788 /* NSObject+BAMJParse.m */,
+				061DD3181D9B5E5D00CE83C0 /* CALayer+Animation.h */,
+				061DD3191D9B5E5D00CE83C0 /* CALayer+Animation.m */,
 				062B9CA71D94D5A50030D788 /* LLBaseViewController.swift */,
 				062B9CB51D94D6A30030D788 /* LLBaseNavController.swift */,
 				062B9CB31D94D6560030D788 /* LLTabBarController.swift */,
@@ -519,6 +531,8 @@
 		062B9CC81D9538A00030D788 /* 自定义控件 */ = {
 			isa = PBXGroup;
 			children = (
+				06AFFB8E1D9BCDFB00369806 /* HMTabBar.h */,
+				06AFFB8F1D9BCDFB00369806 /* HMTabBar.m */,
 				062B9CC91D9538AF0030D788 /* YMVerticalButton.swift */,
 			);
 			path = "自定义控件";
@@ -740,13 +754,14 @@
 				061DD3131D9A713C00CE83C0 /* YZDisplayTitleLabel.m in Sources */,
 				062B9C881D94D4960030D788 /* ConstraintConfig.swift in Sources */,
 				061DD3121D9A713C00CE83C0 /* UIView+Frame.m in Sources */,
+				06AFFB911D9BCDFB00369806 /* HMTabBar.m in Sources */,
 				062B9C871D94D4960030D788 /* ConstraintAttributes.swift in Sources */,
 				062B9C9A1D94D4960030D788 /* ConstraintOffsetTarget.swift in Sources */,
-				062B9CC51D9507720030D788 /* NSObject+BAMJParse.m in Sources */,
 				062B9C9E1D94D4960030D788 /* ConstraintView+Extensions.swift in Sources */,
 				062B9CA51D94D4960030D788 /* UILayoutSupport+Extensions.swift in Sources */,
 				062B9C8F1D94D4960030D788 /* ConstraintLayoutGuide.swift in Sources */,
 				062B9CCA1D9538AF0030D788 /* YMVerticalButton.swift in Sources */,
+				06AFFB8B1D9BA15B00369806 /* LLChildCollectionHeaderView.swift in Sources */,
 				062B9CBE1D94DFEA0030D788 /* LLNetworksTools.m in Sources */,
 				062B9CA31D94D4960030D788 /* LayoutConstraint.swift in Sources */,
 				062B9CA81D94D5A50030D788 /* LLBaseViewController.swift in Sources */,
@@ -764,6 +779,7 @@
 				062B9C901D94D4960030D788 /* ConstraintLayoutGuideDSL.swift in Sources */,
 				061DD3141D9A713C00CE83C0 /* YZDisplayViewController.m in Sources */,
 				062B9C981D94D4960030D788 /* ConstraintMakerRelatable.swift in Sources */,
+				061DD31A1D9B5E5D00CE83C0 /* CALayer+Animation.m in Sources */,
 				062B9CAE1D94D5FD0030D788 /* LLClassesViewController.swift in Sources */,
 				062B9CAA1D94D5B70030D788 /* LLHomeViewController.swift in Sources */,
 				062B9C8A1D94D4960030D788 /* ConstraintDescription.swift in Sources */,
@@ -773,11 +789,13 @@
 				062B9CA11D94D4960030D788 /* Debugging.swift in Sources */,
 				061DD3171D9A722400CE83C0 /* LLClassesChildController.swift in Sources */,
 				062B9C8D1D94D4960030D788 /* ConstraintInsetTarget.swift in Sources */,
+				061DD31C1D9B6B4900CE83C0 /* LLChildTabHeadView.swift in Sources */,
 				062B9CB61D94D6A30030D788 /* LLBaseNavController.swift in Sources */,
 				062B9CAC1D94D5E80030D788 /* LLShoppingViewController.swift in Sources */,
 				062B9C921D94D4960030D788 /* ConstraintLayoutSupportDSL.swift in Sources */,
 				062B9C9F1D94D4960030D788 /* ConstraintView.swift in Sources */,
 				062B9C961D94D4960030D788 /* ConstraintMakerFinalizable.swift in Sources */,
+				061DD31E1D9B9C1B00CE83C0 /* LLChildCollectionViewCell.swift in Sources */,
 				062B9CB01D94D6280030D788 /* LLCycleViewController.swift in Sources */,
 				062B9C941D94D4960030D788 /* ConstraintMakerEditable.swift in Sources */,
 				061B86E21D98B4C000D17FC6 /* LLHomeDetailViewController.swift in Sources */,

@@ -54,7 +54,7 @@ typealias searchTextFiled = (_ searchFiled:UITextField )->Void
         
         let filed = UITextField()
         filed.placeholder = "请输入关键字"
-        filed.addTarget(self, action: #selector(LLHomeNavSearchView.searFiledClick), for: .touchUpInside)
+        filed.addTarget(self, action: #selector(LLHomeNavSearchView.searFiledClick), for: .editingChanged)
         filed.returnKeyType = .search
         filed.delegate = self
         return filed
