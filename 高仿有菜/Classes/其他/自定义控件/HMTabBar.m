@@ -81,10 +81,10 @@
 -(void)layoutSubviews{
     [super layoutSubviews];
     CGFloat btnY=5;
-    CGFloat btnW=self.frame.size.width/5;
+    CGFloat btnW=self.frame.size.width/4;
     CGFloat btnH=self.frame.size.height;
     //获取按钮个数
-    NSInteger count= 5 ;
+    NSInteger count= 4;
     for (int i=0; i<count; i++) {
         UIButton*btn=self.subviews[i];
         CGFloat btnX=(i-1)*btnW;

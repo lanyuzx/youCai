@@ -45,6 +45,7 @@ class LLTabBarController: UITabBarController {
         
         customTabBar.frame = tabBar.frame
         customTabBar.delegate = self
+        customTabBar.backgroundColor = UIColor.red
         view.addSubview(customTabBar)
         tabBar.removeFromSuperview()
     
