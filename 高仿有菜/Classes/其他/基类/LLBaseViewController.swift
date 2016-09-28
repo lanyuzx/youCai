@@ -17,6 +17,9 @@ let SCREEN_HEIGHT_COEFFICIENT = SCREEN_HEIGHT > 568 ? 568 / SCREEN_HEIGHT : 1
 
 let SCREEN_WITH_COEFFICIENT = SCREEN_WITH > 328 ? 328 / SCREEN_WITH : 1
 
+//购物车通知
+let LLShoppingNotification = "LLShoppingNotification"
+
 class LLBaseViewController: UIViewController {
 
     override func viewDidLoad() {

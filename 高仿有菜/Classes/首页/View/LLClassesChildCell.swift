@@ -81,7 +81,7 @@ class LLClassesChildCell: UITableViewCell {
             make.left.equalTo(contentView).offset(12)
             make.top.equalTo(contentView).offset(12)
             make.bottom.equalTo(contentView).offset(-12)
-            make.width.equalTo(120)
+            make.width.equalTo(110)
         }
         packageImageView.isHidden = true
         iconImageView.addSubview(packageImageView)

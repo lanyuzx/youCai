@@ -306,10 +306,13 @@ extension LLClassesChildController:UITableViewDataSource,UITableViewDelegate,cla
     }
           // MARK: ---- 自定义代理方法
     func childCellbuyProuductDelegate(iconImage: UIImageView, modelArr: NSMutableArray) {
-    
-//        let preasenVC = self.parent as!LLClassesViewController
-//        
-//        let tabBaLable = preasenVC.tabBarItem.
+        let dict = NSMutableDictionary(capacity: 1)
+        dict["iconImage"] = iconImage
+        dict["modelArr"] = modelArr
+        //通知名称常量
+        let NotifyChatMsgRecv = NSNotification.Name(rawValue:LLShoppingNotification)
+        //发送通知
+        NotificationCenter.default.post(name:NotifyChatMsgRecv, object: dict, userInfo:nil)
         
     }
 

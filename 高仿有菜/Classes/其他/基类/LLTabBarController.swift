@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import BAButton
 class LLTabBarController: UITabBarController {
 
     override func viewDidLoad() {
@@ -24,9 +24,11 @@ class LLTabBarController: UITabBarController {
         
         tabBar.tintColor = UIColor.init(red: 10 / 255.0, green: 178 / 255.0, blue: 10 / 255.0, alpha: 1.0)
         
+        //接受通知监听
+        NotificationCenter.default.addObserver(self, selector:#selector(didMsgRecv(notification:)),
+                                               name: NSNotification.Name(rawValue: LLShoppingNotification), object: nil)
         
-        
-    }
+           }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -38,14 +40,64 @@ class LLTabBarController: UITabBarController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    private lazy var customTabBar = HMTabBar()
+    
+    //通知处理函数
+    func didMsgRecv(notification:NSNotification){
+       
+      let notificationDict = notification.object as?NSDictionary
+        
+        let productView = notificationDict?.object(forKey: "iconImage") as!UIImageView
+        
+     let productArr = notificationDict?.object(forKey: "modelArr")as!NSArray
+        
+       
+       //shoppingArr.addObjects(from: productArr as! [Any])
+        
+        //获取购物车btn
+        
+        let shoppButton = customTabBar.subviews[3] as!BACustomButton
+        
+        //添加购物车动画
+        let center = CGPoint(x: shoppButton.frame.origin.x + shoppButton.frame.size.width , y: SCREEN_HEIGHT - shoppButton.frame.size.height / 2)
+        let point = CGPoint(x: productView.frame.origin.x, y: productView.frame.origin.y)
+        let path = UIBezierPath()
+        path.move(to: point)
+        path.addLine(to: center)
+        path.addQuadCurve(to: CGPoint(x: productView.frame.origin.x, y: productView.frame.origin.y), controlPoint: CGPoint(x: productView.frame.origin.x, y: productView.frame.origin.y))
+        
+        let layer = CALayer()
+        layer.contents = productView.image?.cgImage
+        layer.contentsGravity = kCAGravityResizeAspectFill
+        layer.bounds = CGRect(x: 0, y: 0, width: 35, height: 35)
+        layer.masksToBounds = true
+        layer.cornerRadius = 20
+        productView.layer.addSublayer(layer)
+        layer.pathAnimation(withDuration: 3.0, path: path.cgPath, repeat: 1) {
+            layer.isHidden = true
+            //抖动动画
+            let shakeAnimation = CABasicAnimation(keyPath: "transform.translation.y")
+            shakeAnimation.duration = 0.35
+            shakeAnimation.fromValue = NSNumber(value: -5)
+            shakeAnimation.toValue = NSNumber(value: 5)
+            shakeAnimation.autoreverses = true
+            self.customTabBar.countLable.layer.add(shakeAnimation, forKey: nil)
+            self.customTabBar.countLable.isHidden = false
+           // self.bugArr.add(self.detailModel)
+            self.customTabBar.countLable.text = String(productArr.count)
+        }
+        
+
+        
+    }
+    
+     private lazy var shoppingArr = NSMutableArray(capacity: 1)
+    lazy var customTabBar = HMTabBar()
           // MARK: ---- 自定义tabBar
     
     private func setUpTabBar() {
         
         customTabBar.frame = tabBar.frame
         customTabBar.delegate = self
-        customTabBar.backgroundColor = UIColor.red
         view.addSubview(customTabBar)
         tabBar.removeFromSuperview()
     

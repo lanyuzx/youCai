@@ -15,5 +15,6 @@
 @interface HMTabBar : UIView
 -(void)addButton:(UITabBarItem*)item;
 @property(nonatomic,weak)id<HMTabBarDelegate>delegate;
-
+//购买的个数
+@property (nonatomic,strong)UILabel *countLable;
 @end
