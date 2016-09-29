@@ -119,7 +119,7 @@
 @end
 
 
-@interface UIView (MyAnimation)
+@interface UIView (MyAnimation) <CAAnimationDelegate>
 /*!
  *  缩放显示动画
  *
@@ -133,5 +133,7 @@
  *  @param finish 动画完成
  */
 - (void )scaleAnimationDismissFinishAnimation:(void(^)()) finish;
+
+
 
 @end

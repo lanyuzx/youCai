@@ -9,7 +9,7 @@
 import UIKit
 import BAButton
 class LLTabBarController: UITabBarController {
-
+    var animationLayers: [CALayer]?
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -18,7 +18,7 @@ class LLTabBarController: UITabBarController {
         
         addChildViewController(childController: LLHomeViewController(), title: "首页", imageName: "tab_home")
         addChildViewController(childController: LLClassesViewController(), title: "分类", imageName: "tab_cate")
-        addChildViewController(childController: LLCycleViewController(), title: "分期购", imageName: "tab_buy")
+        addChildViewController(childController: LLCycleViewController(), title: "周期购", imageName: "tab_buy")
         addChildViewController(childController: LLShoppingViewController(), title: "购物车", imageName: "tab_tc")
         addChildViewController(childController: LLMeViewController(), title: "我的", imageName: "tab_me")
         
@@ -43,15 +43,40 @@ class LLTabBarController: UITabBarController {
     
     //通知处理函数
     func didMsgRecv(notification:NSNotification){
-       
+         let notificationDict = notification.object as?NSDictionary
+        let productArr = notificationDict?.object(forKey: "modelArr")as!NSArray
+
+          shoppingArr.add(productArr)
+        //获取购物车btn
+        
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: UInt64(0.95))) {
+            //抖动动画
+            let shakeAnimation = CABasicAnimation(keyPath: "transform.translation.y")
+            shakeAnimation.duration = 0.35
+            shakeAnimation.fromValue = NSNumber(value: -5)
+            shakeAnimation.toValue = NSNumber(value: 5)
+            shakeAnimation.autoreverses = true
+            self.customTabBar.countLable.layer.add(shakeAnimation, forKey: nil)
+            self.customTabBar.countLable.isHidden = false
+            if self.shoppingArr.count > 0 {
+                self.customTabBar.countLable.isHidden = false
+                self.customTabBar.countLable.text = String(self.shoppingArr.count)
+            }else {
+              self.customTabBar.countLable.isHidden = true
+            
+            }
+ 
+        }
+        
+        
+             /*
       let notificationDict = notification.object as?NSDictionary
         
         let productView = notificationDict?.object(forKey: "iconImage") as!UIImageView
         
      let productArr = notificationDict?.object(forKey: "modelArr")as!NSArray
         
-       
-       //shoppingArr.addObjects(from: productArr as! [Any])
+      shoppingArr.add(productArr)
         
         //获取购物车btn
         
@@ -59,11 +84,12 @@ class LLTabBarController: UITabBarController {
         
         //添加购物车动画
         let center = CGPoint(x: shoppButton.frame.origin.x + shoppButton.frame.size.width , y: SCREEN_HEIGHT - shoppButton.frame.size.height / 2)
-        let point = CGPoint(x: productView.frame.origin.x + productView.frame.size.height + productView.frame.origin.y, y: productView.frame.origin.y)
+        let point = CGPoint(x: (productView.frame.origin.x + productView.frame.size.height + productView.frame.origin.y) / 2, y: productView.frame.origin.y)
         let path = UIBezierPath()
         path.move(to: point)
         path.addLine(to: center)
-        path.addQuadCurve(to: CGPoint(x: productView.frame.origin.x, y: productView.frame.origin.y), controlPoint: CGPoint(x: productView.frame.origin.x, y: productView.frame.origin.y))
+        path.addCurve(to: CGPoint(x: productView.frame.origin.x, y: productView.frame.origin.y), controlPoint1: CGPoint(x: shoppButton.frame.origin.x, y: shoppButton.frame.origin.y), controlPoint2: CGPoint(x: shoppButton.frame.origin.x, y: shoppButton.frame.origin.y))
+      //  path.addQuadCurve(to: CGPoint(x: productView.frame.origin.x, y: productView.frame.origin.y), controlPoint: CGPoint(x: productView.frame.origin.x, y: productView.frame.origin.y))
         
         let layer = CALayer()
         layer.contents = productView.image?.cgImage
@@ -83,13 +109,18 @@ class LLTabBarController: UITabBarController {
             self.customTabBar.countLable.layer.add(shakeAnimation, forKey: nil)
             self.customTabBar.countLable.isHidden = false
            // self.bugArr.add(self.detailModel)
-            self.customTabBar.countLable.text = String(productArr.count)
+            if self.shoppingArr.count > 0 {
+            self.customTabBar.countLable.isHidden = false
+            self.customTabBar.countLable.text = String(self.shoppingArr.count)
+            }
+          
         }
         
-
+*/
         
     }
-    
+     
+
      private lazy var shoppingArr = NSMutableArray(capacity: 1)
     lazy var customTabBar = HMTabBar()
           // MARK: ---- 自定义tabBar

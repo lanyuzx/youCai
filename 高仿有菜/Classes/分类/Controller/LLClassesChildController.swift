@@ -7,19 +7,41 @@
 //
 
 import UIKit
-
+import MJRefresh
+import SVProgressHUD
+import BACustomAlertView
 class LLClassesChildController: LLBaseViewController {
 
     
     var cateType = -1
+    
+    /// 上拉下拉的标题
+    var start:Int = 0;
     override func viewDidLoad() {
         super.viewDidLoad()
         automaticallyAdjustsScrollViewInsets = false
        loadResustDate()
-        
         view.addSubview(childColletionView)
        view.addSubview(childTabView)
-     
+     childTabView.mj_header = MJRefreshNormalHeader.header(refreshingBlock: {
+        self.start = 0
+        self.loadResustDate()
+     }) as! MJRefreshHeader!
+        
+        childColletionView.mj_header = MJRefreshNormalHeader.header(refreshingBlock: {
+            self.start = 0
+            self.loadResustDate()
+        }) as! MJRefreshHeader!
+        
+        childTabView.mj_footer = MJRefreshBackNormalFooter.footer(refreshingBlock: { 
+            self.start = self.start + 10
+            self.loadResustDate()
+        }) as! MJRefreshFooter!
+        
+        childColletionView.mj_footer = MJRefreshBackNormalFooter.footer(refreshingBlock: { 
+            self.start = self.start + 10
+            self.loadResustDate()
+        }) as! MJRefreshFooter!
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,7 +50,9 @@ class LLClassesChildController: LLBaseViewController {
     }
              // MARK: ---- 请求数据
     private func loadResustDate() {
-        let urlString = "https:api.youcai.xin/item/list?cate=\(cateType)&length=10&start=0"
+        
+          SVProgressHUD.show(withStatus: "正在拼命加载中")
+        let urlString = "https:api.youcai.xin/item/list?cate=\(cateType)&length=10&start=\(start)"
         LLNetworksTools.request(with: httpRequestType.requestTypeGet, withUrlString: urlString, withParameters: nil, withSuccessBlock: { (response) in
             
             //热门销售数据
@@ -39,7 +63,7 @@ class LLClassesChildController: LLBaseViewController {
                     topModelArr.append(model)
                 }
             }
-            self.topsArr = topModelArr
+            
             //优选商品
             //热门销售数据
             var itemsModelArr = [LLHomeModel]()
@@ -49,11 +73,26 @@ class LLClassesChildController: LLBaseViewController {
                     itemsModelArr.append(model)
                 }
             }
-            self.itemsArr = itemsModelArr
+            
+            if self.start == 0 {  //请求的新数据
+                self.topsArr.count > 0 ?  (self.topsArr = topModelArr) :  (self.topsArr = topModelArr + self.topsArr)
+                  self.itemsArr.count > 0 ?  (self.itemsArr = itemsModelArr) :  (self.itemsArr = itemsModelArr + self.itemsArr)
+            }else { // 请求的老数据
+                self.topsArr = self.topsArr + topModelArr
+                    self.itemsArr = self.itemsArr + itemsModelArr
+            }
             self.childColletionView.reloadData()
             self.childTabView.reloadData()
+            self.childColletionView.mj_header.endRefreshing()
+            self.childTabView.mj_header.endRefreshing()
+            self.childColletionView.mj_footer.endRefreshing()
+            self.childTabView.mj_footer.endRefreshing()
+            SVProgressHUD.dismiss()
             }) { (error) in
               print(error)
+                self.childColletionView.mj_header.endRefreshing()
+                self.childTabView.mj_header.endRefreshing()
+                SVProgressHUD.showError(withStatus: "数据异常!!")
         }
     }
 
@@ -87,11 +126,13 @@ class LLClassesChildController: LLBaseViewController {
     }()
      lazy var topsArr = [LLHomeModel]()
      lazy var itemsArr = [LLHomeModel]()
+    //已购买过的产品
+    lazy var buyProduct = [LLHomeModel]()
 
 
 }
 
-extension LLClassesChildController:UICollectionViewDataSource,UICollectionViewDelegate {
+extension LLClassesChildController:UICollectionViewDataSource,UICollectionViewDelegate,ChildCollectionViewCellBuyProductDelegate {
     
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -115,7 +156,6 @@ extension LLClassesChildController:UICollectionViewDataSource,UICollectionViewDe
 
     }
     
-   
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LLClassesChildController", for: indexPath) as?LLChildCollectionViewCell
         if indexPath.section == 0 {
@@ -131,7 +171,7 @@ extension LLClassesChildController:UICollectionViewDataSource,UICollectionViewDe
             let model = itemsArr[indexPath.item]
             cell?.model = model
         }
-
+       cell?.delegate = self
         return cell!
     
     }
@@ -199,8 +239,22 @@ extension LLClassesChildController:UICollectionViewDataSource,UICollectionViewDe
 
         navigationController?.pushViewController(detialVc, animated: true)
     }
+    
+    // MARK: ---- 自定义代理方法
+    func CollectionViewCeltDelegate(iconImage: UIImageView, modelArr: NSMutableArray,imagePoint:CGPoint) {
+        let dict = NSMutableDictionary(capacity: 1)
+        dict["modelArr"] = modelArr
+        //通知名称常量
+        let NotifyChatMsgRecv = NSNotification.Name(rawValue:LLShoppingNotification)
+        //发送通知
+        NotificationCenter.default.post(name:NotifyChatMsgRecv, object: dict, userInfo:nil)
+        let endPointer = CGPoint(x: SCREEN_WITH - SCREEN_WITH / 5 - 35 , y: SCREEN_HEIGHT - 44)
+        self.addProductsAnimation(iconImage , endPoint: endPointer)
+    }
 
-        
+    
+
+    
     }
     
     
@@ -235,7 +289,7 @@ extension LLClassesChildController:UITableViewDataSource,UITableViewDelegate,cla
 
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "LLClassesChildController", for: indexPath) as?LLClassesChildCell
-        
+      
         if indexPath.section == 0 {
             if topsArr.count > 0 {
         let model = topsArr[indexPath.row]
@@ -249,8 +303,8 @@ extension LLClassesChildController:UITableViewDataSource,UITableViewDelegate,cla
             let model = itemsArr[indexPath.row]
             cell?.model = model
         }
-        cell?.delegate = self
-    return cell!
+    cell?.delegate = self
+          return cell!
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -305,15 +359,19 @@ extension LLClassesChildController:UITableViewDataSource,UITableViewDelegate,cla
         navigationController?.pushViewController(detialVc, animated: true)
     }
           // MARK: ---- 自定义代理方法
-    func childCellbuyProuductDelegate(iconImage: UIImageView, modelArr: NSMutableArray) {
+    func childCellbuyProuductDelegate(iconImage: UIImageView, modelArr: NSMutableArray,imagePoint:CGPoint) {
         let dict = NSMutableDictionary(capacity: 1)
-        dict["iconImage"] = iconImage
         dict["modelArr"] = modelArr
+        for model in modelArr {
+            let buyModel   = model as!LLHomeModel
+            buyProduct.append(buyModel)
+        }
         //通知名称常量
         let NotifyChatMsgRecv = NSNotification.Name(rawValue:LLShoppingNotification)
         //发送通知
         NotificationCenter.default.post(name:NotifyChatMsgRecv, object: dict, userInfo:nil)
-        
+          let endPointer = CGPoint(x: SCREEN_WITH - SCREEN_WITH / 5 - 35 , y: SCREEN_HEIGHT - 44)
+        self.addProductsAnimation(iconImage , endPoint: endPointer)
     }
 
 }

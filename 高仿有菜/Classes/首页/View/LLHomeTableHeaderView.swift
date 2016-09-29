@@ -49,7 +49,7 @@ class LLHomeTableHeaderView: UIView {
             
             titleLable.text  = model?.title
             desLable.text = model?.descr
-            let priceString = (model?.price)! / 100
+           let priceString = (model?.price)! / 100
             priceLable.text =  "¥"  +  String (priceString) + ".00"
             
             

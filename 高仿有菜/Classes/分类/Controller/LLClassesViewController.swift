@@ -136,14 +136,14 @@ class LLClassesViewController: YZDisplayViewController {
             let childVc = vc as!LLClassesChildController
             
             if changeButton.isSelected {
-                childVc.childTabView.isHidden = false
-                childVc.childColletionView.isHidden = true
-                childVc.childTabView.reloadData()
-            
-            } else {
                 childVc.childTabView.isHidden = true
                 childVc.childColletionView.isHidden = false
                 childVc.childColletionView.reloadData()
+            
+            } else {
+                childVc.childTabView.isHidden = false
+                childVc.childColletionView.isHidden = true
+                childVc.childTabView.reloadData()
             }
             
         }

@@ -54,7 +54,7 @@ static NSMutableArray *tasks;
             
             /****************************************************/
             // 如果请求成功 , 回调请求到的数据 , 同时 在这里 做本地缓存
-            NSString *path = [NSString stringWithFormat:@"%ld.plist", [URLString hash]];
+            NSString *path = [NSString stringWithFormat:@"%ld.plist", (unsigned long)[URLString hash]];
             // 存储的沙盒路径
             NSString *path_doc = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
             // 归档
@@ -88,7 +88,7 @@ static NSMutableArray *tasks;
             
             /* ************************************************** */
             //如果请求成功 , 回调请求到的数据 , 同时 在这里 做本地缓存
-            NSString *path = [NSString stringWithFormat:@"%ld.plist", [URLString hash]];
+            NSString *path = [NSString stringWithFormat:@"%ld.plist", (unsigned long)[URLString hash]];
             // 存储的沙盒路径
             NSString *path_doc = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
             // 归档

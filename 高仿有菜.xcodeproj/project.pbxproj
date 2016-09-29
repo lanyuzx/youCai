@@ -952,6 +952,10 @@
 				INFOPLIST_FILE = "高仿有菜/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/高仿有菜/Classes/其他/第三方框架/JhtShopCarAnimationSDK",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = lanlan123456;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "高仿有菜/Classes/其他/基类/高仿有菜-Bridging-Header.h";
@@ -970,6 +974,10 @@
 				INFOPLIST_FILE = "高仿有菜/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/高仿有菜/Classes/其他/第三方框架/JhtShopCarAnimationSDK",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = lanlan123456;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "高仿有菜/Classes/其他/基类/高仿有菜-Bridging-Header.h";

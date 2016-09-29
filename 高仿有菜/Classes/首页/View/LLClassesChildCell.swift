@@ -10,7 +10,7 @@ import UIKit
 
 protocol classesChildCellBuyProductDelegate {
     
-    func childCellbuyProuductDelegate(iconImage:UIImageView,modelArr:NSMutableArray)
+    func childCellbuyProuductDelegate(iconImage:UIImageView,modelArr:NSMutableArray,imagePoint:CGPoint)
 }
 
 class LLClassesChildCell: UITableViewCell {
@@ -39,11 +39,31 @@ class LLClassesChildCell: UITableViewCell {
                 mPriceLable.isHidden = false
             }else {
                 mPriceLable.isHidden = true
+                packageImageView.isHidden = true
 
             }
             
             
-        
+            if goodsArr.count > 0 {
+            for buyModel in goodsArr {
+                let buyInfo = buyModel as!LLHomeModel
+                if buyInfo.title == model?.title {
+                    if (buyInfo.isBuy) {
+                        bugCountLable.text = String(goodsArr.count)
+                        bugCountLable.isHidden = false
+                    }else {
+                        bugCountLable.isHidden = true
+                    }
+
+                }else {
+                    bugCountLable.isHidden = true
+
+                }
+                
+            }
+            }else {
+             bugCountLable.isHidden = true
+            }
         }
     
     }
@@ -141,10 +161,14 @@ class LLClassesChildCell: UITableViewCell {
           // MARK: ---- 购买的方法
     
     func buyProductClick()  {
+           model?.isBuy = true
         goodsArr.add(model)
         bugCountLable.isHidden = false
         bugCountLable.text = String(goodsArr.count)
-        delegate?.childCellbuyProuductDelegate(iconImage: iconImageView, modelArr: goodsArr)
+        let point = self.convert(iconImageView.center, to: self.superview)
+        delegate?.childCellbuyProuductDelegate(iconImage: iconImageView, modelArr: goodsArr,imagePoint:point )
+        
+        
         let shakeAnimation = CABasicAnimation(keyPath: "transform.translation.y")
         shakeAnimation.duration = 0.35
         shakeAnimation.fromValue = NSNumber(value: -5)
@@ -199,7 +223,7 @@ class LLClassesChildCell: UITableViewCell {
     //购物车
     private lazy var shopImageView = UIImageView(image: UIImage(named: "car_no"))
     //购买个数
-    private lazy var bugCountLable:UILabel =  {
+     lazy var bugCountLable:UILabel =  {
         
         let lable = UILabel()
         lable.backgroundColor =  UIColor.init(red: 10 / 255.0, green: 178 / 255.0, blue: 10 / 255.0, alpha: 1.0)

@@ -1,9 +1,9 @@
 //
-//  HMTabBar.m
-//  考试编程题
+//  LLTabBarController.swift
+//  高仿有菜
 //
-//  Created by ma on 15/10/12.
-//  Copyright (c) 2015年 ma. All rights reserved.
+//  Created by JYD on 16/9/23.
+//  Copyright © 2016年 周尊贤. All rights reserved.
 //
 
 #import "HMTabBar.h"
@@ -46,8 +46,6 @@
     [btn setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
     [btn setTitleColor: [UIColor colorWithRed:10/255.0 green:178/255.0 blue:10/255.0 alpha:1.0]forState:UIControlStateSelected];
     btn.titleLabel.font = [UIFont systemFontOfSize:12];
-//   [btn setBackgroundImage:[UIImage imageNamed:@"toolBar_shade"] forState:UIControlStateSelected];
-    
    //绑定点击事件
     [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchDown];
     //设置默认选中
@@ -56,14 +54,6 @@
     if (count==1) {
         [self btnClick:btn];
     }
-    
-//    if (count == 4) {
-//        [btn addSubview:self.countLable];
-//        self.countLable.frame = CGRectMake(btn.frame.origin.x + 49, 0, 20, 20);
-//        self.countLable.backgroundColor = [UIColor redColor];
-//    }
-
-    
    }
 //点击事件
 -(void)btnClick:(UIButton*)btn{
@@ -94,13 +84,12 @@
         //设置tag值
         btn.tag=i;
         btn.frame=CGRectMake(btnX, btnY, btnW, btnH);
-        NSLog(@"%f",btn.imageView.frame.origin.x);
-        NSLog(@"%f",btn.imageView.frame.size.width);
+
+        //此处为购物车的按钮
         if (i == 3) {
             [btn addSubview:self.countLable];
-
             self.countLable.frame = CGRectMake(btn.imageView.frame.origin.x +btn.imageView.frame.size.width  , 0, 20, 20);
-                   }
+            }
     }
    
 self.backGuround.frame=CGRectMake(0, btnY, btnW, btnH);
@@ -112,7 +101,7 @@ self.backGuround.frame=CGRectMake(0, btnY, btnW, btnH);
     [img drawInRect:rect];
 
 }
-
+  /// MARK: ---- 懒加载
 -(UILabel *)countLable {
     
     if (_countLable == nil) {
@@ -122,7 +111,7 @@ self.backGuround.frame=CGRectMake(0, btnY, btnW, btnH);
         _countLable.backgroundColor = [UIColor colorWithRed:10/255.0 green:178/255.0 blue:10/255.0 alpha:1.0];
         _countLable.font = [UIFont systemFontOfSize:12];
         _countLable.layer.cornerRadius = 10;
-        _countLable.text = @"1";
+        _countLable.hidden = true;
         _countLable.layer.masksToBounds = true;
     }
     return _countLable;

@@ -79,6 +79,7 @@
 
 
 #import "CALayer+Animation.h"
+#import <objc/message.h>
 
 @implementation CALayer (MyAnimation)
 - (void )shakeAnimationWithDuration:(NSTimeInterval )duration
@@ -158,8 +159,9 @@
 @end
 
 
-@implementation UIView(MyAnimation)
 
+
+@implementation UIView(MyAnimation)
 
 - (void )scaleAnimationShowFinishAnimation:(void(^)()) finish
 {
@@ -191,5 +193,7 @@
         }];
     }];
 }
+
+
 
 @end

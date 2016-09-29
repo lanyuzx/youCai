@@ -53,6 +53,8 @@ class LLHomeModel: NSObject {
     var unit:String?
     //
     var quantity = -1
+    
+    var isBuy = false
     init(dict:[String:AnyObject]) {
         
         super.init()

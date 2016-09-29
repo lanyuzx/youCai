@@ -257,8 +257,9 @@ class LLHomeDetailViewController: LLBaseViewController {
     private func requestDate() {
         LLNetworksTools.request(with: httpRequestType.requestTypeGet, withUrlString: self.detetailURLString, withParameters: nil, withSuccessBlock: { (date) in
          
-            let itemDict = (date as?NSDictionary)?.object(forKey: "item")
-            self.detailModel = LLHomeModel(dict: itemDict as! [String : AnyObject])
+            if  let itemDict = (date as?NSDictionary)?.object(forKey: "item") {
+             self.detailModel = LLHomeModel(dict: itemDict as! [String : AnyObject])
+            }
     
             //获取轮播图数据
            

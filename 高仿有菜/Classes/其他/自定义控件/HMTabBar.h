@@ -1,9 +1,9 @@
 //
-//  HMTabBar.h
-//  考试编程题
+//  LLTabBarController.swift
+//  高仿有菜
 //
-//  Created by ma on 15/10/12.
-//  Copyright (c) 2015年 ma. All rights reserved.
+//  Created by JYD on 16/9/23.
+//  Copyright © 2016年 周尊贤. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>

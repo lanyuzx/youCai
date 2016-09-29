@@ -7,10 +7,14 @@
 //
 
 import UIKit
-
+protocol ChildCollectionViewCellBuyProductDelegate {
+    
+    func CollectionViewCeltDelegate(iconImage:UIImageView,modelArr:NSMutableArray,imagePoint:CGPoint)
+}
 class LLChildCollectionViewCell: UICollectionViewCell {
+    
+    var delegate:ChildCollectionViewCellBuyProductDelegate?
     var model:LLHomeModel? {
-        
         didSet {
             if (model?.imgs?.count)! > 0 {
                 if  let urlString = model?.imgs?.firstObject as?String {
@@ -32,7 +36,8 @@ class LLChildCollectionViewCell: UICollectionViewCell {
                 mPriceLable.isHidden = false
             }else {
                 mPriceLable.isHidden = true
-                
+                packageImageView.isHidden = true
+
             }
             
             
@@ -89,37 +94,57 @@ class LLChildCollectionViewCell: UICollectionViewCell {
         }
 
         let shopbgView = UIView()
+        shopbgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(LLClassesChildCell.buyProductClick)))
         contentView.addSubview(shopbgView)
         shopbgView.backgroundColor =  UIColor.init(red: 233 / 255.0, green: 233 / 255.0, blue: 233 / 255.0, alpha: 0.78)
-        shopbgView.layer.masksToBounds = true
-        shopbgView.layer.cornerRadius = 25 / 2
+        shopbgView.layer.cornerRadius = 40 / 2
         shopbgView.snp.makeConstraints { (make) in
             make.right.equalTo(contentView.snp.right).offset(-15)
             make.bottom.equalTo(contentView.snp.bottom).offset(-15)
-            make.height.equalTo(30)
-            make.width.equalTo(30)
+            make.height.equalTo(40)
+            make.width.equalTo(40)
         }
         
         shopbgView.addSubview(shopImageView)
-        shopImageView.layer.masksToBounds = true
+        shopImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(LLClassesChildCell.buyProductClick)))
         shopImageView.isUserInteractionEnabled = true
         shopImageView.snp.makeConstraints { (make) in
             make.centerX.equalTo(shopbgView)
             make.centerY.equalTo(shopbgView)
-            make.height.equalTo(20)
-            make.width.equalTo(20)
+            make.height.equalTo(35)
+            make.width.equalTo(35)
         }
         shopImageView.addSubview(bugCountLable)
         bugCountLable.snp.makeConstraints { (make) in
-            make.centerY.equalTo(shopImageView).offset( -shopImageView.frame.size.height)
-            make.centerX.equalTo(shopImageView).offset(shopImageView.frame.size.width)
-            make.width.equalTo(10)
-            make.height.equalTo(10)
+            make.centerY.equalTo(shopImageView).offset( -shopImageView.frame.size.height / 2)
+            make.centerX.equalTo(shopImageView).offset(shopImageView.frame.size.width / 2)
+            make.width.equalTo(15)
+            make.height.equalTo(15)
         }
+        
 
     }
     
+    func buyProductClick()  {
+        goodsArr.add(model)
+        bugCountLable.isHidden = false
+        bugCountLable.text = String(goodsArr.count)
+        
+        let point = self.convert(iconImageView.center, to: self.superview)
+        
+        delegate?.CollectionViewCeltDelegate(iconImage: iconImageView, modelArr: goodsArr,imagePoint:point )
+        
+        let shakeAnimation = CABasicAnimation(keyPath: "transform.translation.y")
+        shakeAnimation.duration = 0.35
+        shakeAnimation.fromValue = NSNumber(value: -5)
+        shakeAnimation.toValue = NSNumber(value: 5)
+        shakeAnimation.autoreverses = true
+        bugCountLable.layer.add(shakeAnimation, forKey: nil)
+    }
+
     // MARK: ---- 懒加载
+    
+      private lazy var goodsArr = NSMutableArray()
     ///产品图片
     private lazy var iconImageView = UIImageView()
     //标题
@@ -167,12 +192,14 @@ class LLChildCollectionViewCell: UICollectionViewCell {
     private lazy var bugCountLable:UILabel =  {
         
         let lable = UILabel()
-        lable.backgroundColor = UIColor.init(red: 10 / 255.0, green: 178 / 255.0, blue: 10 / 255.0, alpha: 1.0)
+        lable.backgroundColor =  UIColor.init(red: 10 / 255.0, green: 178 / 255.0, blue: 10 / 255.0, alpha: 1.0)
         lable.textColor = UIColor.white
+        lable.textAlignment = .center
         lable.layer.masksToBounds = true
-        lable.layer.cornerRadius = 20 / 2
-        lable.font = UIFont.boldSystemFont(ofSize: 13)
+        lable.layer.cornerRadius = 15 / 2
+        lable.font = UIFont.boldSystemFont(ofSize: 12)
         lable.isHidden = true
+        
         return lable
         
     }()
