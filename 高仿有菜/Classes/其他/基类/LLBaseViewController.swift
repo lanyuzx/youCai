@@ -32,6 +32,14 @@ view.backgroundColor = UIColor.white
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let tabBarVc = self.tabBarController as?LLTabBarController
+        
+        tabBarVc?.customTabBar.isHidden = false
+
+    }
 
     var animationLayers: [CALayer]?
     

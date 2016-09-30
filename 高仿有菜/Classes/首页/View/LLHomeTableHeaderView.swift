@@ -67,7 +67,30 @@ class LLHomeTableHeaderView: UIView {
             contentLable.text = model?.detail?.object(forKey: "content") as! String?
         
             if let moreArr = model?.more {
+             let  prdouctInfo = NSMutableString()
                 
+                if moreArr.count > 0 {
+                    for index in 0..<moreArr.count {
+                       let childArr = moreArr[index] as!NSArray
+                        if childArr.count > 0 {
+                            
+                            for prdouctIndex in 0..<childArr.count {
+                          
+                                let info = childArr[prdouctIndex]
+                                
+                                if prdouctIndex == 0 {
+                                    prdouctInfo.append(info as!String + "    ")
+                                   
+                                }else if prdouctIndex == 1 {
+                                   prdouctInfo.append(info as!String + "\n")
+                                }
+                            }
+                        }
+                        
+                    }
+                }
+                productcontLable.text = prdouctInfo as String
+                /*
                 if moreArr.count > 0 {
                     if let productArr = moreArr[0] as?NSArray {
                         if productArr.count > 0 {
@@ -147,6 +170,7 @@ class LLHomeTableHeaderView: UIView {
                     
 
                 }
+*/
             }
             
             
@@ -196,19 +220,21 @@ class LLHomeTableHeaderView: UIView {
     
     private func setupUI() {
         
-        let cycleContainerView = UIView()
-        cycleContainerView.backgroundColor = UIColor.orange
-        addSubview(cycleContainerView)
-        cycleContainerView.snp.makeConstraints { (make) in
-            make.left.right.top.equalTo(self)
-            make.height.equalTo(150)
-        }
-        cycleContainerView.addSubview(cycleView)
-        cycleView.snp.makeConstraints { (make) in
-            make.left.right.top.bottom.equalTo(cycleContainerView)
-        }
-      
+        
              if headViewType == 1 {
+
+                let cycleContainerView = UIView()
+                cycleContainerView.backgroundColor = UIColor.orange
+                addSubview(cycleContainerView)
+                cycleContainerView.snp.makeConstraints { (make) in
+                    make.left.right.top.equalTo(self)
+                    make.height.equalTo(150)
+                }
+                cycleContainerView.addSubview(cycleView)
+                cycleView.snp.makeConstraints { (make) in
+                    make.left.right.top.bottom.equalTo(cycleContainerView)
+                }
+
             homeButton(cycleContainerView: cycleContainerView)
              }else {
         deatilDes()
@@ -229,7 +255,7 @@ class LLHomeTableHeaderView: UIView {
         addSubview(numberLable)
         titleLable.snp.makeConstraints { (make) in
             make.left.equalTo(self).offset(12)
-            make.top.equalTo(cycleView.snp.bottom).offset(12)
+            make.top.equalTo(self).offset(12)
         }
         desLable.snp.makeConstraints { (make) in
             make.left.equalTo(titleLable.snp.left)
@@ -273,42 +299,42 @@ class LLHomeTableHeaderView: UIView {
         addSubview(validButton)
         validButton.snp.makeConstraints { (make) in
             make.left.equalTo(priceLable.snp.left)
-            make.top.equalTo(markButton.snp.bottom).offset(15)
+            make.top.equalTo(markButton.snp.bottom).offset(12)
         }
         
         addSubview(topLineView)
         topLineView.snp.makeConstraints { (make) in
             make.left.right.equalTo(self)
-            make.top.equalTo(validButton.snp.bottom).offset(15)
+            make.top.equalTo(validButton.snp.bottom).offset(12)
             make.height.equalTo(12)
         }
-        
+        //菜油菜花说
+        addSubview(sayLable)
+        sayLable.snp.makeConstraints { (make) in
+                    make.top.equalTo(topLineView.snp.bottom).offset(8)
+            make.centerX.equalTo(self)
+        }
+
         let leftView = UIView()
         addSubview(leftView)
         leftView.backgroundColor = LLNetworksTools.shared().color(withHexString: "d0d0d0", andAlpha: 1.0)
         leftView.snp.makeConstraints { (make) in
-            make.left.equalTo(self).offset(15)
-            make.top.equalTo(topLineView.snp.bottom).offset(15)
-            make.width.equalTo(SCREEN_WITH * 0.3)
+            make.right.equalTo(sayLable.snp.left).offset( -15)
+         make.centerY.equalTo(sayLable)
+            make.width.equalTo(SCREEN_WITH * 0.2)
             make.height.equalTo(1)
         }
         let rightView = UIView()
         addSubview(rightView)
            rightView.backgroundColor = LLNetworksTools.shared().color(withHexString: "d0d0d0", andAlpha: 1.0)
         rightView.snp.makeConstraints { (make) in
-            make.right.equalTo(self).offset(-15)
-            make.top.equalTo(topLineView.snp.bottom).offset(15)
-             make.width.equalTo(SCREEN_WITH * 0.3)
+            make.left.equalTo(sayLable.snp.right).offset( 15)
+            make.centerY.equalTo(sayLable)
+             make.width.equalTo(SCREEN_WITH * 0.2)
                make.height.equalTo(1)
         }
 
-        addSubview(sayLable)
-        sayLable.snp.makeConstraints { (make) in
-            make.left.equalTo(leftView.snp.right).offset(15)
-            make.top.equalTo(topLineView.snp.bottom).offset(8)
-            make.right.equalTo(rightView.snp.right).offset(-15)
-        }
-        addSubview(contentLable)
+            addSubview(contentLable)
         contentLable.snp.makeConstraints { (make) in
             make.left.equalTo(self).offset(15)
             make.top.equalTo(sayLable.snp.bottom)
@@ -344,33 +370,43 @@ class LLHomeTableHeaderView: UIView {
                 make.height.equalTo(15)
         }
         
+        //商品信息
+        addSubview(productLable)
+        productLable.snp.makeConstraints { (make) in
+          make.centerX.equalTo(self)
+            make.top.equalTo(bottonLineView.snp.bottom).offset(8)
+          
+            
+        }
+
         let bootmleftView = UIView()
         addSubview(bootmleftView)
         bootmleftView.backgroundColor = LLNetworksTools.shared().color(withHexString: "d0d0d0", andAlpha: 1.0)
         bootmleftView.snp.makeConstraints { (make) in
-            make.left.equalTo(self).offset(15)
-            make.top.equalTo(bottonLineView.snp.bottom).offset(15)
-            make.width.equalTo(SCREEN_WITH * 0.3)
+            make.right.equalTo(productLable.snp.left).offset(-15)
+           make.centerY.equalTo(productLable)
+            make.width.equalTo(SCREEN_WITH * 0.2)
             make.height.equalTo(1)
         }
         let bootomrightView = UIView()
         addSubview(bootomrightView)
         bootomrightView.backgroundColor = LLNetworksTools.shared().color(withHexString: "d0d0d0", andAlpha: 1.0)
         bootomrightView.snp.makeConstraints { (make) in
-            make.right.equalTo(self).offset(-15)
-            make.top.equalTo(bottonLineView.snp.bottom).offset(15)
-            make.width.equalTo(SCREEN_WITH * 0.3)
+            make.left.equalTo(productLable.snp.right).offset(15)
+            make.centerY.equalTo(productLable)
+
+            make.width.equalTo(SCREEN_WITH * 0.2)
             make.height.equalTo(1)
         }
-        
-        addSubview(productLable)
-        productLable.snp.makeConstraints { (make) in
-            make.left.equalTo(bootmleftView.snp.right).offset(15)
-            make.top.equalTo(bottonLineView.snp.bottom).offset(8)
-            make.right.equalTo(bootomrightView.snp.right).offset(-15)
-
+        addSubview(productcontLable)
+        productcontLable.snp.makeConstraints { (make) in
+            make.left.equalTo(self).offset(20)
+           make.right.equalTo(self ).offset(-15)
+            make.top.equalTo(productLable.snp.bottom).offset(15)
         }
-      
+        
+               /*
+       //商品信息详情
         addSubview(productcontLable)
         addSubview(productRitLable)
         addSubview(saveLable)
@@ -415,7 +451,7 @@ class LLHomeTableHeaderView: UIView {
         make.right.equalTo(self).offset(-12)
         make.top.equalTo(warmLable.snp.top)
         }
-
+*/
     }
     
           // MARK: ---- 主页下面的四个按钮
@@ -597,8 +633,8 @@ class LLHomeTableHeaderView: UIView {
     private lazy var productcontLable:UILabel = {
         let lable = UILabel()
         lable.font = UIFont.boldSystemFont(ofSize: 14)
-        lable.numberOfLines = 1
-        lable.textColor = UIColor.black
+        lable.numberOfLines = 0
+        lable.textColor = UIColor.darkGray
         return lable
     }()
     //商品信息右边

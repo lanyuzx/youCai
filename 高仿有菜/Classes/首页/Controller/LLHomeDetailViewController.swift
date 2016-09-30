@@ -20,6 +20,9 @@ class LLHomeDetailViewController: LLBaseViewController {
         view.addSubview(detailTabView)
             setupNavUI()
         requestDate()
+        
+        detailTabView.tableHeaderView = cycleView
+     
 
     }
     
@@ -27,6 +30,11 @@ class LLHomeDetailViewController: LLBaseViewController {
         super.viewWillAppear(animated)
         view.isUserInteractionEnabled = true
         navigationController?.navigationBar.isHidden = true
+    let tabBarVc = self.tabBarController as?LLTabBarController
+        
+        tabBarVc?.customTabBar.isHidden = true
+        
+        
           }
 
     override func didReceiveMemoryWarning() {
@@ -265,6 +273,7 @@ class LLHomeDetailViewController: LLBaseViewController {
            
             self.detailTabView.reloadData()
             self.detailTabHeadView.imgArr = self.detailModel?.imgs
+            self.cycleView.cycleArr = self.detailModel?.imgs
             self.detailTabHeadView.model = self.detailModel
 
             }) { (error) in
@@ -274,6 +283,16 @@ class LLHomeDetailViewController: LLBaseViewController {
     
     }
         // MARK: ---- 懒加载
+    
+    lazy var cycleView:LLCycleView = {
+        
+        let cycleView  = LLCycleView(frame: CGRect(x: 0, y: 0, width: SCREEN_WITH, height: 150)) { (index) in
+            
+        }
+       
+        return cycleView
+    
+    }()
      lazy var detailTabHeadView:LLHomeTableHeaderView = {
         
         let tab = LLHomeTableHeaderView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), type: 2, block: { (button, index) in
@@ -299,7 +318,7 @@ class LLHomeDetailViewController: LLBaseViewController {
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 0;
-        layout.itemSize = CGSize(width: SCREEN_WITH, height: 320)
+//        layout.itemSize = CGSize(width: SCREEN_WITH, height: 320)
         let collection = UICollectionView(frame: CGRect(x: 0, y: 0, width: 0  , height: 0 ), collectionViewLayout: layout)
         collection.dataSource = self
         collection.delegate = self
@@ -428,10 +447,62 @@ extension LLHomeDetailViewController:UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
+//行高计算  情况一   tagnames 该字段标记有 图文详情页有  商品信息有
+        
+        //情况二 tagnames无  图文详情页有 商品信息有
+        //情况三 tagnames无  图文详情页无  商品信息无
+       if indexPath.row == 0 {
+         let  prdouctInfo = NSMutableString()
+        if let moreArr = self.detailModel?.more {
+            if moreArr.count > 0 {
+                for index in 0..<moreArr.count {
+                    let childArr = moreArr[index] as!NSArray
+                    if childArr.count > 0 {
+                        
+                        for prdouctIndex in 0..<childArr.count {
+                            
+                            let info = childArr[prdouctIndex]
+                            
+                            if prdouctIndex == 0 {
+                                prdouctInfo.append(info as!String + "    ")
+                                
+                            }else if prdouctIndex == 1 {
+                                prdouctInfo.append(info as!String + "\n")
+                            }
+                        }
+                    }
+                    
+                }
+            }
+        }
+        
+        if let model = (self.detailModel?.more) {
+            
+            if let tagNameArr = detailModel?.tagnames {
+                
+                if model.count > 0 && tagNameArr.count > 0 {
+                    return (getTextHeight(textString: detailModel?.detail?.object(forKey: "content") as! String, font: UIFont.boldSystemFont(ofSize: 13), size: CGSize(width: SCREEN_WITH - 30, height: CGFloat(MAXFLOAT)))) + (getTextHeight(textString: prdouctInfo as String, font: UIFont.boldSystemFont(ofSize: 14), size: CGSize(width: SCREEN_WITH - 35, height: CGFloat(MAXFLOAT)))) + 400
+                    
+
+                }else {
+                  return (getTextHeight(textString: detailModel?.detail?.object(forKey: "content") as! String, font: UIFont.boldSystemFont(ofSize: 13), size: CGSize(width: SCREEN_WITH - 30, height: CGFloat(MAXFLOAT)))) +  176
+                }
+            }else {
+                  return (getTextHeight(textString: detailModel?.detail?.object(forKey: "content") as! String, font: UIFont.boldSystemFont(ofSize: 13), size: CGSize(width: SCREEN_WITH - 30, height: CGFloat(MAXFLOAT)))) +  400
+            }
+        }else {
+            let text  = detailModel?.detail?.object(forKey: "content") as? String
+            
+            if text != nil {
+                return (getTextHeight(textString: text! , font: UIFont.boldSystemFont(ofSize: 13), size: CGSize(width: SCREEN_WITH - 30, height: CGFloat(MAXFLOAT)))) +  320
+
+            }
+            
+           
+                          }
+        
        
-        if indexPath.row == 0 {
-            
-            
+/*
             if let model = (self.detailModel?.more) {
                 
                 if model.count > 0 {
@@ -439,9 +510,9 @@ extension LLHomeDetailViewController:UITableViewDataSource,UITableViewDelegate {
                     if let tagNameArr = detailModel?.tagnames {
                         
                         if (tagNameArr.count) > 0 {
-                            return (SCREEN_HEIGHT + 175) * (SCREEN_HEIGHT_COEFFICIENT)
+                            return (SCREEN_HEIGHT + 30) * (SCREEN_HEIGHT_COEFFICIENT)
                         }else {
-                            return (SCREEN_HEIGHT + 150) * (SCREEN_HEIGHT_COEFFICIENT)
+                            return (SCREEN_HEIGHT + 20) * (SCREEN_HEIGHT_COEFFICIENT)
                         }
 
                         
@@ -461,10 +532,9 @@ extension LLHomeDetailViewController:UITableViewDataSource,UITableViewDelegate {
                     return SCREEN_HEIGHT + 20
 
                 }
-                
+ 
             }
-            
-        
+*/
         }else  if indexPath.row == 2{
             
             if (detailModel?.isSelectCell)! {
@@ -528,7 +598,10 @@ extension LLHomeDetailViewController:UICollectionViewDataSource,UICollectionView
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "LLHomeDetailViewController", for: indexPath)
-        
+        for v in cell.contentView.subviews {
+            v.removeFromSuperview()
+        }
+
         let imgeView = UIImageView()
         cell.contentView.addSubview(imgeView)
         imgeView.frame = cell.contentView.bounds
@@ -538,12 +611,14 @@ extension LLHomeDetailViewController:UICollectionViewDataSource,UICollectionView
 , placeholderImage: UIImage(named: "top"))
 
         }
-        
         return cell
     
-    
     }
-    
+    func collectionView(_ collectionView: UICollectionView,  layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        
+        return CGSize(width: SCREEN_WITH - 15  , height: 320)
+        
+    }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets{
         
         //UIEdgeInsetsMake(top: CGFloat, _ left: CGFloat, _ bottom: CGFloat, _ right: CGFloat) -> UIEdgeInsets
