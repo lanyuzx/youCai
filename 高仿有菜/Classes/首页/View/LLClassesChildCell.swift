@@ -42,30 +42,7 @@ class LLClassesChildCell: UITableViewCell {
                 packageImageView.isHidden = true
 
             }
-            
-            
-            if goodsArr.count > 0 {
-            for buyModel in goodsArr {
-                let buyInfo = buyModel as!LLHomeModel
-                if buyInfo.title == model?.title {
-                    if (buyInfo.isBuy) {
-                        bugCountLable.text = String(goodsArr.count)
-                        bugCountLable.isHidden = false
-                    }else {
-                        bugCountLable.isHidden = true
-                    }
-
-                }else {
-                    bugCountLable.isHidden = true
-
-                }
-                
-            }
-            }else {
-             bugCountLable.isHidden = true
-            }
         }
-    
     }
     override func awakeFromNib() {
         super.awakeFromNib()

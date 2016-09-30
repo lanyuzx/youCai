@@ -8,6 +8,8 @@
 
 import UIKit
 //https://api.youcai.xin/item/guess?cates=201%2C202%2C202%2C101%2C303%2C301%2C301&ids=160%2C70%2C37%2C228%2C277%2C171%2C24
+//热门推荐产品https://api.youcai.xin/item/guess?cates=201%2C202%2C202%2C101%2C303%2C301%2C301&ids=160%2C70%2C37%2C228%2C277%2C171%2C24
+////购物车数据  已经添加过的https://api.youcai.xin/item/brief?ids=160%2C70%2C37%2C228%2C277%2C171%2C24
 class LLShoppingViewController: LLBaseViewController {
 
     override func viewDidLoad() {

@@ -353,7 +353,6 @@ extension LLClassesChildController:UITableViewDataSource,UITableViewDelegate,cla
             let model = itemsArr[indexPath.row]
             detialVc.detetailURLString = "https://api.youcai.xin/item/detail?id=\(model.id )"
 
-        
         }
         
         navigationController?.pushViewController(detialVc, animated: true)

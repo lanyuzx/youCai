@@ -5,6 +5,11 @@
 //  Created by JYD on 16/9/23.
 //  Copyright © 2016年 周尊贤. All rights reserved.
 //
+//轮播图 详情页 https://api.youcai.xin/item/detail?id=304
+
+//首页四个按钮展示数据 https://api.youcai.xin/item/list?length=10&start=0&tags=1
+
+//四个按钮数据详情页 https://api.youcai.xin/item/detail?id=302
 
 
 import UIKit
