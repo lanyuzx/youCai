@@ -24,6 +24,9 @@ class LLDetailsController: LLBaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = false
+        let tabBarVc = self.tabBarController as?LLTabBarController
+        
+        tabBarVc?.customTabBar.isHidden = true
     }
           // MARK: ---- 添加 UI 视图
     

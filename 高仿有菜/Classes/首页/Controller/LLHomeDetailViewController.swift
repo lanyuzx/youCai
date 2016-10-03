@@ -271,10 +271,13 @@ class LLHomeDetailViewController: LLBaseViewController {
     
             //获取轮播图数据
            
-            self.detailTabView.reloadData()
-            self.detailTabHeadView.imgArr = self.detailModel?.imgs
+           
             self.cycleView.cycleArr = self.detailModel?.imgs
-            self.detailTabHeadView.model = self.detailModel
+            self.detailTopCell.model = self.detailModel
+            self.detailMiddleCell.model = self.detailModel
+            self.detailBoottomCell.model = self.detailModel
+            self.detailTabView.reloadData()
+            self.detaiImageCollectionView.reloadData()
 
             }) { (error) in
                 print(error)
@@ -293,14 +296,13 @@ class LLHomeDetailViewController: LLBaseViewController {
         return cycleView
     
     }()
-     lazy var detailTabHeadView:LLHomeTableHeaderView = {
-        
-        let tab = LLHomeTableHeaderView(frame: CGRect(x: 0, y: 0, width: 0, height: 0), type: 2, block: { (button, index) in
-            
-        })
-      return tab
+    //第一个cell上的View
+    lazy var detailTopCell:LLDetailTopView = LLDetailTopView()
     
-    }()
+    //第二个cell上的View
+    lazy var detailMiddleCell:LLDetailMiddleView = LLDetailMiddleView()
+    
+    lazy var detailBoottomCell:LLDetailBoottomView = LLDetailBoottomView()
     
     private lazy var detailTabView:UITableView = {
     let tabView = UITableView()
@@ -308,7 +310,7 @@ class LLHomeDetailViewController: LLBaseViewController {
         tabView.delegate = self
         tabView.dataSource = self
         tabView.register(UITableViewCell.self, forCellReuseIdentifier: "LLHomeDetailViewController")
-        
+        tabView.separatorStyle = .none
         
         return tabView
     }()
@@ -355,14 +357,14 @@ extension LLHomeDetailViewController:UITableViewDataSource,UITableViewDelegate {
             
             if imgsArr.count > 0 {
                 
-                return 3
-            }else {
-            return 2
+                return 5
             }
             
+        }else {
+            return 4
+
         }
-        return 2
-    
+      return 4
     }
     
     
@@ -370,39 +372,91 @@ extension LLHomeDetailViewController:UITableViewDataSource,UITableViewDelegate {
         
         let  cell = tableView.dequeueReusableCell(withIdentifier: "LLHomeDetailViewController", for: indexPath)
         cell.selectionStyle = .none
+        
+        for v in cell.contentView.subviews {
+            v.removeFromSuperview()
+        }
         if indexPath.row == 0 {
+          cell.contentView.addSubview(detailTopCell)
+          detailTopCell.frame = (cell.contentView.bounds)
             
-          cell.contentView.addSubview(detailTabHeadView)
-          detailTabHeadView.frame = (cell.contentView.bounds)
         
           
         }else if indexPath.row ==  1 {
             
-            if let farmStrng = detailModel?.farm {
-                
-                cell.textLabel?.text = "产地: " + (farmStrng)
-
-            }
-            cell.accessoryType = .disclosureIndicator
+           cell.contentView.addSubview(detailMiddleCell)
+            detailMiddleCell.frame = cell.contentView.frame
+        
+        }else  if indexPath.row == 2 {
             
+            cell.contentView.addSubview(detailBoottomCell)
+            
+            detailBoottomCell.frame = cell.contentView.frame
+        }else if indexPath.row == 3 {
+            let titleLable = UILabel()
+            cell.contentView.addSubview(titleLable)
+            titleLable.snp.makeConstraints({ (make) in
+                make.left.equalTo(cell.contentView).offset(12)
+                make.top.equalTo(cell.contentView).offset(16)
+            })
+            let topView = UIView()
+            topView.backgroundColor = UIColor.darkGray
+            cell.contentView.addSubview(topView)
+            topView.snp.makeConstraints({ (make) in
+                make.left.equalTo(cell.contentView).offset(12)
+                make.right.equalTo(cell.contentView).offset(-12)
+                make.top.equalTo(cell.contentView)
+                make.height.equalTo(0.5)
+            })
+            
+            if let farm = detailModel?.farm {
+                titleLable.text = "产地:" + (farm)
+            }
+            let arrowImageView = UIImageView(image: UIImage(named: "user_arrow"))
+            cell.contentView.addSubview(arrowImageView)
+            arrowImageView.snp.makeConstraints({ (make) in
+                make.right.equalTo(cell.contentView).offset(-12)
+                make.top.equalTo(cell.contentView).offset(12)
+                make.width.equalTo(15)
+                make.height.equalTo(20)
+            })
+
+           
+            let bootomView = UIView()
+            bootomView.backgroundColor = UIColor.darkGray
+            cell.contentView.addSubview(bootomView)
+            bootomView.snp.makeConstraints({ (make) in
+                make.left.equalTo(cell.contentView).offset(12)
+                make.right.equalTo(cell.contentView).offset(-12)
+                make.bottom.equalTo(cell.contentView)
+                make.height.equalTo(0.5)
+            })
+
 
         
-        }else {
-            
-            for v in cell.contentView.subviews {
-                v.removeFromSuperview()
-            }
-            
+        } else if indexPath.row == 4 {
             let titleLable = UILabel()
-            titleLable.removeFromSuperview()
-            titleLable.font = UIFont.systemFont(ofSize: 14)
-            titleLable.text = "查看图文详情"
             cell.contentView.addSubview(titleLable)
             titleLable.snp.makeConstraints({ (make) in
                 make.left.equalTo(cell.contentView).offset(12)
                 make.top.equalTo(cell.contentView).offset(16)
             })
             
+
+            titleLable.text = "产品图文详情"
+            
+            
+            let bootomView = UIView()
+            bootomView.backgroundColor = UIColor.darkGray
+            cell.contentView.addSubview(bootomView)
+            bootomView.snp.makeConstraints({ (make) in
+                make.left.equalTo(cell.contentView).offset(12)
+                make.right.equalTo(cell.contentView).offset(-12)
+                make.bottom.equalTo(cell.contentView)
+                make.height.equalTo(0.5)
+            })
+            
+
             let arrowImageView = UIImageView(image: UIImage(named: "user_arrow"))
             cell.contentView.addSubview(arrowImageView)
             arrowImageView.snp.makeConstraints({ (make) in
@@ -427,18 +481,18 @@ extension LLHomeDetailViewController:UITableViewDataSource,UITableViewDelegate {
                     if (detailModel?.isSelectCell)! {
                         detaiImageCollectionView.isHidden = false
                         arrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(M_PI / 2))
-
+                        
                     }else {
-                         arrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(0))
+                        arrowImageView.transform = CGAffineTransform(rotationAngle: CGFloat(0))
                         detaiImageCollectionView.isHidden = true
-                        }
+                    }
                     
-               
-    
-                           }
-                
+                    
+                    
+                }
             }
-        
+
+
         }
         
         return cell
@@ -447,118 +501,85 @@ extension LLHomeDetailViewController:UITableViewDataSource,UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-//行高计算  情况一   tagnames 该字段标记有 图文详情页有  商品信息有
         
-        //情况二 tagnames无  图文详情页有 商品信息有
-        //情况三 tagnames无  图文详情页无  商品信息无
-       if indexPath.row == 0 {
-         let  prdouctInfo = NSMutableString()
-        if let moreArr = self.detailModel?.more {
-            if moreArr.count > 0 {
-                for index in 0..<moreArr.count {
-                    let childArr = moreArr[index] as!NSArray
-                    if childArr.count > 0 {
-                        
-                        for prdouctIndex in 0..<childArr.count {
-                            
-                            let info = childArr[prdouctIndex]
-                            
-                            if prdouctIndex == 0 {
-                                prdouctInfo.append(info as!String + "    ")
-                                
-                            }else if prdouctIndex == 1 {
-                                prdouctInfo.append(info as!String + "\n")
-                            }
-                        }
-                    }
-                    
-                }
-            }
-        }
-        
-        if let model = (self.detailModel?.more) {
+        if indexPath.row == 0 {
             
-            if let tagNameArr = detailModel?.tagnames {
+            if  let tagNamesArr = detailModel?.tagnames  {
                 
-                if model.count > 0 && tagNameArr.count > 0 {
-                    return (getTextHeight(textString: detailModel?.detail?.object(forKey: "content") as! String, font: UIFont.boldSystemFont(ofSize: 13), size: CGSize(width: SCREEN_WITH - 30, height: CGFloat(MAXFLOAT)))) + (getTextHeight(textString: prdouctInfo as String, font: UIFont.boldSystemFont(ofSize: 14), size: CGSize(width: SCREEN_WITH - 35, height: CGFloat(MAXFLOAT)))) + 400
-                    
-
-                }else {
-                  return (getTextHeight(textString: detailModel?.detail?.object(forKey: "content") as! String, font: UIFont.boldSystemFont(ofSize: 13), size: CGSize(width: SCREEN_WITH - 30, height: CGFloat(MAXFLOAT)))) +  176
+                if tagNamesArr.count > 0 {
+                     return  210
                 }
             }else {
-                  return (getTextHeight(textString: detailModel?.detail?.object(forKey: "content") as! String, font: UIFont.boldSystemFont(ofSize: 13), size: CGSize(width: SCREEN_WITH - 30, height: CGFloat(MAXFLOAT)))) +  400
+              return  180
             }
-        }else {
+            
+            
+            
+           
+        } else if indexPath.row == 1 {
+            
             let text  = detailModel?.detail?.object(forKey: "content") as? String
             
             if text != nil {
-                return (getTextHeight(textString: text! , font: UIFont.boldSystemFont(ofSize: 13), size: CGSize(width: SCREEN_WITH - 30, height: CGFloat(MAXFLOAT)))) +  320
-
-            }
-            
-           
-                          }
-        
-       
-/*
-            if let model = (self.detailModel?.more) {
+                return (getTextHeight(textString: text! , font: UIFont.boldSystemFont(ofSize: 13), size: CGSize(width: SCREEN_WITH - 30, height: CGFloat(MAXFLOAT)))) +  100
                 
-                if model.count > 0 {
-                    
-                    if let tagNameArr = detailModel?.tagnames {
-                        
-                        if (tagNameArr.count) > 0 {
-                            return (SCREEN_HEIGHT + 30) * (SCREEN_HEIGHT_COEFFICIENT)
-                        }else {
-                            return (SCREEN_HEIGHT + 20) * (SCREEN_HEIGHT_COEFFICIENT)
-                        }
+            }
 
-                        
-                    }else {
-                        if let detailArr = self.detailModel?.more{
+        
+        }else if indexPath.row == 2 {
+            
+            if let moreArr = detailModel?.more {
+                let  prdouctInfo = NSMutableString()
+                
+                if moreArr.count > 0 {
+                    for index in 0..<moreArr.count {
+                        let childArr = moreArr[index] as!NSArray
+                        if childArr.count > 0 {
                             
-                            if detailArr.count > 2 {
-                                   return ((SCREEN_HEIGHT  + 65) + getTextHeight(textString: detailModel?.detail?.object(forKey: "content") as! String, font: UIFont.boldSystemFont(ofSize: 13), size: CGSize(width: SCREEN_WITH - 30, height: CGFloat(MAXFLOAT)))) * (SCREEN_HEIGHT_COEFFICIENT)
-                            }else {
-                              return ((SCREEN_HEIGHT  ) + getTextHeight(textString: detailModel?.detail?.object(forKey: "content") as! String, font: UIFont.boldSystemFont(ofSize: 13), size: CGSize(width: SCREEN_WITH - 30, height: CGFloat(MAXFLOAT)))) * (SCREEN_HEIGHT_COEFFICIENT)
-
+                            for prdouctIndex in 0..<childArr.count {
+                                
+                                let info = childArr[prdouctIndex]
+                                
+                                if prdouctIndex == 0 {
+                                    prdouctInfo.append(info as!String + "    ")
+                                    
+                                }else if prdouctIndex == 1 {
+                                    prdouctInfo.append(info as!String + "\n")
+                                }
                             }
                         }
-                                 }
- 
-                }else {
-                    return SCREEN_HEIGHT + 20
-
+                        
+                    }
                 }
- 
+                
+                return (getTextHeight(textString: prdouctInfo as String , font: UIFont.boldSystemFont(ofSize: 13), size: CGSize(width: SCREEN_WITH - 30, height: CGFloat(MAXFLOAT)))) + 45
             }
-*/
-        }else  if indexPath.row == 2{
+    
+        } else if indexPath.row == 4 {
             
             if (detailModel?.isSelectCell)! {
                 if  let imgsArr = detailModel?.detail?.object(forKey: "imgs") as?NSArray {
-                    return CGFloat ( 320 * (imgsArr.count))
+                    return CGFloat ( 230 * CGFloat(imgsArr.count))
                 }else {
-                  return 44
+                    return 44
                 }
                 
             }
         
         }
-        
-        return 44
+    
+        return  44
     
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.row == 2 {
+        if indexPath.row == 4 {
             detailModel?.isSelectCell = !(detailModel?.isSelectCell)!
                 tableView.reloadRows(at: [indexPath], with: .automatic)
+            detaiImageCollectionView.reloadData()
 
-        }else if indexPath.row == 1 {
+        }else if indexPath.row == 3 {
             
             let webViewVc = LLDetailsController()
             webViewVc.detailUrl = "https://m.youcai.xin/farm/\(detailModel!.fid)"
@@ -569,6 +590,8 @@ extension LLHomeDetailViewController:UITableViewDataSource,UITableViewDelegate {
         
  
     }
+    
+     // MARK: ---- 计算文字的高度
     func getTextHeight(textString:String,font:UIFont,size:CGSize) -> CGFloat {
         
         let attributes = [NSFontAttributeName: font]
@@ -616,13 +639,13 @@ extension LLHomeDetailViewController:UICollectionViewDataSource,UICollectionView
     }
     func collectionView(_ collectionView: UICollectionView,  layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
         
-        return CGSize(width: SCREEN_WITH - 15  , height: 320)
+        return CGSize(width: SCREEN_WITH   , height: 230)
         
     }
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets{
         
         //UIEdgeInsetsMake(top: CGFloat, _ left: CGFloat, _ bottom: CGFloat, _ right: CGFloat) -> UIEdgeInsets
-        return UIEdgeInsetsMake(-5, 5, -5, 5)
+        return UIEdgeInsetsMake(-5, 0, -5, 0)
     }
 
     

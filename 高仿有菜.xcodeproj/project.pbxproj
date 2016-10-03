@@ -72,6 +72,9 @@
 		A711C3D92DC23D5C20FC30F7 /* Pods_____.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E8D3F85D8A24661830741E0 /* Pods_____.framework */; };
 		B54FD5B91D95E22600952483 /* LLHomeNavSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54FD5B81D95E22600952483 /* LLHomeNavSearchView.swift */; };
 		B5AA4ABB1D9AC076003C94D6 /* LLClassesChildCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AA4ABA1D9AC076003C94D6 /* LLClassesChildCell.swift */; };
+		B5DBAE641DA2315300A797D8 /* LLDetailTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DBAE631DA2315300A797D8 /* LLDetailTopView.swift */; };
+		B5DBAE661DA23E5B00A797D8 /* LLDetailMiddleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DBAE651DA23E5B00A797D8 /* LLDetailMiddleView.swift */; };
+		B5DBAE681DA2426F00A797D8 /* LLDetailBoottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5DBAE671DA2426F00A797D8 /* LLDetailBoottomView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -176,6 +179,9 @@
 		5E8D3F85D8A24661830741E0 /* Pods_____.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_____.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B54FD5B81D95E22600952483 /* LLHomeNavSearchView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLHomeNavSearchView.swift; sourceTree = "<group>"; };
 		B5AA4ABA1D9AC076003C94D6 /* LLClassesChildCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LLClassesChildCell.swift; path = "高仿有菜/Classes/首页/View/LLClassesChildCell.swift"; sourceTree = SOURCE_ROOT; };
+		B5DBAE631DA2315300A797D8 /* LLDetailTopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLDetailTopView.swift; sourceTree = "<group>"; };
+		B5DBAE651DA23E5B00A797D8 /* LLDetailMiddleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLDetailMiddleView.swift; sourceTree = "<group>"; };
+		B5DBAE671DA2426F00A797D8 /* LLDetailBoottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLDetailBoottomView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -460,6 +466,9 @@
 			isa = PBXGroup;
 			children = (
 				062B9CBF1D94FA080030D788 /* LLHomeTableHeaderView.swift */,
+				B5DBAE631DA2315300A797D8 /* LLDetailTopView.swift */,
+				B5DBAE651DA23E5B00A797D8 /* LLDetailMiddleView.swift */,
+				B5DBAE671DA2426F00A797D8 /* LLDetailBoottomView.swift */,
 				062B9CC61D952AFF0030D788 /* LLHomeTableViewCell.swift */,
 				B54FD5B81D95E22600952483 /* LLHomeNavSearchView.swift */,
 				06F2FC901D9E16550023D013 /* LLCycleView.swift */,
@@ -630,7 +639,7 @@
 				TargetAttributes = {
 					062B9C1B1D94D3570030D788 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = N9EV8487M2;
+						DevelopmentTeam = 4MU5292B6H;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
@@ -772,9 +781,11 @@
 				062B9C9B1D94D4960030D788 /* ConstraintPriorityTarget.swift in Sources */,
 				062B9C8C1D94D4960030D788 /* ConstraintInsets.swift in Sources */,
 				062B9C931D94D4960030D788 /* ConstraintMaker.swift in Sources */,
+				B5DBAE681DA2426F00A797D8 /* LLDetailBoottomView.swift in Sources */,
 				062B9C8E1D94D4960030D788 /* ConstraintItem.swift in Sources */,
 				062B9CA01D94D4960030D788 /* ConstraintViewDSL.swift in Sources */,
 				062B9C911D94D4960030D788 /* ConstraintLayoutSupport.swift in Sources */,
+				B5DBAE641DA2315300A797D8 /* LLDetailTopView.swift in Sources */,
 				061DD3071D9A655700CE83C0 /* LLDetailsController.swift in Sources */,
 				062B9C891D94D4960030D788 /* ConstraintConstantTarget.swift in Sources */,
 				062B9CC21D9504390030D788 /* LLHomeModel.swift in Sources */,
@@ -794,6 +805,7 @@
 				062B9C8D1D94D4960030D788 /* ConstraintInsetTarget.swift in Sources */,
 				061DD31C1D9B6B4900CE83C0 /* LLChildTabHeadView.swift in Sources */,
 				062B9CB61D94D6A30030D788 /* LLBaseNavController.swift in Sources */,
+				B5DBAE661DA23E5B00A797D8 /* LLDetailMiddleView.swift in Sources */,
 				06F2FC911D9E16550023D013 /* LLCycleView.swift in Sources */,
 				062B9CAC1D94D5E80030D788 /* LLShoppingViewController.swift in Sources */,
 				062B9C921D94D4960030D788 /* ConstraintLayoutSupportDSL.swift in Sources */,
@@ -952,7 +964,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = N9EV8487M2;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 4MU5292B6H;
 				INFOPLIST_FILE = "高仿有菜/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -960,7 +973,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/高仿有菜/Classes/其他/第三方框架/JhtShopCarAnimationSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = lanlan123456;
+				PRODUCT_BUNDLE_IDENTIFIER = lanlan19482;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "高仿有菜/Classes/其他/基类/高仿有菜-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -974,7 +987,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = N9EV8487M2;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 4MU5292B6H;
 				INFOPLIST_FILE = "高仿有菜/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -982,7 +996,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/高仿有菜/Classes/其他/第三方框架/JhtShopCarAnimationSDK",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = lanlan123456;
+				PRODUCT_BUNDLE_IDENTIFIER = lanlan19482;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "高仿有菜/Classes/其他/基类/高仿有菜-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;

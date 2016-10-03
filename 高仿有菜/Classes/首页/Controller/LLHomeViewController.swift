@@ -56,8 +56,7 @@ class LLHomeViewController: LLBaseViewController {
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        print(tabHeadView.bottomView.frame)
-    }
+        }
    
     func leftBarItemClick()  {
         
