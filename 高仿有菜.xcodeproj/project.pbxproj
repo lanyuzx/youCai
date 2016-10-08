@@ -66,6 +66,9 @@
 		062B9CC21D9504390030D788 /* LLHomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B9CC11D9504390030D788 /* LLHomeModel.swift */; };
 		062B9CC71D952AFF0030D788 /* LLHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B9CC61D952AFF0030D788 /* LLHomeTableViewCell.swift */; };
 		062B9CCA1D9538AF0030D788 /* YMVerticalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B9CC91D9538AF0030D788 /* YMVerticalButton.swift */; };
+		062E43191DA889750068F7B8 /* LLCacheInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 062E43181DA889750068F7B8 /* LLCacheInterface.m */; };
+		067C583A1DA8D77E00DB0168 /* LLShoppingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067C58391DA8D77E00DB0168 /* LLShoppingCell.swift */; };
+		067C583C1DA8FF7700DB0168 /* LLShopTabFootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067C583B1DA8FF7700DB0168 /* LLShopTabFootView.swift */; };
 		06AFFB8B1D9BA15B00369806 /* LLChildCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AFFB8A1D9BA15B00369806 /* LLChildCollectionHeaderView.swift */; };
 		06AFFB911D9BCDFB00369806 /* HMTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 06AFFB8F1D9BCDFB00369806 /* HMTabBar.m */; };
 		06F2FC911D9E16550023D013 /* LLCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F2FC901D9E16550023D013 /* LLCycleView.swift */; };
@@ -170,6 +173,10 @@
 		062B9CC11D9504390030D788 /* LLHomeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLHomeModel.swift; sourceTree = "<group>"; };
 		062B9CC61D952AFF0030D788 /* LLHomeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLHomeTableViewCell.swift; sourceTree = "<group>"; };
 		062B9CC91D9538AF0030D788 /* YMVerticalButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YMVerticalButton.swift; sourceTree = "<group>"; };
+		062E43171DA889750068F7B8 /* LLCacheInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCacheInterface.h; sourceTree = "<group>"; };
+		062E43181DA889750068F7B8 /* LLCacheInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCacheInterface.m; sourceTree = "<group>"; };
+		067C58391DA8D77E00DB0168 /* LLShoppingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLShoppingCell.swift; sourceTree = "<group>"; };
+		067C583B1DA8FF7700DB0168 /* LLShopTabFootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLShopTabFootView.swift; sourceTree = "<group>"; };
 		06AFFB8A1D9BA15B00369806 /* LLChildCollectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLChildCollectionHeaderView.swift; sourceTree = "<group>"; };
 		06AFFB8E1D9BCDFB00369806 /* HMTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMTabBar.h; sourceTree = "<group>"; };
 		06AFFB8F1D9BCDFB00369806 /* HMTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMTabBar.m; sourceTree = "<group>"; };
@@ -430,6 +437,8 @@
 		062B9C5E1D94D4760030D788 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				067C58391DA8D77E00DB0168 /* LLShoppingCell.swift */,
+				067C583B1DA8FF7700DB0168 /* LLShopTabFootView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -527,6 +536,8 @@
 		062B9CA61D94D5890030D788 /* 基类 */ = {
 			isa = PBXGroup;
 			children = (
+				062E43171DA889750068F7B8 /* LLCacheInterface.h */,
+				062E43181DA889750068F7B8 /* LLCacheInterface.m */,
 				061DD3181D9B5E5D00CE83C0 /* CALayer+Animation.h */,
 				061DD3191D9B5E5D00CE83C0 /* CALayer+Animation.m */,
 				062B9CA71D94D5A50030D788 /* LLBaseViewController.swift */,
@@ -639,7 +650,7 @@
 				TargetAttributes = {
 					062B9C1B1D94D3570030D788 = {
 						CreatedOnToolsVersion = 8.0;
-						DevelopmentTeam = 4MU5292B6H;
+						DevelopmentTeam = N9EV8487M2;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
@@ -798,6 +809,7 @@
 				062B9CAA1D94D5B70030D788 /* LLHomeViewController.swift in Sources */,
 				062B9C8A1D94D4960030D788 /* ConstraintDescription.swift in Sources */,
 				062B9C8B1D94D4960030D788 /* ConstraintDSL.swift in Sources */,
+				062E43191DA889750068F7B8 /* LLCacheInterface.m in Sources */,
 				062B9C201D94D3570030D788 /* AppDelegate.swift in Sources */,
 				061DD3151D9A713C00CE83C0 /* YZFlowLayout.m in Sources */,
 				062B9CA11D94D4960030D788 /* Debugging.swift in Sources */,
@@ -812,10 +824,12 @@
 				062B9C9F1D94D4960030D788 /* ConstraintView.swift in Sources */,
 				062B9C961D94D4960030D788 /* ConstraintMakerFinalizable.swift in Sources */,
 				061DD31E1D9B9C1B00CE83C0 /* LLChildCollectionViewCell.swift in Sources */,
+				067C583A1DA8D77E00DB0168 /* LLShoppingCell.swift in Sources */,
 				062B9CB01D94D6280030D788 /* LLCycleViewController.swift in Sources */,
 				062B9C941D94D4960030D788 /* ConstraintMakerEditable.swift in Sources */,
 				061B86E21D98B4C000D17FC6 /* LLHomeDetailViewController.swift in Sources */,
 				B5AA4ABB1D9AC076003C94D6 /* LLClassesChildCell.swift in Sources */,
+				067C583C1DA8FF7700DB0168 /* LLShopTabFootView.swift in Sources */,
 				062B9C9D1D94D4960030D788 /* ConstraintRelation.swift in Sources */,
 				062B9CA41D94D4960030D788 /* UILayoutGuide+Extensions.swift in Sources */,
 				062B9C951D94D4960030D788 /* ConstraintMakerExtendable.swift in Sources */,
@@ -965,7 +979,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 4MU5292B6H;
+				DEVELOPMENT_TEAM = N9EV8487M2;
 				INFOPLIST_FILE = "高仿有菜/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -988,7 +1002,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 4MU5292B6H;
+				DEVELOPMENT_TEAM = N9EV8487M2;
 				INFOPLIST_FILE = "高仿有菜/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

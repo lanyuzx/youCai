@@ -53,8 +53,8 @@ class LLHomeModel: NSObject {
     var unit:String?
     //
     var quantity = -1
-    
-    var isBuy = false
+    //购买的个数
+    var buyCount = 0
     init(dict:[String:AnyObject]) {
         
         super.init()

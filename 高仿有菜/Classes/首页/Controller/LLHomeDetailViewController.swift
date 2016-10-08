@@ -171,7 +171,7 @@ class LLHomeDetailViewController: LLBaseViewController {
         weiXinButton.setTitle("微信好友", for: .normal)
         weiXinButton.titleLabel?.font = UIFont.systemFont(ofSize: 12)
         weiXinButton.snp.makeConstraints { (make) in
-            make.left.equalTo(shareView).offset(60)
+            make.left.equalTo(shareView).offset(40)
             make.bottom.equalTo(shareView.snp.bottom).offset(-15)
             make.width.equalTo(55)
             make.height.equalTo(75)
@@ -184,7 +184,7 @@ class LLHomeDetailViewController: LLBaseViewController {
         friendButton.setImage(UIImage (named: "timeline"), for: .normal)
         friendButton.setTitle("朋友圈", for: .normal)
         friendButton.snp.makeConstraints { (make) in
-            make.right.equalTo(shareView).offset(-60)
+            make.right.equalTo(shareView).offset(-40)
             make.bottom.equalTo(shareView.snp.bottom).offset(-15)
             make.width.equalTo(55)
             make.height.equalTo(75)

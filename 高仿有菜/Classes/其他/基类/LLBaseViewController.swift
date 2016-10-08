@@ -21,10 +21,10 @@ let SCREEN_WITH_COEFFICIENT = SCREEN_WITH > 328 ? 328 / SCREEN_WITH : 1
 let LLShoppingNotification = "LLShoppingNotification"
 
 class LLBaseViewController: UIViewController {
-
-    override func viewDidLoad() {
+   
+      override func viewDidLoad() {
         super.viewDidLoad()
-view.backgroundColor = UIColor.white
+       view.backgroundColor = UIColor.white
         // Do any additional setup after loading the view.
     }
 

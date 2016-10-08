@@ -10,7 +10,7 @@ import UIKit
 
 protocol classesChildCellBuyProductDelegate {
     
-    func childCellbuyProuductDelegate(iconImage:UIImageView,modelArr:NSMutableArray,imagePoint:CGPoint)
+    func childCellbuyProuductDelegate(iconImage:UIImageView,model:LLHomeModel,imagePoint:CGPoint)
 }
 
 class LLClassesChildCell: UITableViewCell {
@@ -42,6 +42,16 @@ class LLClassesChildCell: UITableViewCell {
                 packageImageView.isHidden = true
 
             }
+          
+            if (model?.buyCount)! > 0 {
+                
+                bugCountLable.isHidden = false
+                bugCountLable.text = String( model?.buyCount ?? 0)
+            
+            }else {
+                bugCountLable.isHidden = true
+            }
+            
         }
     }
     override func awakeFromNib() {
@@ -138,12 +148,13 @@ class LLClassesChildCell: UITableViewCell {
           // MARK: ---- 购买的方法
     
     func buyProductClick()  {
-           model?.isBuy = true
-        goodsArr.add(model)
+        
+        model?.buyCount  = (model?.buyCount)! + 1
+        
         bugCountLable.isHidden = false
-        bugCountLable.text = String(goodsArr.count)
+        bugCountLable.text = String((model?.buyCount) ?? 0)
         let point = self.convert(iconImageView.center, to: self.superview)
-        delegate?.childCellbuyProuductDelegate(iconImage: iconImageView, modelArr: goodsArr,imagePoint:point )
+        delegate?.childCellbuyProuductDelegate(iconImage: iconImageView, model: model!,imagePoint:point )
         
         
         let shakeAnimation = CABasicAnimation(keyPath: "transform.translation.y")
@@ -156,7 +167,7 @@ class LLClassesChildCell: UITableViewCell {
     
      // MARK: ---- 懒加载
     
-    private lazy var goodsArr = NSMutableArray()
+    
     ///产品图片
     private lazy var iconImageView = UIImageView()
     //标题

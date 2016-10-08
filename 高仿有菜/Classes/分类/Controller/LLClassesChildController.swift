@@ -60,7 +60,23 @@ class LLClassesChildController: LLBaseViewController {
             if let topArr = ((response as?NSDictionary)?.object(forKey: "tops")) as?NSArray {
                 for index in 0..<topArr.count {
                     let model = LLHomeModel(dict: topArr[index] as! [String : AnyObject])
-                    topModelArr.append(model)
+                    
+                    if self.buyProduct.count > 0 {
+                        for kdex in 0..<self.buyProduct.count {
+                            let buyModel = self.buyProduct[kdex] as!LLHomeModel
+                            
+                            if buyModel.title == model.title {
+                                model.buyCount = buyModel.buyCount
+                            }
+                              
+                        }
+                          topModelArr.append(model)
+                    }else {
+                      topModelArr.append(model)
+                    }
+                    
+                   
+                  
                 }
             }
             
@@ -70,10 +86,26 @@ class LLClassesChildController: LLBaseViewController {
             if let itemsArr = ((response as?NSDictionary)?.object(forKey: "items")) as?NSArray {
                 for index in 0..<itemsArr.count {
                     let model = LLHomeModel(dict: itemsArr[index] as! [String : AnyObject])
-                    itemsModelArr.append(model)
+                    
+                    if self.buyProduct.count > 0 {
+                        for kdex in 0..<self.buyProduct.count {
+                            let buyModel = self.buyProduct[kdex] as!LLHomeModel
+                            
+                            if buyModel.title == model.title {
+                                model.buyCount = buyModel.buyCount
+                            }
+                           
+                        }
+                        itemsModelArr.append(model)
+
+                    }else {
+                        itemsModelArr.append(model)
+
+                    }
+                    
+
                 }
             }
-            
             if self.start == 0 {  //请求的新数据
                 self.topsArr.count > 0 ?  (self.topsArr = topModelArr) :  (self.topsArr = topModelArr + self.topsArr)
                   self.itemsArr.count > 0 ?  (self.itemsArr = itemsModelArr) :  (self.itemsArr = itemsModelArr + self.itemsArr)
@@ -127,7 +159,7 @@ class LLClassesChildController: LLBaseViewController {
      lazy var topsArr = [LLHomeModel]()
      lazy var itemsArr = [LLHomeModel]()
     //已购买过的产品
-    lazy var buyProduct = [LLHomeModel]()
+    lazy var buyProduct = NSMutableArray(capacity: 1)
 
 
 }
@@ -358,13 +390,12 @@ extension LLClassesChildController:UITableViewDataSource,UITableViewDelegate,cla
         navigationController?.pushViewController(detialVc, animated: true)
     }
           // MARK: ---- 自定义代理方法
-    func childCellbuyProuductDelegate(iconImage: UIImageView, modelArr: NSMutableArray,imagePoint:CGPoint) {
+    func childCellbuyProuductDelegate(iconImage: UIImageView, model: LLHomeModel,imagePoint:CGPoint) {
         let dict = NSMutableDictionary(capacity: 1)
-        dict["modelArr"] = modelArr
-        for model in modelArr {
-            let buyModel   = model as!LLHomeModel
-            buyProduct.append(buyModel)
-        }
+        dict["model"] = model
+        buyProduct.add(model)
+        
+               
         //通知名称常量
         let NotifyChatMsgRecv = NSNotification.Name(rawValue:LLShoppingNotification)
         //发送通知

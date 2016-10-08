@@ -12,14 +12,12 @@ class LLTabBarController: UITabBarController {
     var animationLayers: [CALayer]?
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setUpTabBar()
         // Do any additional setup after loading the view.
-        
         addChildViewController(childController: LLHomeViewController(), title: "首页", imageName: "tab_home")
         addChildViewController(childController: LLClassesViewController(), title: "分类", imageName: "tab_cate")
         addChildViewController(childController: LLCycleViewController(), title: "周期购", imageName: "tab_buy")
-        addChildViewController(childController: LLShoppingViewController(), title: "购物车", imageName: "tab_tc")
+        addChildViewController(childController:     LLShoppingViewController(), title: "购物车", imageName: "tab_tc")
         addChildViewController(childController: LLMeViewController(), title: "我的", imageName: "tab_me")
         
         tabBar.tintColor = UIColor.init(red: 10 / 255.0, green: 178 / 255.0, blue: 10 / 255.0, alpha: 1.0)
@@ -44,12 +42,12 @@ class LLTabBarController: UITabBarController {
     //通知处理函数
     func didMsgRecv(notification:NSNotification){
          let notificationDict = notification.object as?NSDictionary
-        let productArr = notificationDict?.object(forKey: "modelArr")as!NSArray
+        let product = notificationDict?.object(forKey: "model")
 
-          shoppingArr.add(productArr)
+          shoppingArr.add(product)
         //获取购物车btn
         
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: UInt64(0.95))) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: UInt64(2.0))) {
             //抖动动画
             let shakeAnimation = CABasicAnimation(keyPath: "transform.translation.y")
             shakeAnimation.duration = 0.35
@@ -65,8 +63,8 @@ class LLTabBarController: UITabBarController {
               self.customTabBar.countLable.isHidden = true
             
             }
- 
-        }
+            
+                 }
         
         
              /*
