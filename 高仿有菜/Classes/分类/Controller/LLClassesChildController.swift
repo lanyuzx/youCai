@@ -17,6 +17,7 @@ class LLClassesChildController: LLBaseViewController {
     
     /// 上拉下拉的标题
     var start:Int = 0
+    //为10时间是首页的四个按钮传递过来的
     var type  = 0
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +47,25 @@ class LLClassesChildController: LLBaseViewController {
         
         NotificationCenter.default.addObserver(self, selector:#selector(deleteProduct(notification:)),
                                                name: NSNotification.Name(rawValue: LLDeleteProductNotification), object: nil)
+        
+        if type == 10 {
+      
+         createdNavView()
+        }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if type == 10 {
+            
+            let tabBarVc = self.tabBarController as?LLTabBarController
+            
+            tabBarVc?.customTabBar.isHidden = true
+            
+            navigationController?.navigationBar.isHidden = true
+        
+        }
+       
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,6 +73,79 @@ class LLClassesChildController: LLBaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
+     // MARK: ---- 首页孕妇 月子 点击的导航栏
+    func createdNavView()  {
+        
+        let navView = UIView()
+        view.addSubview(navView)
+        navView.backgroundColor = UIColor.white
+        navView.snp.makeConstraints { (make) in
+            make.left.right.top.equalTo(view)
+            make.height.equalTo(64)
+        }
+        
+        let titleLable = UILabel()
+        titleLable.textColor = UIColor.darkGray
+        titleLable.font = UIFont.systemFont(ofSize: 16)
+        titleLable.text = self.title
+        navView.addSubview(titleLable)
+        titleLable.snp.makeConstraints { (make) in
+            make.centerY.centerX.equalTo(navView)
+        }
+      
+        let backButton = UIButton(type: .custom)
+        backButton.addTarget(self, action: #selector(LLClassesChildController.backButtonClick), for: .touchUpInside)
+        backButton.setImage(UIImage(named: "nav_back"), for: .normal)
+        navView.addSubview(backButton)
+        backButton.snp.makeConstraints { (make) in
+            make.left.equalTo(navView).offset(15)
+            make.centerY.equalTo(navView)
+            make.width.equalTo(30)
+            make.height.equalTo(30)
+        }
+        
+        
+        let changeButton = UIButton(type: .custom)
+        changeButton.addTarget(self, action: #selector(LLClassesChildController.changeButtonClick), for: .touchUpInside)
+        changeButton.setImage(UIImage(named:"Table"), for: .normal)
+        changeButton.setImage(UIImage(named:"coll"), for: UIControlState.selected)
+        navView.addSubview(changeButton)
+        changeButton.snp.makeConstraints { (make) in
+            make.right.equalTo(navView).offset(-15)
+            make.centerY.equalTo(navView)
+            make.width.equalTo(30)
+            make.height.equalTo(30)
+        }
+
+    }
+    
+     // MARK: ---- 按钮的点击方法
+    func backButtonClick()  {
+        
+        navigationController!.popViewController(animated: true)
+    }
+    
+    func changeButtonClick(changeBtn:UIButton)  {
+        
+        changeBtn.isSelected = !changeBtn.isSelected
+        
+        
+            
+            if changeBtn.isSelected {
+                childTabView.isHidden = true
+                childColletionView.isHidden = false
+                childColletionView.reloadData()
+                
+            } else {
+               childTabView.isHidden = false
+               childColletionView.isHidden = true
+               childTabView.reloadData()
+            }
+            
+        
+
+        
+    }
           // MARK: ---- 删除商品的通知
     func deleteProduct(notification:NSNotification){
         let notificationDict = notification.object as?NSDictionary
@@ -169,29 +262,64 @@ class LLClassesChildController: LLBaseViewController {
     // MARK: ---- 懒加载
     lazy var childColletionView:UICollectionView = {
         
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumInteritemSpacing = 5
-        layout.minimumLineSpacing = 8
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
-        let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: SCREEN_WITH, height: SCREEN_HEIGHT - 165), collectionViewLayout: layout)
-        collectionView.dataSource = self
-        collectionView.delegate = self
-         collectionView.register(LLChildCollectionViewCell.self, forCellWithReuseIdentifier: "LLClassesChildController")
-        collectionView.backgroundColor = UIColor.init(red: 233 / 255.0, green: 233 / 255.0, blue: 233 / 255.0, alpha: 0.78)
-         collectionView.isHidden = true
-         collectionView.register(LLChildCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "LLChildCollectionHeaderView")
-        return collectionView
-    }()
+        if self.type == 10 {
+            
+            let layout = UICollectionViewFlowLayout()
+            layout.minimumInteritemSpacing = 5
+            layout.minimumLineSpacing = 8
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+            let collectionView = UICollectionView(frame: CGRect(x: 0, y: 64, width: SCREEN_WITH, height: SCREEN_HEIGHT - 64), collectionViewLayout: layout)
+            collectionView.dataSource = self
+            collectionView.delegate = self
+            collectionView.register(LLChildCollectionViewCell.self, forCellWithReuseIdentifier: "LLClassesChildController")
+            collectionView.register(LLChildCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "LLChildCollectionHeaderView")
+
+            collectionView.backgroundColor = UIColor.init(red: 233 / 255.0, green: 233 / 255.0, blue: 233 / 255.0, alpha: 0.78)
+            collectionView.isHidden = true
+            return collectionView
+
+        
+        }else {
+            
+            let layout = UICollectionViewFlowLayout()
+            layout.minimumInteritemSpacing = 5
+            layout.minimumLineSpacing = 8
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 5, bottom: 0, right: 5)
+            let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: SCREEN_WITH, height: SCREEN_HEIGHT - 165), collectionViewLayout: layout)
+            collectionView.dataSource = self
+            collectionView.delegate = self
+            collectionView.register(LLChildCollectionViewCell.self, forCellWithReuseIdentifier: "LLClassesChildController")
+            collectionView.backgroundColor = UIColor.init(red: 233 / 255.0, green: 233 / 255.0, blue: 233 / 255.0, alpha: 0.78)
+            collectionView.isHidden = true
+            collectionView.register(LLChildCollectionHeaderView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "LLChildCollectionHeaderView")
+            return collectionView
+
+        
+        }
+        
+        }()
     lazy var childTabView:UITableView = {
-       let tabView = UITableView(frame: CGRect(x: 0, y: 0, width: SCREEN_WITH, height: SCREEN_HEIGHT - 165), style: .grouped)
-        tabView.dataSource = self
-        tabView.delegate = self
-      tabView.isHidden = false
-        tabView.register(LLClassesChildCell.self, forCellReuseIdentifier: "LLClassesChildController")
-        tabView.register(LLChildTabHeadView.self, forHeaderFooterViewReuseIdentifier: "LLChildTabHeadView")
+        if self.type == 10 {
+            let tabView = UITableView(frame: CGRect(x: 0, y: 64, width: SCREEN_WITH, height: SCREEN_HEIGHT - 64), style: .plain)
+            tabView.dataSource = self
+            tabView.delegate = self
+            tabView.isHidden = false
+            tabView.register(LLClassesChildCell.self, forCellReuseIdentifier: "LLClassesChildController")
+            tabView.register(LLChildTabHeadView.self, forHeaderFooterViewReuseIdentifier: "LLChildTabHeadView")
+            return tabView
+        }else {
+            let tabView = UITableView(frame: CGRect(x: 0, y: 0, width: SCREEN_WITH, height: SCREEN_HEIGHT - 165), style: .grouped)
+            tabView.dataSource = self
+            tabView.delegate = self
+            tabView.isHidden = false
+            tabView.register(LLClassesChildCell.self, forCellReuseIdentifier: "LLClassesChildController")
+            tabView.register(LLChildTabHeadView.self, forHeaderFooterViewReuseIdentifier: "LLChildTabHeadView")
+            return tabView
+        }
+      
         
 
-    return tabView
+    
     }()
      lazy var topsArr = [LLHomeModel]()
      lazy var itemsArr = [LLHomeModel]()
@@ -205,10 +333,15 @@ extension LLClassesChildController:UICollectionViewDataSource,UICollectionViewDe
     
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
+        
+        if type == 10 {
+        return 1
+        }else {
         if topsArr.count > 0 {
             return 2
         }
         return 1
+        }
     }
      func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
        
@@ -266,6 +399,8 @@ extension LLClassesChildController:UICollectionViewDataSource,UICollectionViewDe
 
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
+      
+        
         let headView = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "LLChildCollectionHeaderView", for: indexPath as IndexPath) as?LLChildCollectionHeaderView
         
         if indexPath.section == 0 {
@@ -279,8 +414,9 @@ extension LLClassesChildController:UICollectionViewDataSource,UICollectionViewDe
         }
     
             return headView!
+        }
     
-    }
+    
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
@@ -301,7 +437,7 @@ extension LLClassesChildController:UICollectionViewDataSource,UICollectionViewDe
             
         }else if indexPath.section == 1 {
             let model = itemsArr[indexPath.row]
-            detialVc.detetailURLString = "https://api.youcai.xin/item/detail?id=\(model.id )"
+            detialVc.detetailURLString = "https://api.youcai.xin/item/detail?id=\(model.id)"
             
             
         }
@@ -334,10 +470,18 @@ extension LLClassesChildController:UICollectionViewDataSource,UICollectionViewDe
 extension LLClassesChildController:UITableViewDataSource,UITableViewDelegate,classesChildCellBuyProductDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if topsArr.count > 0 {
-        return 2
+        
+        if type == 10 {
+            
+            return 1
+        
+        }else {
+            if topsArr.count > 0 {
+                return 2
+            }
+            return 1
         }
-        return 1
+       
     }
     
     
@@ -373,11 +517,17 @@ extension LLClassesChildController:UITableViewDataSource,UITableViewDelegate,cla
             let model = itemsArr[indexPath.row]
             cell?.model = model
         }
-    cell?.delegate = self
+         cell?.delegate = self
           return cell!
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        if type == 10 {
+            
+            return nil
+        
+        }else {
         let headView =  tableView.dequeueReusableHeaderFooterView(withIdentifier: "LLChildTabHeadView") as?LLChildTabHeadView
         if section == 0 {
             if topsArr.count > 0 {
@@ -390,8 +540,13 @@ extension LLClassesChildController:UITableViewDataSource,UITableViewDelegate,cla
         }
        
             return headView
+        }
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        if type == 10 {
+        return 0
+        }
         return 40
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -19,6 +19,11 @@
 			<key>orderHint</key>
 			<integer>10</integer>
 		</dict>
+		<key>FMDB.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
 		<key>IQKeyboardManager.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -72,12 +77,27 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>23CF27B2BA6AC7125EFFEDA8C5AA819F</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>29DD99664D189A7CA206368F493B1E0B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>37C76CD246D637B8E4C586284A0D96B2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>415C3CB51F243A8F0D537C259B340A5A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6ABBA9CFC8FD7B3EA25FF71AE1D11B32</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -93,6 +113,11 @@
 			<true/>
 		</dict>
 		<key>7D29D27DA3152450AA998953B0841EC5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8E2F8170E446294BE1333AFAF01FD046</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -118,6 +143,11 @@
 			<true/>
 		</dict>
 		<key>CF7E28794293264642046A4BCC4B61C1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E2B3330952C3724AE560D1E5CCCBABD0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
