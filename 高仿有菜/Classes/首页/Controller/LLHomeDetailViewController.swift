@@ -227,6 +227,16 @@ class LLHomeDetailViewController: LLBaseViewController {
             self.bugCountLable.text = String(self.bugArr.count)
         }
         
+        let dict = NSMutableDictionary(capacity: 1)
+        dict["model"] = self.detailModel
+        
+        self.detailModel?.buyCount = (self.detailModel?.buyCount)! + 1
+       
+        //通知名称常量
+        let NotifyChatMsgRecv = NSNotification.Name(rawValue:LLShoppingNotification)
+        //发送通知
+        NotificationCenter.default.post(name:NotifyChatMsgRecv, object: dict, userInfo:nil)
+        
         //渲染动画  放大效果
         /*
         let animation = CAKeyframeAnimation(keyPath: "position")
@@ -263,7 +273,11 @@ class LLHomeDetailViewController: LLBaseViewController {
     
           // MARK: ---- 请求数据
     private func requestDate() {
-        LLNetworksTools.request(with: httpRequestType.requestTypeGet, withUrlString: self.detetailURLString, withParameters: nil, withSuccessBlock: { (date) in
+        
+        guard  let urlString = self.detetailURLString else {
+        return
+        }
+        LLNetworksTools.request(with: httpRequestType.requestTypeGet, withUrlString: urlString, withParameters: nil, withSuccessBlock: { (date) in
          
             if  let itemDict = (date as?NSDictionary)?.object(forKey: "item") {
              self.detailModel = LLHomeModel(dict: itemDict as! [String : AnyObject])

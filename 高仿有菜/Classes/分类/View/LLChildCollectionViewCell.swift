@@ -9,7 +9,7 @@
 import UIKit
 protocol ChildCollectionViewCellBuyProductDelegate {
     
-    func CollectionViewCeltDelegate(iconImage:UIImageView,modelArr:NSMutableArray,imagePoint:CGPoint)
+    func CollectionViewCeltDelegate(iconImage:UIImageView,model:LLHomeModel,imagePoint:CGPoint)
 }
 class LLChildCollectionViewCell: UICollectionViewCell {
     
@@ -40,7 +40,15 @@ class LLChildCollectionViewCell: UICollectionViewCell {
 
             }
             
-            
+            if (model?.buyCount)! > 0 {
+                
+                bugCountLable.isHidden = false
+                bugCountLable.text = String( model?.buyCount ?? 0)
+                
+            }else {
+                bugCountLable.isHidden = true
+            }
+
             
         }
         
@@ -67,7 +75,7 @@ class LLChildCollectionViewCell: UICollectionViewCell {
         packageImageView.isHidden = true
         iconImageView.snp.makeConstraints { (make) in
             make.left.right.equalTo(contentView)
-            make.height.equalTo(80)
+            make.height.equalTo(90)
         }
         packageImageView.snp.makeConstraints { (make) in
             make.left.top.equalTo(contentView)
@@ -97,12 +105,12 @@ class LLChildCollectionViewCell: UICollectionViewCell {
         shopbgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(LLClassesChildCell.buyProductClick)))
         contentView.addSubview(shopbgView)
         shopbgView.backgroundColor =  UIColor.init(red: 233 / 255.0, green: 233 / 255.0, blue: 233 / 255.0, alpha: 0.78)
-        shopbgView.layer.cornerRadius = 40 / 2
+        shopbgView.layer.cornerRadius = 30 / 2
         shopbgView.snp.makeConstraints { (make) in
             make.right.equalTo(contentView.snp.right).offset(-15)
-            make.bottom.equalTo(contentView.snp.bottom).offset(-15)
-            make.height.equalTo(40)
-            make.width.equalTo(40)
+            make.bottom.equalTo(contentView.snp.bottom).offset(-5)
+            make.height.equalTo(30)
+            make.width.equalTo(30)
         }
         
         shopbgView.addSubview(shopImageView)
@@ -111,8 +119,8 @@ class LLChildCollectionViewCell: UICollectionViewCell {
         shopImageView.snp.makeConstraints { (make) in
             make.centerX.equalTo(shopbgView)
             make.centerY.equalTo(shopbgView)
-            make.height.equalTo(35)
-            make.width.equalTo(35)
+            make.height.equalTo(25)
+            make.width.equalTo(25)
         }
         shopImageView.addSubview(bugCountLable)
         bugCountLable.snp.makeConstraints { (make) in
@@ -126,13 +134,13 @@ class LLChildCollectionViewCell: UICollectionViewCell {
     }
     
     func buyProductClick()  {
-        goodsArr.add(model)
-        bugCountLable.isHidden = false
-        bugCountLable.text = String(goodsArr.count)
+        model?.buyCount  = (model?.buyCount)! + 1
         
+        bugCountLable.isHidden = false
+        bugCountLable.text = String((model?.buyCount) ?? 0)
         let point = self.convert(iconImageView.center, to: self.superview)
         
-        delegate?.CollectionViewCeltDelegate(iconImage: iconImageView, modelArr: goodsArr,imagePoint:point )
+        delegate?.CollectionViewCeltDelegate(iconImage: iconImageView, model: self.model!,imagePoint:point )
         
         let shakeAnimation = CABasicAnimation(keyPath: "transform.translation.y")
         shakeAnimation.duration = 0.35
@@ -144,7 +152,6 @@ class LLChildCollectionViewCell: UICollectionViewCell {
 
     // MARK: ---- 懒加载
     
-      private lazy var goodsArr = NSMutableArray()
     ///产品图片
     private lazy var iconImageView = UIImageView()
     //标题

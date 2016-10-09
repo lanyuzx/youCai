@@ -117,12 +117,12 @@ class LLClassesChildCell: UITableViewCell {
           shopbgView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(LLClassesChildCell.buyProductClick)))
         contentView.addSubview(shopbgView)
         shopbgView.backgroundColor =  UIColor.init(red: 233 / 255.0, green: 233 / 255.0, blue: 233 / 255.0, alpha: 0.78)
-        shopbgView.layer.cornerRadius = 40 / 2
+        shopbgView.layer.cornerRadius = 30 / 2
         shopbgView.snp.makeConstraints { (make) in
             make.right.equalTo(contentView.snp.right).offset(-15)
-            make.bottom.equalTo(contentView.snp.bottom).offset(-15)
-            make.height.equalTo(40)
-            make.width.equalTo(40)
+            make.bottom.equalTo(contentView.snp.bottom).offset(-5)
+            make.height.equalTo(30)
+            make.width.equalTo(30)
         }
 
     shopbgView.addSubview(shopImageView)
@@ -131,8 +131,8 @@ class LLClassesChildCell: UITableViewCell {
       shopImageView.snp.makeConstraints { (make) in
       make.centerX.equalTo(shopbgView)
       make.centerY.equalTo(shopbgView)
-      make.height.equalTo(35)
-      make.width.equalTo(35)
+      make.height.equalTo(25)
+      make.width.equalTo(25)
         }
         shopImageView.addSubview(bugCountLable)
         bugCountLable.snp.makeConstraints { (make) in

@@ -27,7 +27,7 @@ static NSMutableArray *tasks;
         instance.requestSerializer.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
         /*! 设置返回数据为json, 分别设置请求以及相应的序列化器 */
         instance.responseSerializer = [AFJSONResponseSerializer serializer];
-        [instance.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+       // [instance.requestSerializer setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         AFJSONResponseSerializer * response = [AFJSONResponseSerializer serializer];
         response.removesKeysWithNullValues = YES;
         instance.responseSerializer.acceptableContentTypes =  [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript",@"text/html",@"text/css",@"text/xml",@"text/plain", @"application/javascript", nil];

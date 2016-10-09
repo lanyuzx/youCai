@@ -20,6 +20,9 @@ let SCREEN_WITH_COEFFICIENT = SCREEN_WITH > 328 ? 328 / SCREEN_WITH : 1
 //购物车通知
 let LLShoppingNotification = "LLShoppingNotification"
 
+//删除购买的商品的通知
+let LLDeleteProductNotification = "LLDeleteProductNotification"
+
 class LLBaseViewController: UIViewController {
    
       override func viewDidLoad() {

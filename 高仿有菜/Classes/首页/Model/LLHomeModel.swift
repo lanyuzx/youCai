@@ -55,10 +55,8 @@ class LLHomeModel: NSObject {
     var quantity = -1
     //购买的个数
     var buyCount = 0
-    init(dict:[String:AnyObject]) {
-        
+     init(dict:[String:AnyObject]) {
         super.init()
-        
         setValuesForKeys(dict)
     }
     

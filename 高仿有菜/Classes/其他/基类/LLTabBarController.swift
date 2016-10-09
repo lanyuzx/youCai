@@ -8,6 +8,7 @@
 
 import UIKit
 import BAButton
+
 class LLTabBarController: UITabBarController {
     var animationLayers: [CALayer]?
     override func viewDidLoad() {
@@ -25,18 +26,60 @@ class LLTabBarController: UITabBarController {
         //接受通知监听
         NotificationCenter.default.addObserver(self, selector:#selector(didMsgRecv(notification:)),
                                                name: NSNotification.Name(rawValue: LLShoppingNotification), object: nil)
+        NotificationCenter.default.addObserver(self, selector:#selector(deleteProduct(notification:)),
+                                               name: NSNotification.Name(rawValue: LLDeleteProductNotification), object: nil)
         
            }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        //读取数据库
+        
+      
        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+          // MARK: ---- 通知的方法
+    
+    func deleteProduct(notification:NSNotification){
+        let notificationDict = notification.object as?NSDictionary
+        let product = notificationDict?.object(forKey: "modelArr") as!LLHomeModel
+        
+        let tempArr = NSMutableArray(array: shoppingArr)
+        
+        
+        for index in 0..<tempArr.count {
+            let productModel = tempArr[index] as!LLHomeModel
+            
+            if product.title == productModel.title {
+                shoppingArr.removeObject(at: index)
+                }
+        }
+        var buyCount = 0
+        for index in 0..<shoppingArr.count {
+            let model = shoppingArr[index] as!LLHomeModel
+            
+            buyCount = model.buyCount + buyCount
+            
+        }
+
+        if shoppingArr.count > 0 {
+            self.customTabBar.countLable.isHidden = false
+            self.customTabBar.countLable.text = String(buyCount)
+        }else {
+            self.customTabBar.countLable.isHidden = true
+            
+        }
+ 
+        
+
+        
     }
     
     //通知处理函数
@@ -46,6 +89,37 @@ class LLTabBarController: UITabBarController {
 
           shoppingArr.add(product)
         //获取购物车btn
+        let dict = NSMutableDictionary(capacity: 1)
+        
+        for index  in 0..<shoppingArr.count {
+            
+            let model = shoppingArr[index] as!LLHomeModel
+            
+            
+            dict.setObject(model, forKey: model.title as! NSCopying )
+            
+        }
+        
+        shoppingArr = NSMutableArray(array: dict.allValues)
+        
+        //保存到本地数据库中/Users/jyd/Desktop/test.sqlite
+        
+   
+
+        var buyCount = 0
+        for index in 0..<shoppingArr.count {
+            let model = shoppingArr[index] as!LLHomeModel
+            
+            buyCount = model.buyCount + buyCount
+            
+         
+            
+            
+        }
+        
+      
+       
+        
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime(uptimeNanoseconds: UInt64(2.0))) {
             //抖动动画
@@ -58,7 +132,7 @@ class LLTabBarController: UITabBarController {
             self.customTabBar.countLable.isHidden = false
             if self.shoppingArr.count > 0 {
                 self.customTabBar.countLable.isHidden = false
-                self.customTabBar.countLable.text = String(self.shoppingArr.count)
+                self.customTabBar.countLable.text = String(buyCount)
             }else {
               self.customTabBar.countLable.isHidden = true
             

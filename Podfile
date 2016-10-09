@@ -15,5 +15,6 @@ pod "AFNetworking"
 pod "MJExtension"
 pod 'BACustomAlertView'
 pod  'BAButton'
+pod "FMDB"
 
 end

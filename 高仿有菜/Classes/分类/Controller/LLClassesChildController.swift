@@ -16,7 +16,8 @@ class LLClassesChildController: LLBaseViewController {
     var cateType = -1
     
     /// 上拉下拉的标题
-    var start:Int = 0;
+    var start:Int = 0
+    var type  = 0
     override func viewDidLoad() {
         super.viewDidLoad()
         automaticallyAdjustsScrollViewInsets = false
@@ -42,20 +43,56 @@ class LLClassesChildController: LLBaseViewController {
             self.start = self.start + 10
             self.loadResustDate()
         }) as! MJRefreshFooter!
+        
+        NotificationCenter.default.addObserver(self, selector:#selector(deleteProduct(notification:)),
+                                               name: NSNotification.Name(rawValue: LLDeleteProductNotification), object: nil)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+          // MARK: ---- 删除商品的通知
+    func deleteProduct(notification:NSNotification){
+        let notificationDict = notification.object as?NSDictionary
+        let product = notificationDict?.object(forKey: "modelArr") as!LLHomeModel
+        
+        for model in topsArr {
+            
+            if model.title == product.title {
+                model.buyCount = product.buyCount
+            
+            }
+        }
+        
+        for model in itemsArr {
+            if model.title == product.title {
+                model.buyCount = product.buyCount
+                
+            }
+        }
+        
+        self.childColletionView.reloadData()
+        self.childTabView.reloadData()
+        
+       
+    }
              // MARK: ---- 请求数据
     private func loadResustDate() {
         
           SVProgressHUD.show(withStatus: "正在拼命加载中")
-        let urlString = "https:api.youcai.xin/item/list?cate=\(cateType)&length=10&start=\(start)"
+        var urlString = ""
+        if type == 10 {
+      urlString = "https://api.youcai.xin/item/list?length=10&start=0&tags=\(cateType)"
+        }else {
+            urlString = "https:api.youcai.xin/item/list?cate=\(cateType)&length=10&start=\(start)"
+        }
+     
         LLNetworksTools.request(with: httpRequestType.requestTypeGet, withUrlString: urlString, withParameters: nil, withSuccessBlock: { (response) in
             
             //热门销售数据
+            
             var topModelArr = [LLHomeModel]()
             if let topArr = ((response as?NSDictionary)?.object(forKey: "tops")) as?NSArray {
                 for index in 0..<topArr.count {
@@ -235,10 +272,10 @@ extension LLClassesChildController:UICollectionViewDataSource,UICollectionViewDe
             if topsArr.count > 0 {
                 headView?.titleLable.text = "热门推荐"
             } else {
-                headView?.titleLable.text = "优选\(title!)制品"
+                headView?.titleLable.text = "优选\(title ?? "")制品"
             }
         } else if indexPath.section == 1 {
-            headView?.titleLable.text = "优选\(title!)制品"
+            headView?.titleLable.text = "优选\(title ?? "")制品"
         }
     
             return headView!
@@ -273,9 +310,10 @@ extension LLClassesChildController:UICollectionViewDataSource,UICollectionViewDe
     }
     
     // MARK: ---- 自定义代理方法
-    func CollectionViewCeltDelegate(iconImage: UIImageView, modelArr: NSMutableArray,imagePoint:CGPoint) {
+    func CollectionViewCeltDelegate(iconImage: UIImageView, model:LLHomeModel,imagePoint:CGPoint) {
         let dict = NSMutableDictionary(capacity: 1)
-        dict["modelArr"] = modelArr
+        dict["model"] = model
+        buyProduct.add(model)
         //通知名称常量
         let NotifyChatMsgRecv = NSNotification.Name(rawValue:LLShoppingNotification)
         //发送通知
@@ -345,10 +383,10 @@ extension LLClassesChildController:UITableViewDataSource,UITableViewDelegate,cla
             if topsArr.count > 0 {
             headView?.titleLable.text = "热门推荐"
             } else {
-               headView?.titleLable.text = "优选\(title!)制品"
+               headView?.titleLable.text = "优选\(title ?? "")制品"
             }
         } else if section == 1 {
-         headView?.titleLable.text = "优选\(title!)制品"
+         headView?.titleLable.text = "优选\(title ?? "")制品"
         }
        
             return headView

@@ -15,3 +15,5 @@
 #import "CALayer+Animation.h"
 #import "HMTabBar.h"
 #import "LLCacheInterface.h"
+#import "LLDownLoadImage.h"
+#import "AdvertiseView.h"

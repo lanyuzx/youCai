@@ -27,6 +27,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKey()
         window?.makeKeyAndVisible()
         
+        //获取沙河文件
+        let imgeString = UserDefaults.standard.value(forKey: "adImageName")as! String?//objectForKey("adImageName") as! String!
+        
+        let filePath = LLDownLoadImage.share().getFilePath(withImageName: imgeString)
+        
+        let isExist = LLDownLoadImage.share().isFileExist(withFilePath: filePath)
+        if isExist { //图片存在
+            
+            let advertiseView = AdvertiseView(frame: self.window!.bounds)
+            advertiseView.filePath = filePath
+            advertiseView.show()
+        }
+        
+        //无论沙河中是否存在,都需要调用新的广告接口
+        LLDownLoadImage.share().getAdvertisingImage()
+
+        
         return true
     }
 

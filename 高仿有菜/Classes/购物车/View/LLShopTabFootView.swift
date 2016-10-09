@@ -22,7 +22,7 @@ class LLShopTabFootView: UIView {
           // MARK: ---- 添加 UI 视图
     func setupUI()  {
         addSubview(hotLable)
-     
+     addSubview(hotColloctionView)
         hotLable.snp.makeConstraints { (make) in
             make.top.equalTo(self).offset(8)
             make.centerX.equalTo(self)
@@ -46,6 +46,13 @@ class LLShopTabFootView: UIView {
             make.width.equalTo(SCREEN_WITH * 0.2)
             make.height.equalTo(1)
         }
+        
+        hotColloctionView.snp.makeConstraints { (make) in
+            make.left.right.equalTo(self)
+            make.top.equalTo(hotLable.snp.bottom).offset(12)
+            make.height.equalTo(240)
+        }
+
 
         
     }
@@ -60,5 +67,13 @@ class LLShopTabFootView: UIView {
         lable.textColor = LLNetworksTools.shared().color(withHexString: "#646464", andAlpha: 1.0)
         return lable
     }()
-
+    lazy var hotColloctionView:LLShopingHotView = {
+        let layout = UICollectionViewFlowLayout()
+        //横向滚动
+        layout.scrollDirection = .horizontal
+        let collectionView = LLShopingHotView(frame: CGRect.zero, collectionViewLayout: layout)
+        
+        return collectionView
+        
+    }()
 }

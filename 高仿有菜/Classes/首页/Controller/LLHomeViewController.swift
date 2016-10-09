@@ -146,15 +146,28 @@ class LLHomeViewController: LLBaseViewController {
                             if button.tag  > 0 {
             
                                 print("按钮的回调")
-            
+                                
+                                let childVc = LLClassesChildController()
+                                
+                                childVc.type = 10
+                                childVc.cateType = button.tag - 10 + 1
+                                childVc.title = button.titleLabel?.text
+                        self.navigationController?.pushViewController(childVc, animated: true)
                             }
             
-                            if index > 0 {
+                            if index >= 0 {
             
                                 print("轮播")
-                                let model = self.cycleArr[index]
-                                print(model)
-            
+                                let model = self.cycleArr[index] as!LLHomeModel
+                              
+                                let detailVc = LLHomeDetailViewController()
+                                if   let linkId = model.link?.object(forKey: "id") {
+                                    detailVc.detetailURLString = "https://api.youcai.xin/item/detail?id=\(linkId )"
+                                    self.navigationController?.pushViewController(detailVc, animated: true)
+
+                                }
+                               
+                                
                             
                             }
                             

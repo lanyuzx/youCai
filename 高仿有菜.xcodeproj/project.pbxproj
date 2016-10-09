@@ -69,6 +69,10 @@
 		062E43191DA889750068F7B8 /* LLCacheInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 062E43181DA889750068F7B8 /* LLCacheInterface.m */; };
 		067C583A1DA8D77E00DB0168 /* LLShoppingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067C58391DA8D77E00DB0168 /* LLShoppingCell.swift */; };
 		067C583C1DA8FF7700DB0168 /* LLShopTabFootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067C583B1DA8FF7700DB0168 /* LLShopTabFootView.swift */; };
+		067C583E1DA9D86F00DB0168 /* LLShopEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067C583D1DA9D86F00DB0168 /* LLShopEmptyView.swift */; };
+		067C58401DA9D8E400DB0168 /* LLShopingHotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067C583F1DA9D8E400DB0168 /* LLShopingHotView.swift */; };
+		067C58831DAA464C00DB0168 /* AdvertiseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 067C58821DAA464C00DB0168 /* AdvertiseView.m */; };
+		067C58861DAA467200DB0168 /* LLDownLoadImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 067C58851DAA467200DB0168 /* LLDownLoadImage.m */; };
 		06AFFB8B1D9BA15B00369806 /* LLChildCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AFFB8A1D9BA15B00369806 /* LLChildCollectionHeaderView.swift */; };
 		06AFFB911D9BCDFB00369806 /* HMTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 06AFFB8F1D9BCDFB00369806 /* HMTabBar.m */; };
 		06F2FC911D9E16550023D013 /* LLCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F2FC901D9E16550023D013 /* LLCycleView.swift */; };
@@ -177,6 +181,12 @@
 		062E43181DA889750068F7B8 /* LLCacheInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCacheInterface.m; sourceTree = "<group>"; };
 		067C58391DA8D77E00DB0168 /* LLShoppingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLShoppingCell.swift; sourceTree = "<group>"; };
 		067C583B1DA8FF7700DB0168 /* LLShopTabFootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLShopTabFootView.swift; sourceTree = "<group>"; };
+		067C583D1DA9D86F00DB0168 /* LLShopEmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLShopEmptyView.swift; sourceTree = "<group>"; };
+		067C583F1DA9D8E400DB0168 /* LLShopingHotView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLShopingHotView.swift; sourceTree = "<group>"; };
+		067C58811DAA464C00DB0168 /* AdvertiseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdvertiseView.h; sourceTree = "<group>"; };
+		067C58821DAA464C00DB0168 /* AdvertiseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdvertiseView.m; sourceTree = "<group>"; };
+		067C58841DAA467200DB0168 /* LLDownLoadImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDownLoadImage.h; sourceTree = "<group>"; };
+		067C58851DAA467200DB0168 /* LLDownLoadImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLDownLoadImage.m; sourceTree = "<group>"; };
 		06AFFB8A1D9BA15B00369806 /* LLChildCollectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLChildCollectionHeaderView.swift; sourceTree = "<group>"; };
 		06AFFB8E1D9BCDFB00369806 /* HMTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMTabBar.h; sourceTree = "<group>"; };
 		06AFFB8F1D9BCDFB00369806 /* HMTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMTabBar.m; sourceTree = "<group>"; };
@@ -439,6 +449,8 @@
 			children = (
 				067C58391DA8D77E00DB0168 /* LLShoppingCell.swift */,
 				067C583B1DA8FF7700DB0168 /* LLShopTabFootView.swift */,
+				067C583D1DA9D86F00DB0168 /* LLShopEmptyView.swift */,
+				067C583F1DA9D8E400DB0168 /* LLShopingHotView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -536,6 +548,10 @@
 		062B9CA61D94D5890030D788 /* 基类 */ = {
 			isa = PBXGroup;
 			children = (
+				067C58841DAA467200DB0168 /* LLDownLoadImage.h */,
+				067C58851DAA467200DB0168 /* LLDownLoadImage.m */,
+				067C58811DAA464C00DB0168 /* AdvertiseView.h */,
+				067C58821DAA464C00DB0168 /* AdvertiseView.m */,
 				062E43171DA889750068F7B8 /* LLCacheInterface.h */,
 				062E43181DA889750068F7B8 /* LLCacheInterface.m */,
 				061DD3181D9B5E5D00CE83C0 /* CALayer+Animation.h */,
@@ -768,6 +784,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				062B9CC01D94FA080030D788 /* LLHomeTableHeaderView.swift in Sources */,
+				067C58861DAA467200DB0168 /* LLDownLoadImage.m in Sources */,
 				B54FD5B91D95E22600952483 /* LLHomeNavSearchView.swift in Sources */,
 				062B9C991D94D4960030D788 /* ConstraintMultiplierTarget.swift in Sources */,
 				062B9CB21D94D6370030D788 /* LLMeViewController.swift in Sources */,
@@ -777,6 +794,7 @@
 				061DD3131D9A713C00CE83C0 /* YZDisplayTitleLabel.m in Sources */,
 				062B9C881D94D4960030D788 /* ConstraintConfig.swift in Sources */,
 				061DD3121D9A713C00CE83C0 /* UIView+Frame.m in Sources */,
+				067C58831DAA464C00DB0168 /* AdvertiseView.m in Sources */,
 				06AFFB911D9BCDFB00369806 /* HMTabBar.m in Sources */,
 				062B9C871D94D4960030D788 /* ConstraintAttributes.swift in Sources */,
 				062B9C9A1D94D4960030D788 /* ConstraintOffsetTarget.swift in Sources */,
@@ -818,12 +836,14 @@
 				061DD31C1D9B6B4900CE83C0 /* LLChildTabHeadView.swift in Sources */,
 				062B9CB61D94D6A30030D788 /* LLBaseNavController.swift in Sources */,
 				B5DBAE661DA23E5B00A797D8 /* LLDetailMiddleView.swift in Sources */,
+				067C58401DA9D8E400DB0168 /* LLShopingHotView.swift in Sources */,
 				06F2FC911D9E16550023D013 /* LLCycleView.swift in Sources */,
 				062B9CAC1D94D5E80030D788 /* LLShoppingViewController.swift in Sources */,
 				062B9C921D94D4960030D788 /* ConstraintLayoutSupportDSL.swift in Sources */,
 				062B9C9F1D94D4960030D788 /* ConstraintView.swift in Sources */,
 				062B9C961D94D4960030D788 /* ConstraintMakerFinalizable.swift in Sources */,
 				061DD31E1D9B9C1B00CE83C0 /* LLChildCollectionViewCell.swift in Sources */,
+				067C583E1DA9D86F00DB0168 /* LLShopEmptyView.swift in Sources */,
 				067C583A1DA8D77E00DB0168 /* LLShoppingCell.swift in Sources */,
 				062B9CB01D94D6280030D788 /* LLCycleViewController.swift in Sources */,
 				062B9C941D94D4960030D788 /* ConstraintMakerEditable.swift in Sources */,
