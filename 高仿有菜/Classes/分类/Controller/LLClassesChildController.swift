@@ -63,6 +63,7 @@ class LLClassesChildController: LLBaseViewController {
             tabBarVc?.customTabBar.isHidden = true
             
             navigationController?.navigationBar.isHidden = true
+            
         
         }
        
@@ -184,6 +185,18 @@ class LLClassesChildController: LLBaseViewController {
      
         LLNetworksTools.request(with: httpRequestType.requestTypeGet, withUrlString: urlString, withParameters: nil, withSuccessBlock: { (response) in
             
+            
+            //获取本地数据
+            if let  path  = LLDownLoadImage.share().getFilePath(withImageName: "LLHomeModel.data") {
+                if  let tempArr =   NSKeyedUnarchiver.unarchiveObject(withFile:path )  as?NSArray {
+                    
+                    if tempArr.count > 0 {
+                        self.buyProduct = NSMutableArray(array: tempArr)
+                      
+                    }
+                }
+            }
+
             //热门销售数据
             
             var topModelArr = [LLHomeModel]()

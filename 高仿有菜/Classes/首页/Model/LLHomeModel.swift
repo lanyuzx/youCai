@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LLHomeModel: NSObject {
+class LLHomeModel: NSObject ,NSCoding{
     
     //轮播器图片对应的标题
     var title:String?
@@ -40,7 +40,7 @@ class LLHomeModel: NSObject {
     var tagnames:NSArray?
     //m价格
     var mprice = -1    //价格
-    var price = -1 
+    var price = -1
     //已售
     var sales = -1
     var grossw = -1
@@ -63,6 +63,29 @@ class LLHomeModel: NSObject {
     override func setValue(_ value: Any?, forUndefinedKey key: String) {
         
     }
+    
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(imgs, forKey: "imgs")
+        aCoder.encode(title, forKey: "title")
+        aCoder.encode(buyCount, forKey: "buyCount")
+        aCoder.encode(unit, forKey: "unit")
+        aCoder.encode(quantity, forKey: "quantity")
+        aCoder.encode(price, forKey: "price")
+       
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init()
+        imgs = aDecoder.decodeObject(forKey: "imgs") as! NSArray?
+        title = aDecoder.decodeObject(forKey: "title") as! String?
+        buyCount = Int(aDecoder.decodeInt64(forKey: "buyCount"))
+        unit = aDecoder.decodeObject(forKey: "unit") as! String?
+        quantity = Int(aDecoder.decodeInt64(forKey: "quantity"))
+        price = Int(aDecoder.decodeInt64(forKey: "price"))
+    }
 
 
 }
+
+

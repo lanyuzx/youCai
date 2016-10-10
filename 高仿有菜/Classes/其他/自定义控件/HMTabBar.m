@@ -21,6 +21,9 @@
     self = [super initWithFrame:frame];
     if (self) {
         [self addBackground];
+        
+       
+        
     }
     return self;
 }
@@ -91,7 +94,12 @@
             self.countLable.frame = CGRectMake(btn.imageView.frame.origin.x +btn.imageView.frame.size.width  , 0, 20, 20);
             }
     }
-   
+    //添加最上面的分割线
+    UIView * topLineView = [[UIView alloc]init];
+    topLineView.alpha = 0.65;
+    topLineView.backgroundColor =  [UIColor darkGrayColor];
+    [self addSubview:topLineView];
+    topLineView.frame = CGRectMake(0, 1, [UIScreen mainScreen].bounds.size.width, 0.7);
 self.backGuround.frame=CGRectMake(0, btnY, btnW, btnH);
 }
 

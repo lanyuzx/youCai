@@ -28,6 +28,7 @@ class LLShoppingViewController: LLBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "购 物 车"
+       
       view.addSubview(shopTabView)
         
         view.addSubview(shopEmptView)
@@ -49,39 +50,111 @@ class LLShoppingViewController: LLBaseViewController {
         }
         shopTabView.tableHeaderView = headView
         shopTabView.tableFooterView = LLShopTabFootView(frame: CGRect(x: 0, y: 0, width: SCREEN_WITH, height: 180))
+        setUpBottomBuyView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-      
+        //接档
+        if let  path  = LLDownLoadImage.share().getFilePath(withImageName: "LLHomeModel.data") {
+            if  let tempArr =   NSKeyedUnarchiver.unarchiveObject(withFile:path )  as?NSArray {
+                
+            if tempArr.count > 0 {
+                buyProdectArr = NSMutableArray(array: tempArr)
+                shopTabView.reloadData()
+            }
+            }
+        }
+          shopViewIsHidden()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-          // MARK: ---- 一些点击方法
     
+    //立即购买的视图
+    func setUpBottomBuyView()  {
+      
+ 
+        view.addSubview(bottomBuyView)
+        bottomBuyView.backgroundColor = UIColor.white
+        bottomBuyView.snp.makeConstraints { (make) in
+            make.left.right.equalTo(view)
+            make.bottom.equalTo(view).offset(-49)
+            make.height.equalTo(45)
+        }
+        
+        bottomBuyView.addSubview(totalLable)
+        totalLable.snp.makeConstraints { (make) in
+            make.left.equalTo(bottomBuyView).offset(12)
+            make.centerY.equalTo(bottomBuyView)
+        }
+        
+        let buyBtn = UIButton()
+        buyBtn.addTarget(self, action: #selector(LLShoppingViewController.buyBtnClick), for: .touchUpInside)
+        bottomBuyView.addSubview(buyBtn)
+        buyBtn.setTitle("立即支付", for: .normal)
+        buyBtn.setTitleColor(UIColor.white, for: .normal)
+        buyBtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        buyBtn.backgroundColor = UIColor.red
+        buyBtn.snp.makeConstraints { (make) in
+            make.top.right.bottom.equalTo(bottomBuyView)
+            make.width.equalTo(SCREEN_WITH * 0.25)
+        }
+        
+        
+        
+    }
+          // MARK: ---- 一些点击方法
+    func buyBtnClick()  {
+        let loginVc = LLLoginViewController()
+        present(loginVc, animated: true, completion: nil)
+    }
+          // MARK: ---- 视图的隐藏
     func shopViewIsHidden()  {
         if buyProdectArr.count < 1 {
             
             shopTabView.isHidden = true
             shopEmptView.isHidden = false
+            bottomBuyView.isHidden = true
+            
+           
             
         }else {
             shopTabView.isHidden = false
             shopEmptView.isHidden = true
+            bottomBuyView.isHidden = false
+            //计算价格
+            
+            var titalPrice = 0
+            for index in 0..<buyProdectArr.count {
+                let model = buyProdectArr[index] as!LLHomeModel
+                
+                if model.buyCount > 0 {
+                    titalPrice += (model.price * model.buyCount)
+                }else {
+                    titalPrice += model.price
+                }
+                
+            }
+            totalLable.text = "共:" + String(titalPrice / 100) + ".00元" + "(免运费)"
+
         }
 
     }
     //右边自选的点击方法
     func consultingClick() {
+        
+        let alterView = UIAlertView(title: "400-860-0216", message: "", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "呼叫")
+        alterView.show()
     
     }
     //通知处理函数
     func didMsgRecv(notification:NSNotification){
         let notificationDict = notification.object as?NSDictionary
-        let product = notificationDict?.object(forKey: "model")
+        let product = notificationDict?.object(forKey: "model") as?LLHomeModel
+
         buyProdectArr.add(product )
         
          let dict = NSMutableDictionary(capacity: 1)
@@ -96,13 +169,31 @@ class LLShoppingViewController: LLBaseViewController {
             }
         
             buyProdectArr = NSMutableArray(array: dict.allValues)
+        
+        for index in 0..<buyProdectArr.count {
+            let model = buyProdectArr[index] as?LLHomeModel
+            if product?.title == model?.title {
+                
+                model?.buyCount += (product?.buyCount)!
+            }
+        }
+        //归档
+        NSKeyedArchiver.archiveRootObject(buyProdectArr, toFile: LLDownLoadImage.share().getFilePath(withImageName: "LLHomeModel.data"))
          shopTabView.isHidden = false
         shopEmptView.isHidden = true
               shopTabView.reloadData()
     }
-   
+  //总价格
+    lazy var totalLable:UILabel = {
+      let lable = UILabel()
+        lable.textColor = UIColor.red
+        lable.font = UIFont.boldSystemFont(ofSize: 16)
+        return lable
+    }()
+     //立即购买
+    lazy var bottomBuyView = UIView()
     lazy var buyProdectArr = NSMutableArray(capacity: 1)
-    lazy var shopEmptView = LLShopEmptyView(frame: CGRect(x: 0, y: 64, width: SCREEN_WITH, height: SCREEN_HEIGHT))
+    lazy var shopEmptView = LLShopEmptyView(frame: CGRect(x: 0, y: 64, width: SCREEN_WITH, height: SCREEN_HEIGHT - 64 ))
     lazy var shopTabView:UITableView = {
         
         let tabView = UITableView(frame:  CGRect(x: 0, y: 0, width: SCREEN_WITH, height: SCREEN_HEIGHT - 64), style: .plain)
@@ -155,12 +246,12 @@ extension LLShoppingViewController:UITableViewDelegate,UITableViewDataSource ,UI
             let NotifyChatMsgRecv = NSNotification.Name(rawValue:LLDeleteProductNotification)
             //发送通知
             NotificationCenter.default.post(name:NotifyChatMsgRecv, object: dict, userInfo:nil)
-
             self.buyProdectArr.removeObject(at: indexPath.row)
           let indexPathArr = NSArray(object: indexPat)
             tableView.deleteRows(at: indexPathArr as! [IndexPath], with: UITableViewRowAnimation.left)
             self.shopViewIsHidden()
-            
+            //归档
+            NSKeyedArchiver.archiveRootObject(self.buyProdectArr, toFile: LLDownLoadImage.share().getFilePath(withImageName: "LLHomeModel.data"))
                   }
         
         return [deleteRoWAction]
@@ -168,15 +259,13 @@ extension LLShoppingViewController:UITableViewDelegate,UITableViewDataSource ,UI
     }
     
     
-    
     func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {
-        
         if buttonIndex == 1 {
-            let webView = UIWebView()
-            let urlString = URL(string: "400-860-0216")
-            webView.loadRequest(NSURLRequest(url: urlString!) as URLRequest)
+            
+            
+            UIApplication.shared.openURL(NSURL(string :"tel://"+"\("4008600216")")! as URL)
+            
         }
     }
 }
-
 

@@ -76,6 +76,10 @@
 		06AFFB8B1D9BA15B00369806 /* LLChildCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AFFB8A1D9BA15B00369806 /* LLChildCollectionHeaderView.swift */; };
 		06AFFB911D9BCDFB00369806 /* HMTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 06AFFB8F1D9BCDFB00369806 /* HMTabBar.m */; };
 		06F2FC911D9E16550023D013 /* LLCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F2FC901D9E16550023D013 /* LLCycleView.swift */; };
+		06F5BBEB1DAB2ADE00B7375C /* LLMeHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F5BBEA1DAB2ADE00B7375C /* LLMeHeadView.swift */; };
+		06F5BBED1DAB3C3500B7375C /* LLMeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F5BBEC1DAB3C3500B7375C /* LLMeTableViewCell.swift */; };
+		06F5BBEF1DAB422800B7375C /* LLMoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F5BBEE1DAB422800B7375C /* LLMoreInfoViewController.swift */; };
+		06F5BBF11DAB67F900B7375C /* LLLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F5BBF01DAB67F900B7375C /* LLLoginViewController.swift */; };
 		A711C3D92DC23D5C20FC30F7 /* Pods_____.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E8D3F85D8A24661830741E0 /* Pods_____.framework */; };
 		B54FD5B91D95E22600952483 /* LLHomeNavSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B54FD5B81D95E22600952483 /* LLHomeNavSearchView.swift */; };
 		B5AA4ABB1D9AC076003C94D6 /* LLClassesChildCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5AA4ABA1D9AC076003C94D6 /* LLClassesChildCell.swift */; };
@@ -191,6 +195,10 @@
 		06AFFB8E1D9BCDFB00369806 /* HMTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMTabBar.h; sourceTree = "<group>"; };
 		06AFFB8F1D9BCDFB00369806 /* HMTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMTabBar.m; sourceTree = "<group>"; };
 		06F2FC901D9E16550023D013 /* LLCycleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLCycleView.swift; sourceTree = "<group>"; };
+		06F5BBEA1DAB2ADE00B7375C /* LLMeHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLMeHeadView.swift; sourceTree = "<group>"; };
+		06F5BBEC1DAB3C3500B7375C /* LLMeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLMeTableViewCell.swift; sourceTree = "<group>"; };
+		06F5BBEE1DAB422800B7375C /* LLMoreInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLMoreInfoViewController.swift; sourceTree = "<group>"; };
+		06F5BBF01DAB67F900B7375C /* LLLoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLLoginViewController.swift; sourceTree = "<group>"; };
 		33CA0F9FC0C041106B3A26BC /* Pods-高仿有菜.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-高仿有菜.release.xcconfig"; path = "Pods/Target Support Files/Pods-高仿有菜/Pods-高仿有菜.release.xcconfig"; sourceTree = "<group>"; };
 		441CA0A0DFF592559206A56F /* Pods-高仿有菜.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-高仿有菜.debug.xcconfig"; path = "Pods/Target Support Files/Pods-高仿有菜/Pods-高仿有菜.debug.xcconfig"; sourceTree = "<group>"; };
 		5E8D3F85D8A24661830741E0 /* Pods_____.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = "Pods_____.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -401,6 +409,8 @@
 			isa = PBXGroup;
 			children = (
 				062B9CB11D94D6370030D788 /* LLMeViewController.swift */,
+				06F5BBEE1DAB422800B7375C /* LLMoreInfoViewController.swift */,
+				06F5BBF01DAB67F900B7375C /* LLLoginViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -415,6 +425,8 @@
 		062B9C5A1D94D4760030D788 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				06F5BBEA1DAB2ADE00B7375C /* LLMeHeadView.swift */,
+				06F5BBEC1DAB3C3500B7375C /* LLMeTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -791,7 +803,9 @@
 				062B9C861D94D4960030D788 /* Constraint.swift in Sources */,
 				062B9CC71D952AFF0030D788 /* LLHomeTableViewCell.swift in Sources */,
 				062B9CB41D94D6560030D788 /* LLTabBarController.swift in Sources */,
+				06F5BBEF1DAB422800B7375C /* LLMoreInfoViewController.swift in Sources */,
 				061DD3131D9A713C00CE83C0 /* YZDisplayTitleLabel.m in Sources */,
+				06F5BBF11DAB67F900B7375C /* LLLoginViewController.swift in Sources */,
 				062B9C881D94D4960030D788 /* ConstraintConfig.swift in Sources */,
 				061DD3121D9A713C00CE83C0 /* UIView+Frame.m in Sources */,
 				067C58831DAA464C00DB0168 /* AdvertiseView.m in Sources */,
@@ -821,6 +835,7 @@
 				062B9C9C1D94D4960030D788 /* ConstraintRelatableTarget.swift in Sources */,
 				062B9C901D94D4960030D788 /* ConstraintLayoutGuideDSL.swift in Sources */,
 				061DD3141D9A713C00CE83C0 /* YZDisplayViewController.m in Sources */,
+				06F5BBEB1DAB2ADE00B7375C /* LLMeHeadView.swift in Sources */,
 				062B9C981D94D4960030D788 /* ConstraintMakerRelatable.swift in Sources */,
 				061DD31A1D9B5E5D00CE83C0 /* CALayer+Animation.m in Sources */,
 				062B9CAE1D94D5FD0030D788 /* LLClassesViewController.swift in Sources */,
@@ -845,6 +860,7 @@
 				061DD31E1D9B9C1B00CE83C0 /* LLChildCollectionViewCell.swift in Sources */,
 				067C583E1DA9D86F00DB0168 /* LLShopEmptyView.swift in Sources */,
 				067C583A1DA8D77E00DB0168 /* LLShoppingCell.swift in Sources */,
+				06F5BBED1DAB3C3500B7375C /* LLMeTableViewCell.swift in Sources */,
 				062B9CB01D94D6280030D788 /* LLCycleViewController.swift in Sources */,
 				062B9C941D94D4960030D788 /* ConstraintMakerEditable.swift in Sources */,
 				061B86E21D98B4C000D17FC6 /* LLHomeDetailViewController.swift in Sources */,

@@ -36,7 +36,33 @@ class LLTabBarController: UITabBarController {
         
         //读取数据库
         
-      
+        //接档
+        if let  path  = LLDownLoadImage.share().getFilePath(withImageName: "LLHomeModel.data") {
+            if  let tempArr =   NSKeyedUnarchiver.unarchiveObject(withFile:path )  as?NSArray {
+                
+                if tempArr.count > 0 {
+                    shoppingArr = NSMutableArray(array: tempArr)
+                   
+                }
+            }
+        }
+        var buyCount = 0
+        for index in 0..<shoppingArr.count {
+            let model = shoppingArr[index] as!LLHomeModel
+            
+            buyCount = model.buyCount + buyCount
+            
+        }
+        
+        if shoppingArr.count > 0 {
+            self.customTabBar.countLable.isHidden = false
+            self.customTabBar.countLable.text = String(buyCount)
+        }else {
+            self.customTabBar.countLable.isHidden = true
+            
+        }
+        
+
        
     }
 
