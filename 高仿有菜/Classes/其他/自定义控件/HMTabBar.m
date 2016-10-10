@@ -79,7 +79,7 @@
    
     CGFloat btnH=self.frame.size.height;
     //获取按钮个数
-    NSInteger count= self.subviews.count;
+    NSInteger count= 5;
      CGFloat btnW=self.frame.size.width/count;
     for (int i=0; i<count; i++) {
         UIButton*btn=self.subviews[i];
