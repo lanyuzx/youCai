@@ -16,7 +16,12 @@ class LLMeViewController: LLBaseViewController {
         super.viewDidLoad()
         automaticallyAdjustsScrollViewInsets = false
       view.addSubview(meTabView)
-        meTabView.tableHeaderView = LLMeHeadView(frame: CGRect(x: 0, y: 0, width: SCREEN_WITH, height: SCREEN_HEIGHT * 0.4))
+    
+         meTabView.tableHeaderView =    LLMeHeadView(frame:    CGRect(x: 0, y: 0, width: SCREEN_WITH, height: SCREEN_HEIGHT * 0.4)) { (button) in
+            let loginVc = LLLoginViewController()
+           self.present(loginVc, animated: true, completion: nil)
+        }
+   
         meTabView.tableFooterView = UIView()
     }
 
@@ -89,7 +94,11 @@ extension LLMeViewController:UITableViewDelegate,UITableViewDataSource {
         
         if indexPath.row == 0 {
             
+            
             let loginVc = LLLoginViewController()
+          
+           
+         
             present(loginVc, animated: true, completion: nil)
             
           

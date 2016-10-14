@@ -39,6 +39,7 @@ class LLMoreInfoViewController: LLBaseViewController {
         tabBarVc?.customTabBar.isHidden = true
         
         navigationController?.navigationBar.isHidden = false
+        cacheNumberLabel.text = String().appendingFormat("%.2fM", FileTool.folderSize(LLCachePath)).cleanDecimalPointZear()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -47,8 +48,12 @@ class LLMoreInfoViewController: LLBaseViewController {
     
     // MARK: ---- 懒加载
     
-    lazy var moreInfoArr = ["设置密码","客服电话","使用帮助","拼团流程","问题反馈","关于有菜"]
-    
+    lazy var moreInfoArr = ["设置密码","客服电话","使用帮助","拼团流程","问题反馈","清除缓存","关于有菜"]
+    lazy var cacheNumberLabel: UILabel = {
+        let lable = UILabel()
+        lable.textColor = UIColor.colorWithCustom(180, g: 180, b: 180)
+        return lable
+    }()
     lazy var moreInfoTabView:UITableView = {
         let tabView = UITableView(frame: CGRect(x: 0, y: 0, width: SCREEN_WITH, height: SCREEN_HEIGHT - 64), style: .plain)
         tabView.bounces = false
@@ -73,6 +78,16 @@ extension LLMoreInfoViewController :UITableViewDataSource,UITableViewDelegate ,U
         cell.accessoryType = .disclosureIndicator
         
         cell.textLabel?.text = moreInfoArr[indexPath.row]
+        
+        if indexPath.row == 5 {
+          cell.contentView.addSubview(cacheNumberLabel)
+            cacheNumberLabel.snp.makeConstraints({ (make) in
+                make.right.equalTo(cell.contentView)
+                make.centerY.equalTo(cell.contentView)
+            })
+          
+        
+        }
 
     return cell
     }
@@ -87,7 +102,7 @@ extension LLMoreInfoViewController :UITableViewDataSource,UITableViewDelegate ,U
             helpVc.detailUrl = "https://m.youcai.xin/help"
             navigationController?.pushViewController(helpVc, animated: true)
         
-        }else if indexPath.row == 5 {
+        }else if indexPath.row == 6 {
             let abooutVc = LLDetailsController()
             abooutVc.title = "关于有菜"
             abooutVc.detailUrl = "https://m.youcai.xin/about"
@@ -98,11 +113,20 @@ extension LLMoreInfoViewController :UITableViewDataSource,UITableViewDelegate ,U
             let alterView = UIAlertView(title: "400-860-0216", message: "", delegate: self, cancelButtonTitle: "取消", otherButtonTitles: "呼叫")
             alterView.show()
         
-        } else {
+        } else if indexPath.row == 5 {
+            
+            FileTool.cleanFolder(LLCachePath) { () -> () in
+                self.cacheNumberLabel.text = "0M"
+                let alterView = UIAlertView(title: "清除缓存成功", message: "", delegate:  nil, cancelButtonTitle: "取消")
+                alterView.show()
+            }
+            
+            }else {
             let loginVc = LLLoginViewController()
             present(loginVc, animated: true, completion: nil)
         }
-        
+       
+
     }
     
     func alertView(_ alertView: UIAlertView, clickedButtonAt buttonIndex: Int) {

@@ -23,6 +23,10 @@ let LLShoppingNotification = "LLShoppingNotification"
 //删除购买的商品的通知
 let LLDeleteProductNotification = "LLDeleteProductNotification"
 
+// MARK: - Cache路径
+public let LLCachePath: String = NSSearchPathForDirectoriesInDomains(FileManager.SearchPathDirectory.cachesDirectory, FileManager.SearchPathDomainMask.userDomainMask, true).last!
+
+
 class LLBaseViewController: UIViewController {
    
       override func viewDidLoad() {

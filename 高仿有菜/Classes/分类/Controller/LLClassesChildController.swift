@@ -10,6 +10,7 @@ import UIKit
 import MJRefresh
 import SVProgressHUD
 import BACustomAlertView
+import UITableView_FDTemplateLayoutCell
 class LLClassesChildController: LLBaseViewController {
 
     
@@ -563,8 +564,29 @@ extension LLClassesChildController:UITableViewDataSource,UITableViewDelegate,cla
         return 40
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
         return 120
+//        return tableView.fd_heightForCell(withIdentifier: "LLClassesChildController", configuration: { (cell ) in
+//            
+//            let childCell = cell as!LLClassesChildCell
+//            if indexPath.section == 0 {
+//                
+//                if self.topsArr.count > 0 {
+//                    
+//               
+//                     childCell.model =     self.topsArr[indexPath.row]
+//                    
+//                } else {
+//                    
+//                        childCell.model = self.itemsArr[indexPath.row]
+//                }
+//                
+//            }else if indexPath.section == 1 {
+//              
+//                    childCell.model =  self.itemsArr[indexPath.row]
+//            }
+//
+//       
+//        })
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -597,9 +619,11 @@ extension LLClassesChildController:UITableViewDataSource,UITableViewDelegate,cla
     }
           // MARK: ---- 自定义代理方法
     func childCellbuyProuductDelegate(iconImage: UIImageView, model: LLHomeModel,imagePoint:CGPoint) {
+        
         let dict = NSMutableDictionary(capacity: 1)
         dict["model"] = model
         buyProduct.add(model)
+        
         
                
         //通知名称常量

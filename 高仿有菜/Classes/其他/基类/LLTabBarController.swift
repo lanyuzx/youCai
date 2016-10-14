@@ -158,7 +158,8 @@ class LLTabBarController: UITabBarController {
             self.customTabBar.countLable.isHidden = false
             if self.shoppingArr.count > 0 {
                 self.customTabBar.countLable.isHidden = false
-                self.customTabBar.countLable.text = String(buyCount)
+                buyCount < 10 ?  (self.customTabBar.countLable.text = String(buyCount)) :  (self.customTabBar.countLable.text = "9+")
+           
             }else {
               self.customTabBar.countLable.isHidden = true
             

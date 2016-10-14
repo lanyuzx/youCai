@@ -10,9 +10,12 @@ import UIKit
 import BAButton
 
 class LLMeHeadView: UIView {
-
-    override init(frame: CGRect) {
+  typealias buttonClick = (_ leftButton:UIButton)->Void
+    
+    var btnBlock:buttonClick?
+    init(frame: CGRect,block:@escaping buttonClick) {
         super.init(frame: frame)
+        btnBlock = block
         setupUI()
     }
     
@@ -50,13 +53,14 @@ class LLMeHeadView: UIView {
         loginImageView.layer.cornerRadius = 30
         loginImageView.layer.masksToBounds = true
         
-        let loginLable = UILabel()
-        loginImageView.addSubview(loginLable)
-        loginLable.text = "点击登录"
-        loginLable.textAlignment = .center
-        loginLable.font = UIFont.boldSystemFont(ofSize: 16)
-        loginLable.textColor = UIColor.darkGray
-        loginLable.snp.makeConstraints { (make) in
+        let loginButton = UIButton()
+        loginImageView.addSubview(loginButton)
+        loginButton.setTitle("点击登录", for: .normal)
+        loginButton.addTarget(self, action: #selector(LLMeHeadView.btnClicik), for: .touchUpInside)
+        loginButton.tag = 10
+       loginButton.setTitleColor(UIColor.darkGray, for: .normal)
+        loginButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        loginButton.snp.makeConstraints { (make) in
             make.centerX.centerY.equalTo(loginImageView)
         }
         //添加底部的三个按钮
@@ -72,6 +76,8 @@ class LLMeHeadView: UIView {
         //订单优惠
         
     let orderBtn = BACustomButton(witAligenmentStatus: BAAligenmentStatusTop)
+          orderBtn.addTarget(self, action: #selector(LLMeHeadView.btnClicik), for: .touchUpInside)
+        orderBtn.tag = 20
         orderBtn.setImage( UIImage(named: "ordertop"), for: .normal)
         orderBtn.setTitle("我的订单", for: .normal)
         orderBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
@@ -87,6 +93,8 @@ class LLMeHeadView: UIView {
         
         //优惠红包
         let couponBtn = BACustomButton(witAligenmentStatus: BAAligenmentStatusTop)
+         couponBtn.addTarget(self, action: #selector(LLMeHeadView.btnClicik), for: .touchUpInside)
+        couponBtn.tag = 30
         couponBtn.setImage( UIImage(named: "coupon"), for: .normal)
         couponBtn.setTitle("优惠红包", for: .normal)
         couponBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
@@ -103,6 +111,8 @@ class LLMeHeadView: UIView {
       //地址管理
         
         let addressBtn = BACustomButton(witAligenmentStatus: BAAligenmentStatusTop)
+        addressBtn.addTarget(self, action: #selector(LLMeHeadView.btnClicik), for: .touchUpInside)
+        addressBtn.tag = 40
         addressBtn.setImage( UIImage(named: "addtop"), for: .normal)
         addressBtn.setTitle("地址管理", for: .normal)
         addressBtn.titleLabel?.font = UIFont.systemFont(ofSize: 12)
@@ -135,6 +145,14 @@ class LLMeHeadView: UIView {
         }
 
 
+        
+    }
+    
+          // MARK: ---- 按钮的点击方法
+    
+    func btnClicik(button:UIButton)  {
+        
+       btnBlock!(button)
         
     }
     

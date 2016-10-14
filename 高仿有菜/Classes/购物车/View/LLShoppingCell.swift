@@ -7,9 +7,16 @@
 //
 
 import UIKit
-
+protocol shoppingCarCellDelegate {
+    //添加商品
+    func addGoodsProductShoppingCarCell(model:LLHomeModel)
+    //删除商品
+    func deleteGoodsProductShoppingCarCell(model:LLHomeModel,indexPath:NSIndexPath)
+}
 class LLShoppingCell: UITableViewCell {
     
+    var delegate:shoppingCarCellDelegate?
+    var indexPath:NSIndexPath?
     var model:LLHomeModel? {
         
         didSet {
@@ -95,6 +102,17 @@ class LLShoppingCell: UITableViewCell {
         }
         
     }
+          // MARK: ---- 按钮的点击方法
+    
+    func addProduct()   {
+        model?.buyCount = (model?.buyCount)! + 1
+        delegate?.addGoodsProductShoppingCarCell(model: model!)
+    }
+    
+    func deleteProduct()  {
+      model?.buyCount = (model?.buyCount)! - 1
+      delegate?.deleteGoodsProductShoppingCarCell(model: model!, indexPath: indexPath!)
+    }
     
           // MARK: ---- 懒加载
     
@@ -129,6 +147,7 @@ class LLShoppingCell: UITableViewCell {
         
         let btn = UIButton()
       btn.setImage( UIImage(named: "sub_btn"), for: .normal)
+        btn.addTarget(self, action: #selector(LLShoppingCell.deleteProduct), for: .touchUpInside)
         btn.setTitleColor(UIColor.darkGray, for: .normal)
         btn.imageView?.frame.origin.x = 0
         btn.titleLabel?.frame.origin.x = (btn.imageView?.frame.origin.x)! + (btn.imageView?.frame.size.width)! + 20
@@ -137,6 +156,7 @@ class LLShoppingCell: UITableViewCell {
     private lazy var addButton:UIButton = {
         
         let btn = UIButton()
+        btn.addTarget(self, action: #selector(LLShoppingCell.addProduct), for: .touchUpInside)
         btn.setImage(  UIImage(named: "add_btn"), for: .normal)
         
         return btn

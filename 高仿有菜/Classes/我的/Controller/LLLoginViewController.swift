@@ -13,7 +13,7 @@ class LLLoginViewController: LLBaseViewController {
     var prewMoveY:CGFloat = 0.0
     override func viewDidLoad() {
         super.viewDidLoad()
-    setUpNavView()
+   setUpNavView()
      setupUI()
     }
 

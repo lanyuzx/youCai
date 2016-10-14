@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0600EB691DB0CC5C0081E77A /* FileToll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600EB681DB0CC5C0081E77A /* FileToll.swift */; };
+		0600EB6B1DB0CEBD0081E77A /* String + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600EB6A1DB0CEBD0081E77A /* String + Extension.swift */; };
+		0600EB6D1DB0CF500081E77A /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0600EB6C1DB0CF500081E77A /* Color+Extension.swift */; };
 		061B86E21D98B4C000D17FC6 /* LLHomeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061B86E11D98B4C000D17FC6 /* LLHomeDetailViewController.swift */; };
 		061DD3071D9A655700CE83C0 /* LLDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 061DD3061D9A655700CE83C0 /* LLDetailsController.swift */; };
 		061DD3121D9A713C00CE83C0 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 061DD30A1D9A713C00CE83C0 /* UIView+Frame.m */; };
@@ -106,6 +109,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0600EB681DB0CC5C0081E77A /* FileToll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileToll.swift; sourceTree = "<group>"; };
+		0600EB6A1DB0CEBD0081E77A /* String + Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String + Extension.swift"; sourceTree = "<group>"; };
+		0600EB6C1DB0CF500081E77A /* Color+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 		061B86E11D98B4C000D17FC6 /* LLHomeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLHomeDetailViewController.swift; sourceTree = "<group>"; };
 		061DD3061D9A655700CE83C0 /* LLDetailsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLDetailsController.swift; sourceTree = "<group>"; };
 		061DD3091D9A713C00CE83C0 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
@@ -560,6 +566,9 @@
 		062B9CA61D94D5890030D788 /* 基类 */ = {
 			isa = PBXGroup;
 			children = (
+				0600EB6C1DB0CF500081E77A /* Color+Extension.swift */,
+				0600EB6A1DB0CEBD0081E77A /* String + Extension.swift */,
+				0600EB681DB0CC5C0081E77A /* FileToll.swift */,
 				067C58841DAA467200DB0168 /* LLDownLoadImage.h */,
 				067C58851DAA467200DB0168 /* LLDownLoadImage.m */,
 				067C58811DAA464C00DB0168 /* AdvertiseView.h */,
@@ -805,6 +814,7 @@
 				062B9CB41D94D6560030D788 /* LLTabBarController.swift in Sources */,
 				06F5BBEF1DAB422800B7375C /* LLMoreInfoViewController.swift in Sources */,
 				061DD3131D9A713C00CE83C0 /* YZDisplayTitleLabel.m in Sources */,
+				0600EB6B1DB0CEBD0081E77A /* String + Extension.swift in Sources */,
 				06F5BBF11DAB67F900B7375C /* LLLoginViewController.swift in Sources */,
 				062B9C881D94D4960030D788 /* ConstraintConfig.swift in Sources */,
 				061DD3121D9A713C00CE83C0 /* UIView+Frame.m in Sources */,
@@ -842,6 +852,7 @@
 				062B9CAA1D94D5B70030D788 /* LLHomeViewController.swift in Sources */,
 				062B9C8A1D94D4960030D788 /* ConstraintDescription.swift in Sources */,
 				062B9C8B1D94D4960030D788 /* ConstraintDSL.swift in Sources */,
+				0600EB691DB0CC5C0081E77A /* FileToll.swift in Sources */,
 				062E43191DA889750068F7B8 /* LLCacheInterface.m in Sources */,
 				062B9C201D94D3570030D788 /* AppDelegate.swift in Sources */,
 				061DD3151D9A713C00CE83C0 /* YZFlowLayout.m in Sources */,
@@ -857,6 +868,7 @@
 				062B9C921D94D4960030D788 /* ConstraintLayoutSupportDSL.swift in Sources */,
 				062B9C9F1D94D4960030D788 /* ConstraintView.swift in Sources */,
 				062B9C961D94D4960030D788 /* ConstraintMakerFinalizable.swift in Sources */,
+				0600EB6D1DB0CF500081E77A /* Color+Extension.swift in Sources */,
 				061DD31E1D9B9C1B00CE83C0 /* LLChildCollectionViewCell.swift in Sources */,
 				067C583E1DA9D86F00DB0168 /* LLShopEmptyView.swift in Sources */,
 				067C583A1DA8D77E00DB0168 /* LLShoppingCell.swift in Sources */,

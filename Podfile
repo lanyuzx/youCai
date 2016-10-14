@@ -12,9 +12,9 @@ pod "SDWebImage"
 pod "SDCycleScrollView"
 pod "IQKeyboardManager"
 pod "AFNetworking"
-pod "MJExtension"
+pod "UITableView+FDTemplateLayoutCell"
 pod 'BACustomAlertView'
 pod  'BAButton'
-pod "FMDB"
+
 
 end

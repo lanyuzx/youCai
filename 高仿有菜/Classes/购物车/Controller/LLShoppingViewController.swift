@@ -6,6 +6,7 @@
 //  Copyright © 2016年 周尊贤. All rights reserved.
 //
 
+
 import UIKit
 import BACustomAlertView
 
@@ -28,11 +29,8 @@ class LLShoppingViewController: LLBaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "购 物 车"
-       
       view.addSubview(shopTabView)
-        
         view.addSubview(shopEmptView)
-        
         navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "咨询", style: .plain, target: self, action: #selector(LLShoppingViewController.consultingClick))
    
         let headView = UIView(frame:  CGRect(x: 0, y: 0, width: SCREEN_WITH, height: 35))
@@ -154,31 +152,27 @@ class LLShoppingViewController: LLBaseViewController {
     func didMsgRecv(notification:NSNotification){
         let notificationDict = notification.object as?NSDictionary
         let product = notificationDict?.object(forKey: "model") as?LLHomeModel
-
+        
         buyProdectArr.add(product )
         
-         let dict = NSMutableDictionary(capacity: 1)
+        //去重的处理
+        
+     let dict = NSMutableDictionary(capacity: 1)
         
         for index  in 0..<buyProdectArr.count {
             
             let model = buyProdectArr[index] as!LLHomeModel
             
-          
-            dict.setObject(model, forKey: model.title as! NSCopying )
-            
-            }
-        
-            buyProdectArr = NSMutableArray(array: dict.allValues)
-        
-        for index in 0..<buyProdectArr.count {
-            let model = buyProdectArr[index] as?LLHomeModel
-            if product?.title == model?.title {
+                dict.setObject(model, forKey: model.title as! NSCopying)
                 
-                model?.buyCount += (product?.buyCount)!
-            }
         }
+        
+        buyProdectArr =  NSMutableArray(array: dict.allValues)
+        
+   
+       
         //归档
-        NSKeyedArchiver.archiveRootObject(buyProdectArr, toFile: LLDownLoadImage.share().getFilePath(withImageName: "LLHomeModel.data"))
+       NSKeyedArchiver.archiveRootObject(buyProdectArr, toFile: LLDownLoadImage.share().getFilePath(withImageName: "LLHomeModel.data"))
          shopTabView.isHidden = false
         shopEmptView.isHidden = true
               shopTabView.reloadData()
@@ -193,6 +187,7 @@ class LLShoppingViewController: LLBaseViewController {
      //立即购买
     lazy var bottomBuyView = UIView()
     lazy var buyProdectArr = NSMutableArray(capacity: 1)
+    
     lazy var shopEmptView = LLShopEmptyView(frame: CGRect(x: 0, y: 64, width: SCREEN_WITH, height: SCREEN_HEIGHT - 64 ))
     lazy var shopTabView:UITableView = {
         
@@ -208,7 +203,7 @@ class LLShoppingViewController: LLBaseViewController {
    
 }
 
-extension LLShoppingViewController:UITableViewDelegate,UITableViewDataSource ,UIAlertViewDelegate{
+extension LLShoppingViewController:UITableViewDelegate,UITableViewDataSource ,UIAlertViewDelegate,shoppingCarCellDelegate{
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
@@ -220,9 +215,8 @@ extension LLShoppingViewController:UITableViewDelegate,UITableViewDataSource ,UI
         let cell = tableView.dequeueReusableCell(withIdentifier: "LLShoppingViewController", for: indexPath) as!LLShoppingCell
         
         cell.model = buyProdectArr[indexPath.row] as?LLHomeModel
-      
-       
-       
+      cell.indexPath = indexPath as NSIndexPath?
+       cell.delegate = self
         return cell
     
     }
@@ -251,7 +245,7 @@ extension LLShoppingViewController:UITableViewDelegate,UITableViewDataSource ,UI
             tableView.deleteRows(at: indexPathArr as! [IndexPath], with: UITableViewRowAnimation.left)
             self.shopViewIsHidden()
             //归档
-            NSKeyedArchiver.archiveRootObject(self.buyProdectArr, toFile: LLDownLoadImage.share().getFilePath(withImageName: "LLHomeModel.data"))
+          NSKeyedArchiver.archiveRootObject(self.buyProdectArr, toFile: LLDownLoadImage.share().getFilePath(withImageName: "LLHomeModel.data"))
                   }
         
         return [deleteRoWAction]
@@ -266,6 +260,57 @@ extension LLShoppingViewController:UITableViewDelegate,UITableViewDataSource ,UI
             UIApplication.shared.openURL(NSURL(string :"tel://"+"\("4008600216")")! as URL)
             
         }
+    }
+    //自定义代理方法
+    func addGoodsProductShoppingCarCell(model: LLHomeModel) {
+        
+         shopTabView.reloadData()
+        let dict = NSMutableDictionary(capacity: 1)
+        dict["model"] = model
+     
+        //通知名称常量
+        let NotifyChatMsgRecv = NSNotification.Name(rawValue:LLShoppingNotification)
+        //发送通知
+        NotificationCenter.default.post(name:NotifyChatMsgRecv, object: dict, userInfo:nil)
+    }
+    
+    func deleteGoodsProductShoppingCarCell(model: LLHomeModel,indexPath:NSIndexPath) {
+        
+        
+        if model.buyCount != 0 && model.buyCount > 0 {
+            
+            let dict = NSMutableDictionary(capacity: 1)
+            dict["model"] = model
+            
+            //通知名称常量
+            let NotifyChatMsgRecv = NSNotification.Name(rawValue:LLShoppingNotification)
+            //发送通知
+            NotificationCenter.default.post(name:NotifyChatMsgRecv, object: dict, userInfo:nil)
+            //归档
+            NSKeyedArchiver.archiveRootObject(self.buyProdectArr, toFile: LLDownLoadImage.share().getFilePath(withImageName: "LLHomeModel.data"))
+
+        }else {
+            //发送通知 更改 tabbar 上的数字
+            let dict = NSMutableDictionary(capacity: 1)
+            let model =  self.buyProdectArr[indexPath.row] as!LLHomeModel
+            model.buyCount = 0
+            dict["modelArr"] =  model
+            //通知名称常量
+            let NotifyChatMsgRecv = NSNotification.Name(rawValue:LLDeleteProductNotification)
+            //发送通知
+            NotificationCenter.default.post(name:NotifyChatMsgRecv, object: dict, userInfo:nil)
+            self.buyProdectArr.removeObject(at: indexPath.row)
+            let indexPathArr = NSArray(object: indexPath)
+            shopTabView.deleteRows(at: indexPathArr as! [IndexPath], with: UITableViewRowAnimation.left)
+            self.shopViewIsHidden()
+            //归档
+            NSKeyedArchiver.archiveRootObject(self.buyProdectArr, toFile: LLDownLoadImage.share().getFilePath(withImageName: "LLHomeModel.data"))
+
+        }
+        
+        
+         shopTabView.reloadData()
+        
     }
 }
 

@@ -94,15 +94,15 @@ extension LLCycleViewController:UITableViewDataSource,UITableViewDelegate {
         }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailModel = self.dataSource[indexPath.row]
-        
-        let detailVc = LLHomeDetailViewController()
-        
-        
-        detailVc.detetailURLString = "https://api.youcai.xin/combo/detail?id=\(detailModel.id )"
-        
-        
-        self.navigationController?.pushViewController(detailVc, animated: true)
+//        let detailModel = self.dataSource[indexPath.row]
+//        
+//        let detailVc = LLHomeDetailViewController()
+//        
+//        
+//        detailVc.detetailURLString = "https://api.youcai.xin/combo/detail?id=\(detailModel.id )"
+//        
+//        
+//        self.navigationController?.pushViewController(detailVc, animated: true)
         
 
         

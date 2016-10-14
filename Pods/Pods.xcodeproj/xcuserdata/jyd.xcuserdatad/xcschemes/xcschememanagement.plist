@@ -19,17 +19,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>FMDB.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>IQKeyboardManager.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>MJExtension.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -59,6 +49,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>UITableView+FDTemplateLayoutCell.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -72,7 +67,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>23CF27B2BA6AC7125EFFEDA8C5AA819F</key>
+		<key>1C87F7BC31E4C7F46BD64BB07815BBB6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1F07F1E23E1A10BCE9EBF32431CF70FC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,32 +87,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>415C3CB51F243A8F0D537C259B340A5A</key>
+		<key>3A36942AC002D3C191998560D8C4D023</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6ABBA9CFC8FD7B3EA25FF71AE1D11B32</key>
+		<key>A234B877D3C7EB7A7FBF2609922A44D4</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7C0126D717EB28DC6DB2EEA2E20B5172</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>8E2F8170E446294BE1333AFAF01FD046</key>
+		<key>C126B01975C96D4E32D8A3F9FEA17FDB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>CF7E28794293264642046A4BCC4B61C1</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>E2B3330952C3724AE560D1E5CCCBABD0</key>
 		<dict>
 			<key>primary</key>
 			<true/>
