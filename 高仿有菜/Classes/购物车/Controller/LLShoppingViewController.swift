@@ -272,6 +272,7 @@ extension LLShoppingViewController:UITableViewDelegate,UITableViewDataSource ,UI
         let NotifyChatMsgRecv = NSNotification.Name(rawValue:LLShoppingNotification)
         //发送通知
         NotificationCenter.default.post(name:NotifyChatMsgRecv, object: dict, userInfo:nil)
+        shopViewIsHidden()
     }
     
     func deleteGoodsProductShoppingCarCell(model: LLHomeModel,indexPath:NSIndexPath) {
@@ -288,6 +289,7 @@ extension LLShoppingViewController:UITableViewDelegate,UITableViewDataSource ,UI
             NotificationCenter.default.post(name:NotifyChatMsgRecv, object: dict, userInfo:nil)
             //归档
             NSKeyedArchiver.archiveRootObject(self.buyProdectArr, toFile: LLDownLoadImage.share().getFilePath(withImageName: "LLHomeModel.data"))
+            shopViewIsHidden()
 
         }else {
             //发送通知 更改 tabbar 上的数字
@@ -305,6 +307,7 @@ extension LLShoppingViewController:UITableViewDelegate,UITableViewDataSource ,UI
             self.shopViewIsHidden()
             //归档
             NSKeyedArchiver.archiveRootObject(self.buyProdectArr, toFile: LLDownLoadImage.share().getFilePath(withImageName: "LLHomeModel.data"))
+            shopViewIsHidden()
 
         }
         
