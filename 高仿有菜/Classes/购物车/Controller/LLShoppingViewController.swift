@@ -164,15 +164,21 @@ class LLShoppingViewController: LLBaseViewController {
             let model = buyProdectArr[index] as!LLHomeModel
             
                 dict.setObject(model, forKey: model.title as! NSCopying)
-                
+            
+           
+        
         }
         
         buyProdectArr =  NSMutableArray(array: dict.allValues)
         
-   
+        //循环插入数据库中
+        for model in buyProdectArr {
+             LLDBTools.DBManager.insertDateOrUpdateDate(model: model as! LLHomeModel)
+        }
        
         //归档
        NSKeyedArchiver.archiveRootObject(buyProdectArr, toFile: LLDownLoadImage.share().getFilePath(withImageName: "LLHomeModel.data"))
+        
          shopTabView.isHidden = false
         shopEmptView.isHidden = true
               shopTabView.reloadData()
@@ -241,6 +247,10 @@ extension LLShoppingViewController:UITableViewDelegate,UITableViewDataSource ,UI
             //发送通知
             NotificationCenter.default.post(name:NotifyChatMsgRecv, object: dict, userInfo:nil)
             self.buyProdectArr.removeObject(at: indexPath.row)
+            
+            //从数据库中删除
+            LLDBTools.DBManager.delectDate(model: model)
+            
           let indexPathArr = NSArray(object: indexPat)
             tableView.deleteRows(at: indexPathArr as! [IndexPath], with: UITableViewRowAnimation.left)
             self.shopViewIsHidden()
@@ -287,8 +297,9 @@ extension LLShoppingViewController:UITableViewDelegate,UITableViewDataSource ,UI
             let NotifyChatMsgRecv = NSNotification.Name(rawValue:LLShoppingNotification)
             //发送通知
             NotificationCenter.default.post(name:NotifyChatMsgRecv, object: dict, userInfo:nil)
-            //归档
-            NSKeyedArchiver.archiveRootObject(self.buyProdectArr, toFile: LLDownLoadImage.share().getFilePath(withImageName: "LLHomeModel.data"))
+            //购买个数大于0 更新本地数据库
+            LLDBTools.DBManager.insertDateOrUpdateDate(model: model)
+            
             shopViewIsHidden()
 
         }else {
@@ -305,6 +316,8 @@ extension LLShoppingViewController:UITableViewDelegate,UITableViewDataSource ,UI
             let indexPathArr = NSArray(object: indexPath)
             shopTabView.deleteRows(at: indexPathArr as! [IndexPath], with: UITableViewRowAnimation.left)
             self.shopViewIsHidden()
+              //购买个数小于0 删除本地数九
+             LLDBTools.DBManager.delectDate(model: model)
             //归档
             NSKeyedArchiver.archiveRootObject(self.buyProdectArr, toFile: LLDownLoadImage.share().getFilePath(withImageName: "LLHomeModel.data"))
             shopViewIsHidden()

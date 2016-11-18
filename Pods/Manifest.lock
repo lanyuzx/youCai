@@ -16,6 +16,9 @@ PODS:
     - AFNetworking/NSURLSession
   - BAButton (1.0.1)
   - BACustomAlertView (1.0.5)
+  - FMDB (2.6.2):
+    - FMDB/standard (= 2.6.2)
+  - FMDB/standard (2.6.2)
   - IQKeyboardManager (4.0.5)
   - MJRefresh (3.1.12)
   - SDCycleScrollView (1.65):
@@ -30,6 +33,7 @@ DEPENDENCIES:
   - AFNetworking
   - BAButton
   - BACustomAlertView
+  - FMDB
   - IQKeyboardManager
   - MJRefresh
   - SDCycleScrollView
@@ -41,6 +45,7 @@ SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   BAButton: bb8f74e5e167a7e01ce8c0a66eafc3245ebb8c31
   BACustomAlertView: 416a6497a6e1ca322f7a99ccdcc213492ee63be3
+  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   IQKeyboardManager: 50b62c0603308968256f8208886e206c1dcce607
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
@@ -48,6 +53,6 @@ SPEC CHECKSUMS:
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
   UITableView+FDTemplateLayoutCell: 234e1582bcc4e18461af91155123bb96538ed030
 
-PODFILE CHECKSUM: 9eac164f7640bc7defbb4d9ed0d238ff54ea550d
+PODFILE CHECKSUM: 9e44ffac31bdd879ad105a7236d73909a1c17f47
 
 COCOAPODS: 1.0.1

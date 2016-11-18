@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FMDB.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>IQKeyboardManager.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -67,12 +72,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1C87F7BC31E4C7F46BD64BB07815BBB6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1F07F1E23E1A10BCE9EBF32431CF70FC</key>
+		<key>23CF27B2BA6AC7125EFFEDA8C5AA819F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -87,22 +87,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3A36942AC002D3C191998560D8C4D023</key>
+		<key>4B12E543A0AD7A62A1A4B395E8852A60</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A234B877D3C7EB7A7FBF2609922A44D4</key>
+		<key>7D024EDE2C46698568485BC4E7CA7AE8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C126B01975C96D4E32D8A3F9FEA17FDB</key>
+		<key>B78E4F1F3249DB1884E881F54A61432A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>CF7E28794293264642046A4BCC4B61C1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D84C194B2F9A61F524DA86EAB9D6B8EB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ECB7CD3445694ECE1FD96AF47620FE6E</key>
 		<dict>
 			<key>primary</key>
 			<true/>

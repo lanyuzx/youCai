@@ -15,6 +15,7 @@ pod "AFNetworking"
 pod "UITableView+FDTemplateLayoutCell"
 pod 'BACustomAlertView'
 pod  'BAButton'
+pod 'FMDB'
 
 
 end

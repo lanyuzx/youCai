@@ -70,6 +70,7 @@
 		062B9CC71D952AFF0030D788 /* LLHomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B9CC61D952AFF0030D788 /* LLHomeTableViewCell.swift */; };
 		062B9CCA1D9538AF0030D788 /* YMVerticalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 062B9CC91D9538AF0030D788 /* YMVerticalButton.swift */; };
 		062E43191DA889750068F7B8 /* LLCacheInterface.m in Sources */ = {isa = PBXBuildFile; fileRef = 062E43181DA889750068F7B8 /* LLCacheInterface.m */; };
+		064FA5851DB4C99D0005DD5E /* LLBaseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 064FA5841DB4C99D0005DD5E /* LLBaseDetailViewController.swift */; };
 		067C583A1DA8D77E00DB0168 /* LLShoppingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067C58391DA8D77E00DB0168 /* LLShoppingCell.swift */; };
 		067C583C1DA8FF7700DB0168 /* LLShopTabFootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067C583B1DA8FF7700DB0168 /* LLShopTabFootView.swift */; };
 		067C583E1DA9D86F00DB0168 /* LLShopEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 067C583D1DA9D86F00DB0168 /* LLShopEmptyView.swift */; };
@@ -78,6 +79,8 @@
 		067C58861DAA467200DB0168 /* LLDownLoadImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 067C58851DAA467200DB0168 /* LLDownLoadImage.m */; };
 		06AFFB8B1D9BA15B00369806 /* LLChildCollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06AFFB8A1D9BA15B00369806 /* LLChildCollectionHeaderView.swift */; };
 		06AFFB911D9BCDFB00369806 /* HMTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 06AFFB8F1D9BCDFB00369806 /* HMTabBar.m */; };
+		06C58B1D1DDDA21B00EC0C7A /* LLDateBaseTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 06C58B1C1DDDA21B00EC0C7A /* LLDateBaseTools.m */; };
+		06C58B1F1DDDB22B00EC0C7A /* LLDBTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C58B1E1DDDB22B00EC0C7A /* LLDBTools.swift */; };
 		06F2FC911D9E16550023D013 /* LLCycleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F2FC901D9E16550023D013 /* LLCycleView.swift */; };
 		06F5BBEB1DAB2ADE00B7375C /* LLMeHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F5BBEA1DAB2ADE00B7375C /* LLMeHeadView.swift */; };
 		06F5BBED1DAB3C3500B7375C /* LLMeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06F5BBEC1DAB3C3500B7375C /* LLMeTableViewCell.swift */; };
@@ -189,6 +192,7 @@
 		062B9CC91D9538AF0030D788 /* YMVerticalButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YMVerticalButton.swift; sourceTree = "<group>"; };
 		062E43171DA889750068F7B8 /* LLCacheInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCacheInterface.h; sourceTree = "<group>"; };
 		062E43181DA889750068F7B8 /* LLCacheInterface.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCacheInterface.m; sourceTree = "<group>"; };
+		064FA5841DB4C99D0005DD5E /* LLBaseDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLBaseDetailViewController.swift; sourceTree = "<group>"; };
 		067C58391DA8D77E00DB0168 /* LLShoppingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLShoppingCell.swift; sourceTree = "<group>"; };
 		067C583B1DA8FF7700DB0168 /* LLShopTabFootView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLShopTabFootView.swift; sourceTree = "<group>"; };
 		067C583D1DA9D86F00DB0168 /* LLShopEmptyView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLShopEmptyView.swift; sourceTree = "<group>"; };
@@ -200,6 +204,9 @@
 		06AFFB8A1D9BA15B00369806 /* LLChildCollectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLChildCollectionHeaderView.swift; sourceTree = "<group>"; };
 		06AFFB8E1D9BCDFB00369806 /* HMTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMTabBar.h; sourceTree = "<group>"; };
 		06AFFB8F1D9BCDFB00369806 /* HMTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMTabBar.m; sourceTree = "<group>"; };
+		06C58B1B1DDDA21B00EC0C7A /* LLDateBaseTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLDateBaseTools.h; sourceTree = "<group>"; };
+		06C58B1C1DDDA21B00EC0C7A /* LLDateBaseTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLDateBaseTools.m; sourceTree = "<group>"; };
+		06C58B1E1DDDB22B00EC0C7A /* LLDBTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLDBTools.swift; sourceTree = "<group>"; };
 		06F2FC901D9E16550023D013 /* LLCycleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLCycleView.swift; sourceTree = "<group>"; };
 		06F5BBEA1DAB2ADE00B7375C /* LLMeHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLMeHeadView.swift; sourceTree = "<group>"; };
 		06F5BBEC1DAB3C3500B7375C /* LLMeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LLMeTableViewCell.swift; sourceTree = "<group>"; };
@@ -489,6 +496,7 @@
 				062B9CA91D94D5B70030D788 /* LLHomeViewController.swift */,
 				061B86E11D98B4C000D17FC6 /* LLHomeDetailViewController.swift */,
 				061DD3061D9A655700CE83C0 /* LLDetailsController.swift */,
+				064FA5841DB4C99D0005DD5E /* LLBaseDetailViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -584,6 +592,9 @@
 				062B9CBB1D94DD270030D788 /* LLHeader.h */,
 				062B9CBC1D94DFEA0030D788 /* LLNetworksTools.h */,
 				062B9CBD1D94DFEA0030D788 /* LLNetworksTools.m */,
+				06C58B1B1DDDA21B00EC0C7A /* LLDateBaseTools.h */,
+				06C58B1C1DDDA21B00EC0C7A /* LLDateBaseTools.m */,
+				06C58B1E1DDDB22B00EC0C7A /* LLDBTools.swift */,
 			);
 			path = "基类";
 			sourceTree = "<group>";
@@ -814,8 +825,10 @@
 				062B9CB41D94D6560030D788 /* LLTabBarController.swift in Sources */,
 				06F5BBEF1DAB422800B7375C /* LLMoreInfoViewController.swift in Sources */,
 				061DD3131D9A713C00CE83C0 /* YZDisplayTitleLabel.m in Sources */,
+				064FA5851DB4C99D0005DD5E /* LLBaseDetailViewController.swift in Sources */,
 				0600EB6B1DB0CEBD0081E77A /* String + Extension.swift in Sources */,
 				06F5BBF11DAB67F900B7375C /* LLLoginViewController.swift in Sources */,
+				06C58B1D1DDDA21B00EC0C7A /* LLDateBaseTools.m in Sources */,
 				062B9C881D94D4960030D788 /* ConstraintConfig.swift in Sources */,
 				061DD3121D9A713C00CE83C0 /* UIView+Frame.m in Sources */,
 				067C58831DAA464C00DB0168 /* AdvertiseView.m in Sources */,
@@ -843,6 +856,7 @@
 				062B9C891D94D4960030D788 /* ConstraintConstantTarget.swift in Sources */,
 				062B9CC21D9504390030D788 /* LLHomeModel.swift in Sources */,
 				062B9C9C1D94D4960030D788 /* ConstraintRelatableTarget.swift in Sources */,
+				06C58B1F1DDDB22B00EC0C7A /* LLDBTools.swift in Sources */,
 				062B9C901D94D4960030D788 /* ConstraintLayoutGuideDSL.swift in Sources */,
 				061DD3141D9A713C00CE83C0 /* YZDisplayViewController.m in Sources */,
 				06F5BBEB1DAB2ADE00B7375C /* LLMeHeadView.swift in Sources */,

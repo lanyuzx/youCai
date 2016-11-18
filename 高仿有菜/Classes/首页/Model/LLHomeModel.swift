@@ -55,6 +55,12 @@ class LLHomeModel: NSObject ,NSCoding{
     var quantity = -1
     //购买的个数
     var buyCount = 0
+    
+    override init() {
+        super.init()
+    }
+    
+    
      init(dict:[String:AnyObject]) {
         super.init()
         setValuesForKeys(dict)

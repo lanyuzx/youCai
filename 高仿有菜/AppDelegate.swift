@@ -42,6 +42,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //无论沙河中是否存在,都需要调用新的广告接口
         LLDownLoadImage.share().getAdvertisingImage()
+        
+        //初始化数据库
+       // LLDateBaseTools.shared().initDateBase()
+        LLDBTools.DBManager.initDateBase()
+        
 
         
         return true

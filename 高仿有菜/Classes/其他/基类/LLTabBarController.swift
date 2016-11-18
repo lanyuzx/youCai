@@ -36,7 +36,16 @@ class LLTabBarController: UITabBarController {
         
         //读取数据库
         
-        //接档
+        let dbArr = LLDBTools.DBManager.selectDate()
+        
+        
+        print(dbArr)
+//        if dbArr.count > 0 {
+//            shoppingArr = NSMutableArray(array: dbArr)
+//            
+//        }
+        
+//        //接档
         if let  path  = LLDownLoadImage.share().getFilePath(withImageName: "LLHomeModel.data") {
             if  let tempArr =   NSKeyedUnarchiver.unarchiveObject(withFile:path )  as?NSArray {
                 
